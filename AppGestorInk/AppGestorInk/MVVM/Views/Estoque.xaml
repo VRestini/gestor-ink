@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppGestorInk.MVVM.Views.Estoque"
+             xmlns:local="clr-namespace:AppGestorInk.MVVM.Models"
+             x:DataType="local:Produto"
+             >
+    <Shell.TitleView>
+        <FlexLayout JustifyContent="End" AlignItems="Center" AlignContent="End" >
+
+
+            <Button CornerRadius="100" Text="+" TextColor="White" BackgroundColor="#101010" FontSize="25" Clicked="OnCounterClicked"></Button>
+        </FlexLayout>
+
+    </Shell.TitleView>
+    <Grid BackgroundColor="White">
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="71"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <FlexLayout Grid.Row="0" AlignItems="End" JustifyContent="Center">
+            <Frame BackgroundColor="#101010" CornerRadius="100" WidthRequest="320" HeightRequest="50">
+                <SearchBar Placeholder="Search items..." HeightRequest="30"/>
+            </Frame>
+        </FlexLayout>
+
+        <ScrollView Grid.Row="1">
+
+            <FlexLayout  Direction="Column"
+                AlignItems="Center"        
+                JustifyContent="Start"
+                >
+                <CollectionView x:Name="ProdutoC" SelectionChanged="ProdutoCV_SelectionChanged" SelectionMode="Single"
+                                >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="#101010" HeightRequest="134" WidthRequest="320" Padding="13" Margin="0, 15, 0, 0" >
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="15"/>
+                                </Border.StrokeShape>
+                                <FlexLayout JustifyContent="SpaceBetween" >
+                                    <Image Source="dotnet_bot.png"
+HeightRequest="114" WidthRequest="88" />
+                                    <VerticalStackLayout WidthRequest="205"  Padding="5">
+                                        <FlexLayout JustifyContent="SpaceBetween" >
+                                            <Label Text="{Binding Name}" FontSize="15" TextColor="White"/>
+                                            <ImageButton Source="editar.png"
+HeightRequest="15" Clicked="ImageButton_Clicked" />
+                                        </FlexLayout>
+
+                                        <StackLayout HeightRequest="5"></StackLayout>
+                                        <Label Text="{Binding Descricao}" FontSize="12" TextColor="White"/>
+                                    </VerticalStackLayout>
+                                </FlexLayout>
+
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </FlexLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

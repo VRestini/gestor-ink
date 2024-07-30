@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppGestorInk.MVVM.Views.Home"
+             >
+    <Shell.TitleView>
+        <Label Text=""></Label>
+    </Shell.TitleView>
+    <Grid BackgroundColor="White">
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="0">
+            <FlexLayout  Direction="Column"
+                AlignItems="Center"        
+                JustifyContent="Start"
+                >
+
+                <Frame CornerRadius="15" BackgroundColor="#101010" HeightRequest="134" WidthRequest="320" Padding="18" Margin="15">
+                    <StackLayout  >
+                        <FlexLayout JustifyContent="SpaceBetween" >
+
+                            <VerticalStackLayout WidthRequest="284"  Padding="5">
+                                <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center" HeightRequest="30">
+                                    <Label Text="Pouco Material!" FontSize="18" TextColor="White"/>
+                                    <ImageButton Source="x.png"
+HeightRequest="10"  WidthRequest="15"/>
+                                </FlexLayout>
+                                <StackLayout HeightRequest="20"></StackLayout>
+                                <Label Text="A agulha 12RS contém poucas unidades." FontSize="12" TextColor="White"/>
+                            </VerticalStackLayout>
+                        </FlexLayout>
+                    </StackLayout>
+                </Frame>
+            </FlexLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

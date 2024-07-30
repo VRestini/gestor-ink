@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="AppGestorInk.MVVM.Popups.CriarProduto"
+             CanBeDismissedByTappingOutsideOfPopup="False">
+    <Frame CornerRadius="15">
+
+        <FlexLayout BackgroundColor="White" 
+        WidthRequest="340" 
+        HeightRequest="190" 
+        Direction="Column" 
+        AlignItems="Center"
+        JustifyContent="Start"
+
+                 >
+            <HorizontalStackLayout  WidthRequest="320" Margin="0, 5, 0,0" HeightRequest="110">
+                <Border WidthRequest="110"
+                    HeightRequest="110">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20,20,20,20"/>
+                    </Border.StrokeShape>
+                    <ImageButton BackgroundColor="Gray"/>
+                </Border>
+
+                <VerticalStackLayout WidthRequest="195" Margin="10,0,0,0">
+                    <Border HeightRequest="40" BackgroundColor="White">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20,20,0,0" />
+                        </Border.StrokeShape>
+                        <Entry Placeholder="Nome do produto" ReturnType="Default"></Entry>
+                    </Border>
+                    <Border Margin="00,10,0,0" HeightRequest="60">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20,20,0,0" />
+                        </Border.StrokeShape>
+                        <Entry Placeholder="Descrição do produto" ReturnType="Default"></Entry>
+                    </Border>
+                </VerticalStackLayout>
+
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Margin="0, 8,0,0">
+                <Button Clicked="Button_Clicked"
+            Text="Cancelar"
+            Margin="0, 0, 10, 0"
+            HeightRequest="10"
+            WidthRequest="150"
+            BackgroundColor="#101010"
+            CornerRadius="10"/>
+                <Button  Text="Salvar Item"
+             Margin="10, 0, 0, 0"
+            HeightRequest="10"
+            WidthRequest="150"
+            BackgroundColor="#101010"
+             CornerRadius="10"/>
+            </HorizontalStackLayout>
+        </FlexLayout>
+    </Frame>
+</mct:Popup>
