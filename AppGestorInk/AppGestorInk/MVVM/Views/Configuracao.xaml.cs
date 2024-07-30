@@ -6,4 +6,8 @@ public partial class Configuracao : ContentPage
 	{
 		InitializeComponent();
 	}
+    private void InitializeComponent()
+    {
+        throw new NotImplementedException();
+    }
 }

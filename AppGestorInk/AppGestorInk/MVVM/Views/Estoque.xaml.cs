@@ -1,6 +1,7 @@
-using AppGestorInk;
+using AppGestorInk.MVVM.Views;
 using AppGestorInk.MVVM.Models;
 using AppGestorInk.MVVM.Popups;
+using AppGestorInk;
 namespace GestorInk.MVVM.Views;
 
 public partial class Estoque : ContentPage
@@ -9,6 +10,12 @@ public partial class Estoque : ContentPage
     {
         InitializeComponent();
     }
+
+    private void InitializeComponent()
+    {
+        throw new NotImplementedException();
+    }
+
     public void ListarProdutos()
     {
         var produto = App.ProdutoServiceBD.ListarProduto().Result;

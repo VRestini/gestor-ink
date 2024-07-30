@@ -6,4 +6,8 @@ public partial class Teste : ContentPage
 	{
 		InitializeComponent();
 	}
+    private void InitializeComponent()
+    {
+        throw new NotImplementedException();
+    }
 }

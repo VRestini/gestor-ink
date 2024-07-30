@@ -37,7 +37,7 @@
                 AlignItems="Center"        
                 JustifyContent="Start"
                 >
-                <CollectionView x:Name="ProdutoC" SelectionChanged="ProdutoCV_SelectionChanged" SelectionMode="Single"
+                <CollectionView x:Name="ProdutoCV" SelectionChanged="ProdutoCV_SelectionChanged" SelectionMode="Single"
                                 >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
