@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              x:Class="AppGestorInk.MVVM.Popups.EditarProduto"
-             Title="EditarProduto">
+            >
     <VerticalStackLayout>
         <Border HeightRequest="60" BackgroundColor="WhiteSmoke">
             <Border.StrokeShape>
@@ -15,4 +16,4 @@
             <Entry x:Name="TXTNome" TextColor="#101010" Placeholder="Descrição:"></Entry>
         </Border>
     </VerticalStackLayout>
-</ContentPage>
+</mct:Popup>

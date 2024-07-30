@@ -2,23 +2,21 @@ using AppGestorInk.MVVM.Views;
 using AppGestorInk.MVVM.Models;
 using AppGestorInk.MVVM.Popups;
 using AppGestorInk;
-namespace GestorInk.MVVM.Views;
+using CommunityToolkit.Maui.Views;
+namespace AppGestorInk.MVVM.Views;
 
 public partial class Estoque : ContentPage
 {
     public Estoque()
     {
         InitializeComponent();
+        ListarProdutos();
     }
 
-    private void InitializeComponent()
-    {
-        throw new NotImplementedException();
-    }
 
-    public void ListarProdutos()
+    public async void ListarProdutos()
     {
-        var produto = App.ProdutoServiceBD.ListarProduto().Result;
+        var produto = await App.ProdutoServiceBD.ListarProduto();
         ProdutoCV.ItemsSource = produto;
     }
     private async void OnCounterClicked(object sender, EventArgs e)
@@ -40,10 +38,11 @@ public partial class Estoque : ContentPage
         }
 
     }
-    private void ProdutoCV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void ProdutoCV_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var produto = e.CurrentSelection.FirstOrDefault() as Produto;
-        Navigation.PushAsync(new EditarProduto(produto));
+        this.ShowPopupAsync(new EditarProduto (produto));
+        
     }
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
