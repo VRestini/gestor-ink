@@ -65,6 +65,7 @@
 	  <None Remove="Resources\Images\dollar.png" />
 	  <None Remove="Resources\Images\editar.png" />
 	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\relatorio.png" />
 	  <None Remove="Resources\Images\shopping_cart.png" />
 	  <None Remove="Resources\Images\x.png" />
 	</ItemGroup>

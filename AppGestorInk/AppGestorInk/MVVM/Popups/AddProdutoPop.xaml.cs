@@ -1,5 +1,6 @@
 
 using AppGestorInk.MVVM.ViewModels;
+using AppGestorInk.MVVM.Views;
 using CommunityToolkit.Maui.Views;
 namespace AppGestorInk.MVVM.Popups;
 
@@ -11,8 +12,8 @@ public partial class AddProdutoPop : ContentPage
 		InitializeComponent();
         BindingContext = addProdutoViewModel;
 	}
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
-        
+      
     }
 }

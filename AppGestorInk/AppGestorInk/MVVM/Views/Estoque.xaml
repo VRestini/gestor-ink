@@ -22,52 +22,59 @@
     </Shell.TitleView>
     <Grid BackgroundColor="White">
         <Grid.RowDefinitions>
-
-            <RowDefinition Height="71"/>
             <RowDefinition Height="*"/>
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
 
         </Grid.ColumnDefinitions>
 
-        <FlexLayout Grid.Row="0" AlignItems="End" JustifyContent="Center">
-            <Frame BackgroundColor="#101010" CornerRadius="100" WidthRequest="320" HeightRequest="50">
-                <SearchBar Placeholder="Search items..." HeightRequest="30"/>
-            </Frame>
-        </FlexLayout>
+        
 
-        <ScrollView Grid.Row="1">
-
+        <ScrollView Grid.Row="0">
+            
             <FlexLayout  Direction="Column"
                 AlignItems="Center"        
                 JustifyContent="Start"
                 >
+
+                <Frame BackgroundColor="#101010" CornerRadius="100" WidthRequest="320" HeightRequest="50" Margin="0, 15, 0, 0">
+                    <SearchBar Placeholder="Search items..." HeightRequest="30"/>
+                </Frame>
                 <CollectionView x:Name="ProdutoCV" ItemsSource="{Binding ProdutoList}"
                                 >
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Produto">
                             <Border BackgroundColor="#101010" HeightRequest="134" WidthRequest="320" Padding="13" Margin="0, 15, 0, 0" >
                                 <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="15"/>
+                                    <RoundRectangle CornerRadius="15" BackgroundColor="#101010"/>
                                 </Border.StrokeShape>
-                                <FlexLayout JustifyContent="SpaceBetween" >
+                                <FlexLayout >
                                     <Image Source="dotnet_bot.png"
 HeightRequest="114" WidthRequest="88" />
-                                    <VerticalStackLayout WidthRequest="205"  Padding="5">
-                                        <FlexLayout JustifyContent="SpaceBetween" >
-                                            <Label Text="{Binding Name}" FontSize="15" TextColor="White"/>
+                                    <HorizontalStackLayout>
+                                        
+                                        <VerticalStackLayout WidthRequest="176" >
+                                            <Label Text="{Binding Name}" FontSize="Subtitle" TextColor="White" FontAttributes="Bold" MaxLines="1" Margin="3,0,0,0"/>
+                                            <Label Text="{Binding Descricao}" FontSize="Caption" TextColor="White" FontFamily=""/>
+                                        </VerticalStackLayout>
+                                        <FlexLayout WidthRequest="30"  Direction="Column" AlignItems="Center">
                                             <ImageButton
-                                                Source="x.png"
-                                                HeightRequest="15"                              
-                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=RefreshProdutoCommand}"
-                                                CommandParameter="{Binding .}"/>
+                                                 Source="editar.png"
+                                                 HeightRequest="20"   
+                                                 WidthRequest="20"
+                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=RefreshProdutoCommand}"
+                                                 CommandParameter="{Binding .}"
+                                                 Margin="0, 2, 0, 0"/>
+                                            <ImageButton
+                                                Margin="0, 5,0,0"
+                                                Source="relatorio.png"
+                                                HeightRequest="20"   
+                                                WidthRequest="20"
+                                                />
+                                            
                                         </FlexLayout>
-
-                                        <StackLayout HeightRequest="5"></StackLayout>
-                                        <Label Text="{Binding Descricao}" FontSize="12" TextColor="White"/>
-                                    </VerticalStackLayout>
+                                    </HorizontalStackLayout>
                                 </FlexLayout>
 
                             </Border>
