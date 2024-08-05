@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
-             x:Class="AppGestorInk.MVVM.Popups.CriarProduto"
-             CanBeDismissedByTappingOutsideOfPopup="False">
-    <Frame CornerRadius="15">
-
+             xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
+             x:Class="AppGestorInk.MVVM.Popups.AddProdutoPop"
+             x:DataType="viewmodel:AddProdutoViewModel"
+             >
+    
         <FlexLayout BackgroundColor="White" 
         WidthRequest="340" 
         HeightRequest="190" 
@@ -28,32 +29,36 @@
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="20,20,0,0" />
                         </Border.StrokeShape>
-                        <Entry Placeholder="Nome do produto" ReturnType="Default"></Entry>
+                    <Entry Placeholder="Nome do produto" Text="{Binding ProdutoName}" TextColor="#101010"></Entry>
                     </Border>
                     <Border Margin="00,10,0,0" HeightRequest="60">
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="20,20,0,0" />
                         </Border.StrokeShape>
-                        <Entry Placeholder="Descrição do produto" ReturnType="Default"></Entry>
+                    <Entry Placeholder="Descrição do produto" Text="{Binding ProdutoDescricao}" TextColor="#101010"></Entry>
                     </Border>
                 </VerticalStackLayout>
 
             </HorizontalStackLayout>
-            <HorizontalStackLayout Margin="0, 8,0,0">
+            <HorizontalStackLayout Margin="0, 8,0,0" >
                 <Button Clicked="Button_Clicked"
+                        TextColor="White"
+                        
             Text="Cancelar"
             Margin="0, 0, 10, 0"
-            HeightRequest="10"
+            HeightRequest="40"
             WidthRequest="150"
             BackgroundColor="#101010"
             CornerRadius="10"/>
                 <Button  Text="Salvar Item"
+                         TextColor="White"
+                         Command="{Binding AddProdutoCommand}"
              Margin="10, 0, 0, 0"
-            HeightRequest="10"
+            HeightRequest="40"
             WidthRequest="150"
             BackgroundColor="#101010"
              CornerRadius="10"/>
             </HorizontalStackLayout>
         </FlexLayout>
-    </Frame>
-</mct:Popup>
+    
+</ContentPage>

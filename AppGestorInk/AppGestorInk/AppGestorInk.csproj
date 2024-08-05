@@ -57,7 +57,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="MVVM\ViewModels\EditarProduto.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\browse.png" />
+	  <None Remove="Resources\Images\dollar.png" />
+	  <None Remove="Resources\Images\editar.png" />
+	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\shopping_cart.png" />
+	  <None Remove="Resources\Images\x.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.2" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.70" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.70" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
@@ -65,11 +79,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="MVVM\ViewModels\" />
+	  <Compile Update="MVVM\Popups\AddProdutoPop.xaml.cs">
+	    <DependentUpon>AddProdutoPop.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MVVM\Popups\CriarProduto.xaml">
+	  <MauiXaml Update="MVVM\Popups\AddProdutoPop.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Popups\EditarProduto.xaml">

@@ -2,22 +2,49 @@
 using AppGestorInk.MVVM.Models;
 namespace AppGestorInk.Services
 {
-    public class ProdutoService
+    public class ProdutoService : IProdutoService
     {
-        private readonly SQLiteAsyncConnection _bd;
-        public ProdutoService()
+        private SQLiteAsyncConnection _dbConnection; // conexão com o sqlite
+        public async Task InitializeAsync()
         {
-            var localDb = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "produto.db3"); // pra localizar a tabela no banco
-            _bd = new SQLiteAsyncConnection(localDb); // criar conexão com o banco
-            _bd.CreateTableAsync<Produto>().Wait(); // criar a tabela
+            await SetUpDb();
         }
-        public Task<int> CriarProduto(Produto produto)
+        private async Task SetUpDb() // configura o serviço sqlite
         {
-            return _bd.InsertAsync(produto); //InsertAsync é o método do sqlite pra adicionar
+            if (_dbConnection == null) // se nn existir conexão ele cria, juntamente da tabela
+            {
+                string dbPath = Path.Combine(Environment.
+                GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ProdutoDB.db3"); // definir caminho
+
+                _dbConnection = new SQLiteAsyncConnection(dbPath);
+                await _dbConnection.CreateTableAsync<Produto>();
+            }
         }
-        public Task<List<Produto>> ListarProduto()
+        public async Task<int> AddProdutoAsync(Produto produto)
         {
-            return _bd.Table<Produto>().ToListAsync();
+            return await _dbConnection.InsertAsync(produto);
         }
+
+        public async Task<int> DeleteProdutoAsync(Produto produto)
+        {
+            return await _dbConnection.DeleteAsync(produto);
+        }
+        public async Task<int> RefreshProdutoAsync(Produto produto)
+        {
+            return await _dbConnection.UpdateAsync(produto);
+        }
+
+        public async Task<IEnumerable<Produto>> GetProdutoAsync()
+        {
+            var produtos = await _dbConnection.Table<Produto>().ToListAsync();
+            return produtos;
+        }
+
+        public async Task<IEnumerable<Produto>> GetProdutoNomeAsync(string nome)
+        {
+            var produtos = await _dbConnection.Table<Produto>().Where(x => x.Name.Contains(nome)).ToListAsync();
+            return produtos;
+        }
+        
     }
 }

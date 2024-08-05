@@ -3,13 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppGestorInk.MVVM.Views.Estoque"
              xmlns:local="clr-namespace:AppGestorInk.MVVM.Models"
-             x:DataType="local:Produto"
+             xmlns:model="clr-namespace:AppGestorInk.MVVM.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
+             x:DataType="viewmodel:EstoqueViewModel"
              >
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding GetProdutoCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
     <Shell.TitleView>
         <FlexLayout JustifyContent="End" AlignItems="Center" AlignContent="End" >
-
-
-            <Button CornerRadius="100" Text="+" TextColor="White" BackgroundColor="#101010" FontSize="25" Clicked="OnCounterClicked"></Button>
+            <Button 
+                CornerRadius="100" Text="+" TextColor="White" 
+                BackgroundColor="#101010" FontSize="25"
+                Command="{Binding AddProdutoCommand}" />
         </FlexLayout>
 
     </Shell.TitleView>
@@ -37,10 +44,10 @@
                 AlignItems="Center"        
                 JustifyContent="Start"
                 >
-                <CollectionView x:Name="ProdutoCV" SelectionChanged="ProdutoCV_SelectionChanged" SelectionMode="Single"
+                <CollectionView x:Name="ProdutoCV" ItemsSource="{Binding ProdutoList}"
                                 >
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="model:Produto">
                             <Border BackgroundColor="#101010" HeightRequest="134" WidthRequest="320" Padding="13" Margin="0, 15, 0, 0" >
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="15"/>
@@ -51,8 +58,11 @@ HeightRequest="114" WidthRequest="88" />
                                     <VerticalStackLayout WidthRequest="205"  Padding="5">
                                         <FlexLayout JustifyContent="SpaceBetween" >
                                             <Label Text="{Binding Name}" FontSize="15" TextColor="White"/>
-                                            <ImageButton Source="editar.png"
-HeightRequest="15" Clicked="ImageButton_Clicked" />
+                                            <ImageButton
+                                                Source="x.png"
+                                                HeightRequest="15"                              
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=RefreshProdutoCommand}"
+                                                CommandParameter="{Binding .}"/>
                                         </FlexLayout>
 
                                         <StackLayout HeightRequest="5"></StackLayout>

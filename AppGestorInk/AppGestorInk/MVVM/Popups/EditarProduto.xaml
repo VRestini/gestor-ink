@@ -2,17 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppGestorInk.MVVM.Popups.EditarProduto"
-             Title="EditarProduto">
+             xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
+             Title="EditarProduto"
+             x:DataType="viewmodel:EditarProdutoViewModel">
     <VerticalStackLayout>
         <Border HeightRequest="60" BackgroundColor="WhiteSmoke">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="15, 15, 0, 0" BackgroundColor="WhiteSmoke"/>
             </Border.StrokeShape>
-            <Entry x:Name="TXTDescricao" TextColor="#101010" Placeholder="Nome:"></Entry>
+            <Entry Text="{Binding Produto.Name}" TextColor="#101010" Placeholder="Nome:"></Entry>
         </Border>
         <StackLayout HeightRequest="10"></StackLayout>
         <Border HeightRequest="60">
-            <Entry x:Name="TXTNome" TextColor="#101010" Placeholder="Descrição:"></Entry>
+            <Entry Text="{Binding Produto.Descricao}" TextColor="#101010" Placeholder="Descrição:"></Entry>
         </Border>
+        <Button Command="{Binding RefreshProdutoCommand}" Text="Clica"/>
     </VerticalStackLayout>
 </ContentPage>

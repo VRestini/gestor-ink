@@ -1,17 +1,13 @@
 using AppGestorInk.MVVM.Models;
+using AppGestorInk.MVVM.ViewModels;
 namespace AppGestorInk.MVVM.Popups;
 
 public partial class EditarProduto : ContentPage
 {
-	public EditarProduto(Produto produto)
+	public EditarProduto(EditarProdutoViewModel editarProdutoViewModel)
 	{
 		InitializeComponent();
-        CarregaProduto(produto);
+        BindingContext = editarProdutoViewModel;
 	}
-    private void CarregaProduto(Produto produto)
-    {
-        TXTNome.Text = produto.Name;
-        TXTDescricao.Text = produto.Descricao;
-
-    }
+    
 }
