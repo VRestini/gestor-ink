@@ -1,8 +1,13 @@
 using AppGestorInk.MVVM.Models;
+
 using AppGestorInk.MVVM.ViewModels;
+
+using CommunityToolkit.Maui.Views;
+
 namespace AppGestorInk.MVVM.Popups;
 
 public partial class EditarProduto : ContentPage
+
 {
 	public EditarProduto(EditarProdutoViewModel editarProdutoViewModel)
 	{
