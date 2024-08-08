@@ -19,5 +19,10 @@
             <Entry Text="{Binding Produto.Descricao}" TextColor="#101010" Placeholder="Descrição:"></Entry>
         </Border>
         <Button Command="{Binding RefreshProdutoCommand}" Text="Clica"/>
+        <Button 
+            
+            Command="{Binding DeleteProdutoCommand}"
+            CommandParameter="{Binding Produto}"
+            Text="Excluir"/>
     </VerticalStackLayout>
 </ContentPage>

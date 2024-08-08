@@ -69,6 +69,8 @@ HeightRequest="114" WidthRequest="88" />
                                             <ImageButton
                                                 Margin="0, 5,0,0"
                                                 Source="relatorio.png"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=DeleteProdutoCommand}"
+                                                CommandParameter="{Binding .}"
                                                 HeightRequest="20"   
                                                 WidthRequest="20"
                                                 />

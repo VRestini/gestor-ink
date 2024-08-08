@@ -27,6 +27,7 @@ namespace AppGestorInk.Services
 
         public async Task<int> DeleteProdutoAsync(Produto produto)
         {
+          
             return await _dbConnection.DeleteAsync(produto);
         }
         public async Task<int> RefreshProdutoAsync(Produto produto)

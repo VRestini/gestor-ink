@@ -54,7 +54,26 @@ namespace AppGestorInk.MVVM.ViewModels
                 { "ProdutoObject", produto }
             });
         }
-
+        [RelayCommand]
+        private async Task DeleteProduto(Produto produto)
+        {
+            bool option = await Shell.Current.DisplayAlert("Deletar", "a", "Sim", "Não");
+            if (option is true)
+            {
+                try
+                {
+                    await _produtoService.InitializeAsync();
+                    await _produtoService.DeleteProdutoAsync(produto);
+                    await Shell.Current.DisplayAlert("Sucesso", "Produto excluido", "ok");
+                    await GetProduto();
+                }
+                catch
+                (Exception ex)
+                {
+                    await Shell.Current.DisplayAlert("Error", ex.Message, "ok");
+                }
+            }
+        }
 
     }
 }
