@@ -1,4 +1,4 @@
-namespace GestorInk.MVVM.Views;
+namespace AppGestorInk.MVVM.Views;
 
 public partial class EstoqueRelatorio : ContentPage
 {

@@ -1,4 +1,4 @@
-namespace GestorInk.MVVM.Views;
+namespace AppGestorInk.MVVM.Views;
 
 public partial class Configuracao : ContentPage
 {
@@ -6,8 +6,5 @@ public partial class Configuracao : ContentPage
 	{
 		InitializeComponent();
 	}
-    private void InitializeComponent()
-    {
-        throw new NotImplementedException();
-    }
+
 }

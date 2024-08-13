@@ -1,5 +1,5 @@
 
-namespace GestorInk.MVVM.Views;
+namespace AppGestorInk.MVVM.Views;
 
 public partial class Agenda : ContentPage
 {
@@ -8,8 +8,4 @@ public partial class Agenda : ContentPage
 		InitializeComponent();
 	}
 
-    private void InitializeComponent()
-    {
-        throw new NotImplementedException();
-    }
 }
