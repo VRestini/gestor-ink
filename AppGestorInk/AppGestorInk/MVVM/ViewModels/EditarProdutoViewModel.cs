@@ -53,7 +53,7 @@ namespace AppGestorInk.MVVM.ViewModels
             }
             else
             {
-                await Shell.Current.DisplayAlert("Error", "Livro sem Título", "OK");
+                await Shell.Current.DisplayAlert("Error", "Produto sem nome", "OK");
             }
         }
     }

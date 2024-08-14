@@ -8,18 +8,17 @@
              xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
              x:DataType="viewmodel:EstoqueViewModel"
              >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Criar produto" Order="Secondary" Command="{Binding AddProdutoCommand}" 
+                  />
+        <ToolbarItem Text="Relatório" Order="Secondary" 
+                  />
+      
+    </ContentPage.ToolbarItems>
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior Command="{Binding GetProdutoCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
-    <Shell.TitleView>
-        <FlexLayout JustifyContent="End" AlignItems="Center" AlignContent="End" >
-            <Button 
-                CornerRadius="100" Text="+" TextColor="White" 
-                BackgroundColor="#101010" FontSize="25"
-                Command="{Binding AddProdutoCommand}" />
-        </FlexLayout>
-
-    </Shell.TitleView>
+    
     <Grid BackgroundColor="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -28,16 +27,11 @@
             <ColumnDefinition Width="*"/>
 
         </Grid.ColumnDefinitions>
-
-        
-
         <ScrollView Grid.Row="0">
-            
             <FlexLayout  Direction="Column"
                 AlignItems="Center"        
                 JustifyContent="Start"
                 >
-
                 <Frame BackgroundColor="#101010" CornerRadius="100" WidthRequest="320" HeightRequest="50" Margin="0, 15, 0, 0">
                     <SearchBar Placeholder="Search items..." HeightRequest="30"/>
                 </Frame>
@@ -45,18 +39,16 @@
                                 >
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:Produto">
-                            <Border BackgroundColor="#101010" HeightRequest="134" WidthRequest="320" Padding="13" Margin="0, 15, 0, 0" >
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="15" BackgroundColor="#101010"/>
-                                </Border.StrokeShape>
+                            <Frame Style="{x:StaticResource FrameEstoque}" >
+                                
                                 <FlexLayout >
                                     <Image Source="dotnet_bot.png"
 HeightRequest="114" WidthRequest="88" />
                                     <HorizontalStackLayout>
                                         
                                         <VerticalStackLayout WidthRequest="176" >
-                                            <Label Text="{Binding Name}" FontSize="Subtitle" TextColor="White" FontAttributes="Bold" MaxLines="1" Margin="3,0,0,0"/>
-                                            <Label Text="{Binding Descricao}" FontSize="Caption" TextColor="White" FontFamily=""/>
+                                            <Label Text="{Binding Name}" FontSize="Subtitle" TextColor="White" FontFamily="inter-semi-bold" MaxLines="1" />
+                                            <Label Text="{Binding Descricao}" FontSize="Caption" TextColor="White" FontFamily="inter-light"/>
                                         </VerticalStackLayout>
                                         <FlexLayout WidthRequest="30"  Direction="Column" AlignItems="Center">
                                             <ImageButton
@@ -79,7 +71,7 @@ HeightRequest="114" WidthRequest="88" />
                                     </HorizontalStackLayout>
                                 </FlexLayout>
 
-                            </Border>
+                            </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

@@ -18,7 +18,7 @@
                 JustifyContent="Start"
                 >
 
-                <Frame CornerRadius="15" BackgroundColor="#101010" HeightRequest="134" WidthRequest="320" Padding="18" Margin="15">
+                <Frame Style="{x:StaticResource FrameHome}">
                     <StackLayout  >
                         <FlexLayout JustifyContent="SpaceBetween" >
 
