@@ -49,6 +49,7 @@ namespace AppGestorInk.MVVM.ViewModels
         private async Task RefreshProduto(Produto produto)
         {
             var uri = $"{nameof(EditarProduto)}?id=1";
+
             await Shell.Current.GoToAsync(uri, new Dictionary<string, object>
             {
                 { "ProdutoObject", produto }

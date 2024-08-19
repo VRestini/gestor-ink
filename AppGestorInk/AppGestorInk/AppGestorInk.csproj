@@ -57,10 +57,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="MVVM\Popups\ButtonMenuPopup.xaml.cs" />
 	  <Compile Remove="MVVM\ViewModels\EditarProduto.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Remove="MVVM\Popups\ButtonMenuPopup.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\Lobster-Regular.ttf" />
 	  <None Remove="Resources\Images\browse.png" />
 	  <None Remove="Resources\Images\dollar.png" />
 	  <None Remove="Resources\Images\editar.png" />
@@ -77,6 +83,7 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.80" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="Syncfusion.Maui.Popup" Version="26.2.9" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -90,6 +97,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Popups\EditarProduto.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Popups\MenuPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

@@ -1,13 +1,11 @@
 using AppGestorInk.MVVM.Views;
-
-
+using CommunityToolkit.Maui.Views;
 using AppGestorInk.Services;
 using AppGestorInk.MVVM.ViewModels;
-
 using AppGestorInk.MVVM.Models;
 using AppGestorInk.MVVM.Popups;
 using AppGestorInk;
-using CommunityToolkit.Maui.Views;
+
 
 namespace AppGestorInk.MVVM.Views;
 
@@ -23,4 +21,10 @@ public partial class Estoque : ContentPage
         
     }
 
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+       
+        var a = new MenuPopup();
+        await this.ShowPopupAsync(a);
+    }
 }

@@ -7,58 +7,56 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
              x:DataType="viewmodel:EstoqueViewModel"
+             
+             BackgroundColor="White"
              >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Criar produto" Order="Secondary" Command="{Binding AddProdutoCommand}" 
+        <ToolbarItem IconImageSource="dotnet_bot.png"
                   />
-        <ToolbarItem Text="Relatório" Order="Secondary" 
-                  />
-      
     </ContentPage.ToolbarItems>
+    <Shell.TitleView>
+        <FlexLayout  AlignItems="Center" JustifyContent="Center">
+            <Label Text="ESTOQUE" FontFamily="InterSemiBold" Margin="0, 5,0,0"></Label>
+        </FlexLayout>
+        
+    </Shell.TitleView>
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior Command="{Binding GetProdutoCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
-    
-    <Grid BackgroundColor="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-
-        </Grid.ColumnDefinitions>
-        <ScrollView Grid.Row="0">
-            <FlexLayout  Direction="Column"
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutFlags="All"
+AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                <FlexLayout  Direction="Column"
                 AlignItems="Center"        
                 JustifyContent="Start"
                 >
-                <Frame BackgroundColor="#101010" CornerRadius="100" WidthRequest="320" HeightRequest="50" Margin="0, 15, 0, 0">
-                    <SearchBar Placeholder="Search items..." HeightRequest="30"/>
-                </Frame>
-                <CollectionView x:Name="ProdutoCV" ItemsSource="{Binding ProdutoList}"
+                    <Frame BackgroundColor="#101010" CornerRadius="100" WidthRequest="320" HeightRequest="50" Margin="0, 15, 0, 0">
+                        <SearchBar Placeholder="Search items..." HeightRequest="30"/>
+                    </Frame>
+                    <CollectionView x:Name="ProdutoCV" ItemsSource="{Binding ProdutoList}"
                                 >
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Produto">
-                            <Frame Style="{x:StaticResource FrameEstoque}" >
-                                
-                                <FlexLayout >
-                                    <Image Source="dotnet_bot.png"
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Produto">
+                                <Frame Style="{x:StaticResource FrameEstoque}" >
+
+                                    <FlexLayout >
+                                        <Image Source="dotnet_bot.png"
 HeightRequest="114" WidthRequest="88" />
-                                    <HorizontalStackLayout>
-                                        
-                                        <VerticalStackLayout WidthRequest="176" >
-                                            <Label Text="{Binding Name}" FontSize="Subtitle" TextColor="White" FontFamily="inter-semi-bold" MaxLines="1" />
-                                            <Label Text="{Binding Descricao}" FontSize="Caption" TextColor="White" FontFamily="inter-light"/>
-                                        </VerticalStackLayout>
-                                        <FlexLayout WidthRequest="30"  Direction="Column" AlignItems="Center">
-                                            <ImageButton
+                                        <HorizontalStackLayout>
+
+                                            <VerticalStackLayout WidthRequest="176" >
+                                                <Label Text="{Binding Name}" FontSize="15" TextColor="White" FontFamily="InterSemiBold" MaxLines="1" />
+                                                <Label Text="{Binding Descricao}" FontSize="12" TextColor="White" FontFamily="InterLight"/>
+                                            </VerticalStackLayout>
+                                            <FlexLayout WidthRequest="30"  Direction="Column" AlignItems="Center">
+                                                <ImageButton
                                                  Source="editar.png"
                                                  HeightRequest="20"   
                                                  WidthRequest="20"
                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=RefreshProdutoCommand}"
                                                  CommandParameter="{Binding .}"
                                                  Margin="0, 2, 0, 0"/>
-                                            <ImageButton
+                                                <ImageButton
                                                 Margin="0, 5,0,0"
                                                 Source="relatorio.png"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=DeleteProdutoCommand}"
@@ -66,17 +64,31 @@ HeightRequest="114" WidthRequest="88" />
                                                 HeightRequest="20"   
                                                 WidthRequest="20"
                                                 />
-                                            
-                                        </FlexLayout>
-                                    </HorizontalStackLayout>
-                                </FlexLayout>
 
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                                            </FlexLayout>
+                                        </HorizontalStackLayout>
+                                    </FlexLayout>
 
-            </FlexLayout>
-        </ScrollView>
-    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+                </FlexLayout>
+            </ScrollView>
+        <Button Text="+"
+                BackgroundColor="{StaticResource Tertiary}"
+                CornerRadius="40"
+                TextColor="White"
+                FontSize="Large"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="0.95, 0.999, 80, 80"
+                Margin="10"
+                Clicked="Button_Clicked"
+                >
+            
+        </Button>
+        
+    </AbsoluteLayout>
+    
 </ContentPage>

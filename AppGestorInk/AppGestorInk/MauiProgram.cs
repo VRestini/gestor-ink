@@ -4,6 +4,7 @@ using AppGestorInk.MVVM.Views;
 using AppGestorInk.Services;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Syncfusion.Maui.Core.Hosting;
 
 namespace AppGestorInk
 {
@@ -13,14 +14,16 @@ namespace AppGestorInk
         {
             var builder = MauiApp.CreateBuilder();
             builder
+                
                 .UseMauiCommunityToolkit()
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("Inter28pt-SemiBold.tff", "InterSemiBold");
-                    fonts.AddFont("Inter18pt-Light.tff", "InterLight");
+                    fonts.AddFont("Inter28pt-SemiBold.ttf", "InterSemiBold");
+                    fonts.AddFont("Inter18pt-Light.ttf", "InterLight");
+                    fonts.AddFont("Lobster-Regular.ttf", "Lobster");
                 });
 
 #if DEBUG
