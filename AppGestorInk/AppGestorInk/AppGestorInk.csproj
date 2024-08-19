@@ -59,10 +59,7 @@
 	<ItemGroup>
 	  <Compile Remove="MVVM\Popups\ButtonMenuPopup.xaml.cs" />
 	  <Compile Remove="MVVM\ViewModels\EditarProduto.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Remove="MVVM\Popups\ButtonMenuPopup.xaml" />
+	  <Compile Remove="MVVM\ViewModels\MenuPopupModel.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

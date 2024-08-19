@@ -6,59 +6,45 @@
              x:Class="AppGestorInk.MVVM.Popups.AddProdutoPop"
              x:DataType="viewmodel:AddProdutoViewModel"
              >
-    
-        <FlexLayout BackgroundColor="White" 
-        WidthRequest="340" 
-        HeightRequest="190" 
-        Direction="Column" 
-        AlignItems="Center"
-        JustifyContent="Start"
-
-                 >
-            <HorizontalStackLayout  WidthRequest="320" Margin="0, 5, 0,0" HeightRequest="110">
-                <Border WidthRequest="110"
-                    HeightRequest="110">
+   
+    <ScrollView>
+        <FlexLayout BackgroundColor="#101010" 
+    Direction="Column" 
+    AlignItems="Center"
+    JustifyContent="Start">
+            <VerticalStackLayout Margin="0,15,0,15" >
+                <Border  WidthRequest="280">
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="20,20,20,20"/>
+                        <RoundRectangle CornerRadius="10,10,10,10" />
                     </Border.StrokeShape>
-                    <ImageButton BackgroundColor="Gray"/>
+                    <ImageButton Source="dotnet_bot.png" BackgroundColor="Gray" />
                 </Border>
 
-                <VerticalStackLayout WidthRequest="195" Margin="10,0,0,0">
-                    <Border HeightRequest="40" BackgroundColor="White">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="20,20,0,0" />
-                        </Border.StrokeShape>
-                    <Entry Placeholder="Nome do produto" Text="{Binding ProdutoName}" TextColor="#101010"></Entry>
-                    </Border>
-                    <Border Margin="00,10,0,0" HeightRequest="60">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="20,20,0,0" />
-                        </Border.StrokeShape>
-                    <Entry Placeholder="Descrição do produto" Text="{Binding ProdutoDescricao}" TextColor="#101010"></Entry>
-                    </Border>
-                </VerticalStackLayout>
+                <Frame BorderColor="#101010" CornerRadius="10" Padding="5" HasShadow="False" WidthRequest="280" Margin="0,10,0,10">
+                    <Entry Text="{Binding ProdutoName}" TextColor="#101010"/>
+                </Frame>
+                <Frame BorderColor="#101010" CornerRadius="10" Padding="5" HasShadow="False" WidthRequest="280" Margin="0,0,0,10">
+                    <Entry Text="{Binding ProdutoDescricao}" TextColor="#101010"/>
+                </Frame>
+                
+            </VerticalStackLayout>
 
-            </HorizontalStackLayout>
             <HorizontalStackLayout Margin="0, 8,0,0" >
-                <Button Clicked="Button_Clicked"
-                        TextColor="White"
-                        
-            Text="Cancelar"
-            Margin="0, 0, 10, 0"
-            HeightRequest="40"
-            WidthRequest="150"
-            BackgroundColor="#101010"
-            CornerRadius="10"/>
-                <Button  Text="Salvar Item"
-                         TextColor="White"
-                         Command="{Binding AddProdutoCommand}"
-             Margin="10, 0, 0, 0"
-            HeightRequest="40"
-            WidthRequest="150"
-            BackgroundColor="#101010"
-             CornerRadius="10"/>
+                
+                <Button  
+                   
+                    Text="Salvar Item"
+                     TextColor="White"
+                     Command="{Binding AddProdutoCommand}"
+         Margin="10, 0, 0, 0"
+        HeightRequest="40"
+        WidthRequest="150"
+        BackgroundColor="#4C007D"
+         CornerRadius="10"/>
             </HorizontalStackLayout>
         </FlexLayout>
+        
+    </ScrollView>
+    
     
 </ContentPage>

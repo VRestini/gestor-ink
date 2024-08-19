@@ -37,7 +37,7 @@ AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
                                 >
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:Produto">
-                                <Frame Style="{x:StaticResource FrameEstoque}" >
+                                <Frame Style="{x:StaticResource FrameEstoque}" BackgroundColor="#101010" >
 
                                     <FlexLayout >
                                         <Image Source="dotnet_bot.png"

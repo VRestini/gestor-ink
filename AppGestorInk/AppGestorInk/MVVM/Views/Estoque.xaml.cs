@@ -25,6 +25,7 @@ public partial class Estoque : ContentPage
     {
        
         var a = new MenuPopup();
+        
         await this.ShowPopupAsync(a);
     }
 }
