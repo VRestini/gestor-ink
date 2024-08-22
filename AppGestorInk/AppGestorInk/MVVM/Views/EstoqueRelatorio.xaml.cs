@@ -12,4 +12,6 @@ public partial class EstoqueRelatorio : ContentPage
 		BindingContext = relatorioEstoqueViewModel;
 		_serviceItem = serviceItem;
 	}
+
+    
 }

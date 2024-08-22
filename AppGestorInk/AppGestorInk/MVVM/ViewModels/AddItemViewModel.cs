@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace AppGestorInk.MVVM.ViewModels
 {
+    [QueryProperty(nameof(Produto), "ProdutoObject")]
     public partial class AddItemViewModel:ObservableObject
     {
         private readonly IServiceItem _serviceItem;
@@ -13,6 +14,8 @@ namespace AppGestorInk.MVVM.ViewModels
         public int _itemQuantidade;
         [ObservableProperty]
         public double _itemPreco;
+        [ObservableProperty]
+        private Produto _produto;
 
         public AddItemViewModel(IServiceItem serviceItem)
         {
@@ -21,12 +24,15 @@ namespace AppGestorInk.MVVM.ViewModels
         [RelayCommand]
         private async Task AddItem()
         {
+           
             try
             {
                 if (ItemQuantidade != 0) // verifica se o nome foi informado
                 {
+
                     ItemProduto itemProduto = new()
                     {
+                        Teste = Produto.Name,                        
                         Quantidade = ItemQuantidade,
                         Preco = ItemPreco
                     };

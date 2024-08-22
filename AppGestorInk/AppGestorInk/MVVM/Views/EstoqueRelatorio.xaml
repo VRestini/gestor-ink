@@ -5,18 +5,47 @@
              Title="EstoqueRelatorio"
              xmlns:model="clr-namespace:AppGestorInk.MVVM.Models"
              xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
-             x:DataType="viewmodel:RelatorioEstoqueViewModel">
-    <VerticalStackLayout>
-        <Button Command="{Binding AddItemCommand}" Text="teste" BackgroundColor="White"/>
-
-        <CollectionView ItemsSource="{Binding ItemProdutoList}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:ItemProduto">
-                    <Label Text="{Binding Preco}" TextColor="White"/>
-                    
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="viewmodel:RelatorioEstoqueViewModel"
+             BackgroundColor="White">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding GetItemProdutoCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
+    
+     <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutFlags="All"
+AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+            <CollectionView ItemsSource="{Binding ItemProdutoList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:ItemProduto">
+                        <Frame Style="{x:StaticResource FrameEstoque}" HeightRequest="60">
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding Teste}" TextColor="White" Margin="0,0,10,0"/>
+                                <Label Text="{Binding Preco}" TextColor="White" Margin="0,0,10,0"/>
+                                <Label Text="{Binding Quantidade}" TextColor="White"/>
+                                
+                            </HorizontalStackLayout>
+                            
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+        <Button
+                BackgroundColor="{StaticResource Tertiary}"
+                CornerRadius="40"
+                TextColor="White"
+                FontSize="Large" 
+                Command="{Binding AddItemCommand}" 
+            CommandParameter="{Binding .}"
+                Text="+"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+AbsoluteLayout.LayoutBounds="0.95, 0.999, 80, 80"
+            Margin="10"/>
+       
+    </AbsoluteLayout>
         
-    </VerticalStackLayout>
+        
+        
+    
 </ContentPage>

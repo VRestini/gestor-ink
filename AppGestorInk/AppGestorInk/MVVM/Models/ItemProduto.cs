@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using AppGestorInk.MVVM.Views;
+using SQLite;
 using System;
 using System.Collections.Generic;
 
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace AppGestorInk.MVVM.Models
 {
     [Table( "Item")]
-    public class ItemProduto 
+    public class ItemProduto :Produto
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -17,5 +18,6 @@ namespace AppGestorInk.MVVM.Models
         public double Preco { get; set; }
         [NotNull]
         public int Quantidade { get; set; }
+        public string Teste { get; set; }
     }
 }
