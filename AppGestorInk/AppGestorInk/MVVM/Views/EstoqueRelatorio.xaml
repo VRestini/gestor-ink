@@ -2,11 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppGestorInk.MVVM.Views.EstoqueRelatorio"
-             Title="EstoqueRelatorio">
+             Title="EstoqueRelatorio"
+             xmlns:model="clr-namespace:AppGestorInk.MVVM.Models"
+             xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
+             x:DataType="viewmodel:RelatorioEstoqueViewModel">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Button Command="{Binding AddItemCommand}" Text="teste" BackgroundColor="White"/>
+
+        <CollectionView ItemsSource="{Binding ItemProdutoList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:ItemProduto">
+                    <Label Text="{Binding Preco}" TextColor="White"/>
+                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
     </VerticalStackLayout>
 </ContentPage>

@@ -28,4 +28,6 @@ public partial class Estoque : ContentPage
         
         await this.ShowPopupAsync(a);
     }
+
+    
 }

@@ -1,5 +1,6 @@
 ﻿using AppGestorInk.MVVM.Models;
 using AppGestorInk.MVVM.Popups;
+using AppGestorInk.MVVM.Views;
 using AppGestorInk.Services;
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -12,7 +13,7 @@ namespace AppGestorInk.MVVM.ViewModels
     public partial class EstoqueViewModel : ObservableObject
     {
         public readonly IProdutoService _produtoService;
-        public ObservableCollection<Produto> ProdutoList { get; set; } = new();// ObservableCollection pq as alterações feitas nos dados do livro sejam notificadas na interface
+        public ObservableCollection<Produto> ProdutoList { get; set; } = new();// ObservableCollection pq as alterações feitas nos dados do produto sejam notificadas na interface
 
         public EstoqueViewModel(IProdutoService produtoService)
         {
@@ -38,6 +39,12 @@ namespace AppGestorInk.MVVM.ViewModels
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
+        }
+        [RelayCommand]
+        private async Task teste()
+        {
+            var uri = $"{nameof(EstoqueRelatorio)}?id=3";
+            await Shell.Current.GoToAsync(uri);
         }
         [RelayCommand]
         private async Task AddProduto()

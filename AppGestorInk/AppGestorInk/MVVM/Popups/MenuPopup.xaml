@@ -9,8 +9,8 @@
     <Frame CornerRadius="10" BorderColor="White" Padding="0">
         <VerticalStackLayout Padding="0">
             
-            <Button BackgroundColor="White" Clicked="Button_Clicked" TextColor="#101010" Text="Criar produto" WidthRequest="150" />
-            <Button BackgroundColor="White"/>
+            <Button BackgroundColor="White" Clicked="Button_Clicked" TextColor="#101010" Text="Criar produto" WidthRequest="150" HeightRequest="40" />
+            <Button BackgroundColor="White" HeightRequest="40" />
         </VerticalStackLayout>
     </Frame>
     

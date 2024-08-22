@@ -12,11 +12,14 @@ namespace AppGestorInk.MVVM.ViewModels
         public string _produtoName;
         [ObservableProperty]
         public string _produtoDescricao;
+        
 
         public AddProdutoViewModel(IProdutoService produtoService)
         {
             _produtoService = produtoService;
         }
+        
+        
         [RelayCommand]
         private async Task AddProduto()
         {

@@ -2,13 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             xmlns:local="clr-namespace:AppGestorInk.MVVM.Models"
              xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
              x:Class="AppGestorInk.MVVM.Popups.AddProdutoPop"
              x:DataType="viewmodel:AddProdutoViewModel"
+             BackgroundColor="White"
              >
    
     <ScrollView>
-        <FlexLayout BackgroundColor="#101010" 
+        <FlexLayout 
     Direction="Column" 
     AlignItems="Center"
     JustifyContent="Start">
@@ -19,28 +21,52 @@
                     </Border.StrokeShape>
                     <ImageButton Source="dotnet_bot.png" BackgroundColor="Gray" />
                 </Border>
+               
+                <Border x:Name="BorderName" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" Margin="0,15,0,0" StrokeThickness="2" Stroke="LightGray">
+                    
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0,10,10,10"/>
+                        
+                    </Border.StrokeShape>
+                    <local:EntryWithoutBorder 
+                        Focused="EntryWithoutBorder_Focused" 
+                        Unfocused="EntryWithoutBorder_Unfocused" 
+                        Text="{Binding ProdutoName}" 
+                        Placeholder="Nome" 
+                        PlaceholderColor="#808080" 
+                        TextColor="#101010">
+                        
+                    </local:EntryWithoutBorder>
+                </Border>
+                <Border x:Name="BorderDescription" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" Margin="0,15,0,0" StrokeThickness="2" Stroke="LightGray">
+                    
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0,10,10,10" />
+                    </Border.StrokeShape>
+                    <local:EditorWithoutBorder
+                        Focused="EditorWithoutBorder_Focused" 
+                        Unfocused="EditorWithoutBorder_Unfocused" 
+                        Text="{Binding ProdutoDescricao}" 
+                        Placeholder="Descrição" 
+                        PlaceholderColor="#808080" 
+                        TextColor="#101010" 
+                        HorizontalOptions="FillAndExpand" 
+                        HeightRequest="120"/>
+                </Border>
 
-                <Frame BorderColor="#101010" CornerRadius="10" Padding="5" HasShadow="False" WidthRequest="280" Margin="0,10,0,10">
-                    <Entry Text="{Binding ProdutoName}" TextColor="#101010"/>
-                </Frame>
-                <Frame BorderColor="#101010" CornerRadius="10" Padding="5" HasShadow="False" WidthRequest="280" Margin="0,0,0,10">
-                    <Entry Text="{Binding ProdutoDescricao}" TextColor="#101010"/>
-                </Frame>
-                
             </VerticalStackLayout>
 
             <HorizontalStackLayout Margin="0, 8,0,0" >
                 
                 <Button  
-                   
                     Text="Salvar Item"
-                     TextColor="White"
-                     Command="{Binding AddProdutoCommand}"
-         Margin="10, 0, 0, 0"
-        HeightRequest="40"
-        WidthRequest="150"
-        BackgroundColor="#4C007D"
-         CornerRadius="10"/>
+                    TextColor="White"
+                    Command="{Binding AddProdutoCommand}"
+                    Margin="10, 0, 0, 0"
+                    HeightRequest="40"
+                    WidthRequest="280"
+                    BackgroundColor="#4C007D"
+                    CornerRadius="10"/>
             </HorizontalStackLayout>
         </FlexLayout>
         

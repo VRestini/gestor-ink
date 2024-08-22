@@ -14,7 +14,7 @@ namespace AppGestorInk
         {
             var builder = MauiApp.CreateBuilder();
             builder
-                
+               
                 .UseMauiCommunityToolkit()
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
@@ -32,12 +32,19 @@ namespace AppGestorInk
             builder.Services.AddSingleton<EstoqueViewModel>();
             builder.Services.AddTransient<AddProdutoViewModel>();
             builder.Services.AddTransient<EditarProdutoViewModel>();
+            builder.Services.AddTransient<RelatorioEstoqueViewModel>();
+            builder.Services.AddTransient<AddItemViewModel>();
+
 
             builder.Services.AddSingleton<Estoque>();
+            builder.Services.AddTransient<AddItemPop>();
             builder.Services.AddTransient<AddProdutoPop>();
             builder.Services.AddTransient<EditarProduto>();
+            builder.Services.AddTransient<EstoqueRelatorio>();
+
 
             builder.Services.AddSingleton<IProdutoService, ProdutoService>();
+            builder.Services.AddSingleton<IServiceItem, ItemService>();
             return builder.Build();
         }
     }

@@ -9,7 +9,10 @@ namespace AppGestorInk
             InitializeComponent();
             RegisterForRoute<AddProdutoPop>();
             RegisterForRoute<EditarProduto>();
+            RegisterForRoute<AddItemPop>();
             RegisterForRoute<Estoque>();
+            RegisterForRoute<EstoqueRelatorio>();
+            
         }
         protected void RegisterForRoute<T>()
         {

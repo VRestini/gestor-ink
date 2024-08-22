@@ -57,9 +57,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="MVVM\Models\EditoeWithoutBorder.cs" />
+	  <Compile Remove="MVVM\Popups\AddItem.xaml.cs" />
 	  <Compile Remove="MVVM\Popups\ButtonMenuPopup.xaml.cs" />
 	  <Compile Remove="MVVM\ViewModels\EditarProduto.cs" />
 	  <Compile Remove="MVVM\ViewModels\MenuPopupModel.cs" />
+	  <Compile Remove="MVVM\Views\Relatório.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="MVVM\Popups\AddItem.xaml" />
+	  <MauiXaml Remove="MVVM\Views\Relatório.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -90,6 +98,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="MVVM\Popups\AddItemPop.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MVVM\Popups\AddProdutoPop.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
