@@ -14,6 +14,7 @@ namespace AppGestorInk.MVVM.ViewModels
     {
         public readonly IProdutoService _produtoService;
         public ObservableCollection<Produto> ProdutoList { get; set; } = new();// ObservableCollection pq as alterações feitas nos dados do produto sejam notificadas na interface
+        
 
         public EstoqueViewModel(IProdutoService produtoService)
         {
@@ -41,10 +42,13 @@ namespace AppGestorInk.MVVM.ViewModels
             }
         }
         [RelayCommand]
-        private async Task teste()
+        private async Task teste(Produto produto)
         {
             var uri = $"{nameof(EstoqueRelatorio)}?id=3";
-            await Shell.Current.GoToAsync(uri);
+            await Shell.Current.GoToAsync(uri, new Dictionary<string, object>
+            {
+                { "ProdutoObject", produto }
+            });
         }
         [RelayCommand]
         private async Task AddProduto()

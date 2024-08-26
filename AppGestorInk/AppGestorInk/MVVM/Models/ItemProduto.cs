@@ -18,6 +18,6 @@ namespace AppGestorInk.MVVM.Models
         public double Preco { get; set; }
         [NotNull]
         public int Quantidade { get; set; }
-        public string Teste { get; set; }
+        
     }
 }

@@ -9,9 +9,10 @@ public partial class EstoqueRelatorio : ContentPage
 	public EstoqueRelatorio(RelatorioEstoqueViewModel relatorioEstoqueViewModel, IServiceItem serviceItem)
 	{
 		InitializeComponent();
-		BindingContext = relatorioEstoqueViewModel;
 		_serviceItem = serviceItem;
-	}
+		BindingContext = relatorioEstoqueViewModel;
+
+    }
 
     
 }

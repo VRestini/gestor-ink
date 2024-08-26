@@ -12,7 +12,7 @@ namespace AppGestorInk.MVVM.Models
 
         [NotNull, MaxLength(60)]
         public string Descricao { get; set; }
-       
+        
         
     }
 }

@@ -13,14 +13,16 @@
     </ContentPage.Behaviors>
     
      <AbsoluteLayout>
+        <Label Text="{Binding Produto.Name}" TextColor="Purple"/>
         <ScrollView AbsoluteLayout.LayoutFlags="All"
 AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+            
             <CollectionView ItemsSource="{Binding ItemProdutoList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:ItemProduto">
                         <Frame Style="{x:StaticResource FrameEstoque}" HeightRequest="60">
                             <HorizontalStackLayout>
-                                <Label Text="{Binding Teste}" TextColor="White" Margin="0,0,10,0"/>
+                                <Label Text="{Binding Name}" TextColor="White" Margin="0,0,10,0"/>
                                 <Label Text="{Binding Preco}" TextColor="White" Margin="0,0,10,0"/>
                                 <Label Text="{Binding Quantidade}" TextColor="White"/>
                                 
@@ -37,7 +39,7 @@ AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
                 TextColor="White"
                 FontSize="Large" 
                 Command="{Binding AddItemCommand}" 
-            CommandParameter="{Binding .}"
+                CommandParameter="{Binding Produto}"
                 Text="+"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
 AbsoluteLayout.LayoutBounds="0.95, 0.999, 80, 80"

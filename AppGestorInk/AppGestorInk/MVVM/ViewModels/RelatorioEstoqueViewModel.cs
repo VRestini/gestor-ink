@@ -8,14 +8,22 @@ using System.Collections.ObjectModel;
 
 namespace AppGestorInk.MVVM.ViewModels
 {
+    [QueryProperty(nameof(Produto), "ProdutoObject")]
     public partial class RelatorioEstoqueViewModel: ObservableObject
     {
         public readonly IServiceItem _serviceItem;
+      
         public ObservableCollection<ItemProduto> ItemProdutoList { get; set; } = new();
+        private readonly EstoqueViewModel _estoqueViewModel;
+        
+        [ObservableProperty]
+        private Produto _produto;
 
-        public RelatorioEstoqueViewModel(IServiceItem serviceItem)
+        public RelatorioEstoqueViewModel(IServiceItem serviceItem, EstoqueViewModel estoqueViewModel)
         {
             _serviceItem = serviceItem;
+            _estoqueViewModel = estoqueViewModel;
+            
         }
         [RelayCommand]
 
@@ -25,13 +33,19 @@ namespace AppGestorInk.MVVM.ViewModels
             try
             {
                 await _serviceItem.InitializeAsync();
+                
                 var itemProdutos = await _serviceItem.GetItemProdutoAsync();
                 if (itemProdutos.Any())
                 {
                     foreach (var itemProduto in itemProdutos)
-                    {
-                        ItemProdutoList.Add(itemProduto);
+                    {                      
+                        if(itemProduto.Name == Produto.Name)
+                        {
+                            ItemProdutoList.Add(itemProduto);
+                        }
+                        
                     }
+
                 }
             }
             catch (Exception ex)
@@ -40,10 +54,13 @@ namespace AppGestorInk.MVVM.ViewModels
             }
         }
         [RelayCommand]
-        private async Task AddItem()
+        private async Task AddItem(Produto produto)
         {
             var uri = $"{nameof(AddItemPop)}?id=0";
-            await Shell.Current.GoToAsync(uri);
+            await Shell.Current.GoToAsync(uri, new Dictionary<string, object>
+            {
+                { "ProdutoObject", produto }
+            });
         }
 
     }

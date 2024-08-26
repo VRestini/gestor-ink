@@ -29,14 +29,21 @@ namespace AppGestorInk.MVVM.ViewModels
             {
                 if (ItemQuantidade != 0) // verifica se o nome foi informado
                 {
-
+                    
                     ItemProduto itemProduto = new()
                     {
-                        Teste = Produto.Name,                        
+                        Name = Produto.Name,
+                        Descricao = Produto.Descricao,
                         Quantidade = ItemQuantidade,
                         Preco = ItemPreco
                     };
                     await _serviceItem.InitializeAsync();
+                    for (int i = 0; i < _itemQuantidade; i++)
+                    {
+                        await _serviceItem.AddItemProdutoAsync(itemProduto);
+                       
+
+                    }
                     await _serviceItem.AddItemProdutoAsync(itemProduto);
                     await Shell.Current.DisplayAlert("Sucesso", "Mensagem", "OK");
 

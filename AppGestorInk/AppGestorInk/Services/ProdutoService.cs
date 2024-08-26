@@ -23,6 +23,7 @@ namespace AppGestorInk.Services
         public async Task<int> AddProdutoAsync(Produto produto)
         {
             return await _dbConnectionA.InsertAsync(produto);
+
         }
 
         public async Task<int> DeleteProdutoAsync(Produto produto)
