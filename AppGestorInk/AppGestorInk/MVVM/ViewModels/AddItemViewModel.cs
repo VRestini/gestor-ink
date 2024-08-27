@@ -15,11 +15,14 @@ namespace AppGestorInk.MVVM.ViewModels
         [ObservableProperty]
         public double _itemPreco;
         [ObservableProperty]
+        public DateTime _itemValidade;
+        [ObservableProperty]
         private Produto _produto;
 
         public AddItemViewModel(IServiceItem serviceItem)
         {
             _serviceItem = serviceItem;
+            
         }
         [RelayCommand]
         private async Task AddItem()
@@ -35,10 +38,11 @@ namespace AppGestorInk.MVVM.ViewModels
                         Name = Produto.Name,
                         Descricao = Produto.Descricao,
                         Quantidade = ItemQuantidade,
-                        Preco = ItemPreco
+                        Preco = ItemPreco,
+                        DataValidade = ItemValidade,
                     };
                     await _serviceItem.InitializeAsync();
-                    for (int i = 0; i < _itemQuantidade; i++)
+                    for (int i = 1; i <= _itemQuantidade - 1; i++)
                     {
                         await _serviceItem.AddItemProdutoAsync(itemProduto);
                        

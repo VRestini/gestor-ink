@@ -13,20 +13,37 @@
     </ContentPage.Behaviors>
     
      <AbsoluteLayout>
-        <Label Text="{Binding Produto.Name}" TextColor="Purple"/>
+        
         <ScrollView AbsoluteLayout.LayoutFlags="All"
 AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
             
             <CollectionView ItemsSource="{Binding ItemProdutoList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:ItemProduto">
-                        <Frame Style="{x:StaticResource FrameEstoque}" HeightRequest="60">
-                            <HorizontalStackLayout>
-                                <Label Text="{Binding Name}" TextColor="White" Margin="0,0,10,0"/>
-                                <Label Text="{Binding Preco}" TextColor="White" Margin="0,0,10,0"/>
-                                <Label Text="{Binding Quantidade}" TextColor="White"/>
+                        <Frame Style="{x:StaticResource FrameEstoque}" HeightRequest="90">
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <Label Text="{Binding Name}" TextColor="White" Margin="0,0,10,0" FontFamily="InterSemiBold"/>
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Preco}" TextColor="White" Margin="0,0,10,0"  >
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                              
+                                                <Span Text="{Binding Preco}" FontFamily="InterLight"/>
+                                                <Span Text="R$" FontFamily="InterLight"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Text="{Binding DataValidade, StringFormat='{}{0:dd/MM/yyyy}'}" />
+
+                                </VerticalStackLayout>
                                 
-                            </HorizontalStackLayout>
+
+                                <Button 
+                                    TextColor="White"
+                                    Text="X"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:RelatorioEstoqueViewModel}}, Path=DeleteItemProdutoCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </FlexLayout>
                             
                         </Frame>
                     </DataTemplate>

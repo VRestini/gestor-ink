@@ -24,6 +24,8 @@ namespace AppGestorInk.MVVM.ViewModels
             _serviceItem = serviceItem;
             _estoqueViewModel = estoqueViewModel;
             
+
+
         }
         [RelayCommand]
 
@@ -62,6 +64,25 @@ namespace AppGestorInk.MVVM.ViewModels
                 { "ProdutoObject", produto }
             });
         }
-
+        [RelayCommand]
+        private async Task DeleteItemProduto(ItemProduto itemProduto)
+        {
+            bool option = await Shell.Current.DisplayAlert("Deletar", "a", "Sim", "Não");
+            if (option is true)
+            {
+                try
+                {
+                    await _serviceItem.InitializeAsync();
+                    await _serviceItem.DeleteItemProdutoAsync(itemProduto);
+                    await Shell.Current.DisplayAlert("Sucesso", "Produto excluido", "ok");
+                    await GetItemProduto();
+                }
+                catch
+                (Exception ex)
+                {
+                    await Shell.Current.DisplayAlert("Error", ex.Message, "ok");
+                }
+            }
+        }
     }
 }

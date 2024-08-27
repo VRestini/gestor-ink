@@ -58,14 +58,7 @@ HeightRequest="114" WidthRequest="88" />
                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=RefreshProdutoCommand}"
                                                  CommandParameter="{Binding .}"
                                                  Margin="0, 2, 0, 0"/>
-                                                <ImageButton
-                                                Margin="0, 5,0,0"
-                                                Source="relatorio.png"
-                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=DeleteProdutoCommand}"
-                                                CommandParameter="{Binding .}"
-                                                HeightRequest="20"   
-                                                WidthRequest="20"
-                                                />
+                                                
 
                                             </FlexLayout>
                                         </HorizontalStackLayout>

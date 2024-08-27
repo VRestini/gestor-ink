@@ -4,10 +4,12 @@
              x:Class="AppGestorInk.MVVM.Popups.AddItemPop"
              xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
 x:DataType="viewmodel:AddItemViewModel"
+             
              Title="AddItemPop">
     <VerticalStackLayout>
-        <Entry Text="{Binding ItemPreco}"/>
-        <Entry Text="{Binding ItemQuantidade}"/>
+        <Entry Text="{Binding ItemPreco}" Placeholder="Preço:"/>
+        <Entry Text="{Binding ItemQuantidade}" Placeholder="Quantidade:"/>
+        <DatePicker x:Name="datePicker" Date="{Binding ItemValidade}"/>
         <Button Command="{Binding AddItemCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

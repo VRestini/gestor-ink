@@ -1,5 +1,6 @@
 using AppGestorInk.MVVM.ViewModels;
 
+
 namespace AppGestorInk.MVVM.Popups;
 
 public partial class AddItemPop : ContentPage
@@ -8,5 +9,6 @@ public partial class AddItemPop : ContentPage
     {
         InitializeComponent();
         BindingContext = addItemViewModel;
+        datePicker.Date = DateTime.Now;
     }
 }
