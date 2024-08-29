@@ -10,6 +10,7 @@
     HeightRequest="184"
     Shell.BackgroundColor="#101010"
     FlyoutBackgroundColor="#101010"
+  
     FlyoutWidth="350"
     Title="GestorInkApp"
     Shell.TabBarBackgroundColor="White"
@@ -29,7 +30,7 @@
 
     </Shell.FlyoutHeader>
     
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" >
         
         <ShellContent Title="Feed" Icon="home.png"
 ContentTemplate="{DataTemplate local:Home}"/>

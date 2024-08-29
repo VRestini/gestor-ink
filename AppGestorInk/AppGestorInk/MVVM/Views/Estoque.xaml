@@ -16,7 +16,7 @@
     </ContentPage.ToolbarItems>
     <Shell.TitleView>
         <FlexLayout  AlignItems="Center" JustifyContent="Center">
-            <Label Text="ESTOQUE" FontFamily="InterSemiBold" Margin="0, 5,0,0"></Label>
+            <Label TextColor="White" Text="ESTOQUE" FontFamily="InterSemiBold" Margin="0,5,0,0"></Label>
         </FlexLayout>
         
     </Shell.TitleView>

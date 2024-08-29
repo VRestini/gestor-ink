@@ -8,7 +8,9 @@
              x:DataType="viewmodel:AddProdutoViewModel"
              BackgroundColor="White"
              >
-   
+    <Shell.TitleView>
+        <Label Text=""></Label>
+    </Shell.TitleView>
     <ScrollView>
         <FlexLayout 
     Direction="Column" 
@@ -62,7 +64,7 @@
                     Text="Salvar Item"
                     TextColor="White"
                     Command="{Binding AddProdutoCommand}"
-                    Margin="10, 0, 0, 0"
+                    Margin="0, 70, 0, 0"
                     HeightRequest="40"
                     WidthRequest="280"
                     BackgroundColor="#4C007D"

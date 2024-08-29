@@ -5,24 +5,62 @@
              x:Class="AppGestorInk.MVVM.Popups.EditarProduto"
              xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
              Title="EditarProduto"
+              xmlns:local="clr-namespace:AppGestorInk.MVVM.Models"
              x:DataType="viewmodel:EditarProdutoViewModel">
-   
-    <VerticalStackLayout>
-        <Border HeightRequest="60" BackgroundColor="WhiteSmoke">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="15, 15, 0, 0" BackgroundColor="WhiteSmoke"/>
-            </Border.StrokeShape>
-            <Entry Text="{Binding Produto.Name}" TextColor="#101010" Placeholder="Nome:"></Entry>
-        </Border>
-        <StackLayout HeightRequest="10"></StackLayout>
-        <Border HeightRequest="60">
-            <Entry Text="{Binding Produto.Descricao}" TextColor="#101010" Placeholder="Descrição:"></Entry>
-        </Border>
-        <Button Command="{Binding RefreshProdutoCommand}" Text="Clica"/>
-        <Button 
-            
-            Command="{Binding DeleteProdutoCommand}"
-            CommandParameter="{Binding Produto}"
-            Text="Excluir"/>
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <FlexLayout 
+ Direction="Column" 
+ AlignItems="Center"
+ JustifyContent="Start">
+            <VerticalStackLayout Margin="0,15,0,15" WidthRequest="280">
+                <Border x:Name="BorderName" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" Margin="0,15,0,0" StrokeThickness="2" Stroke="LightGray">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0,10,10,10"/>
+
+                    </Border.StrokeShape>
+                    <local:EntryWithoutBorder 
+                  Focused="EntryWithoutBorder_Focused"
+                  Unfocused="EntryWithoutBorder_Unfocused"
+                  Text="{Binding Produto.Name}" 
+                  Placeholder="Preço" 
+                  PlaceholderColor="#808080" 
+                  TextColor="#101010">
+
+                    </local:EntryWithoutBorder>
+                </Border>
+                <Border x:Name="BorderDescription" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" Margin="0,15,0,0" StrokeThickness="2" Stroke="LightGray">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0,10,10,10"/>
+
+                    </Border.StrokeShape>
+                    <local:EntryWithoutBorder 
+                  Focused="EditorWithoutBorder_Focused" 
+                  Unfocused="EditorWithoutBorder_Unfocused"
+                  Text="{Binding Produto.Descricao}" 
+                  Placeholder="Preço" 
+                  PlaceholderColor="#808080" 
+                  TextColor="#101010">
+
+                    </local:EntryWithoutBorder>
+                </Border>
+
+                <Button 
+                    Command="{Binding RefreshProdutoCommand}" 
+                    Text="Clica"
+                    BackgroundColor="#4C007D"
+                    CornerRadius="10"
+                    Margin="0,15,0,0"/>
+                <Button 
+                    BackgroundColor="#4C007D"
+                    CornerRadius="10"
+                    Command="{Binding DeleteProdutoCommand}"
+                    CommandParameter="{Binding Produto}"
+                    Text="Excluir"
+                    Margin="0,15,0,0"/>    
+            </VerticalStackLayout>
+        </FlexLayout>
+    </ScrollView>
 </ContentPage>

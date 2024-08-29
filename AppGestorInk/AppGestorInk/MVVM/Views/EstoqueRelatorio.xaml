@@ -11,8 +11,10 @@
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior Command="{Binding GetItemProdutoCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
-    
-     <AbsoluteLayout>
+    <Shell.TitleView>
+        <Label Text=""></Label>
+    </Shell.TitleView>
+    <AbsoluteLayout>
         
         <ScrollView AbsoluteLayout.LayoutFlags="All"
 AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
@@ -27,18 +29,19 @@ AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
                                     <Label Text="{Binding Preco}" TextColor="White" Margin="0,0,10,0"  >
                                         <Label.FormattedText>
                                             <FormattedString>
-                                              
-                                                <Span Text="{Binding Preco}" FontFamily="InterLight"/>
-                                                <Span Text="R$" FontFamily="InterLight"/>
+
+                                                <Span Text="{Binding Preco}" TextColor="White"  FontFamily="InterLight"/>
+                                                <Span Text="R$" FontFamily="InterLight" TextColor="White" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
-                                    <Label Text="{Binding DataValidade, StringFormat='{}{0:dd/MM/yyyy}'}" />
+                                    <Label TextColor="White"  Text="{Binding DataValidade, StringFormat='{}{0:dd/MM/yyyy}'}" />
 
                                 </VerticalStackLayout>
                                 
 
                                 <Button 
+                                    BackgroundColor="#101010"
                                     TextColor="White"
                                     Text="X"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:RelatorioEstoqueViewModel}}, Path=DeleteItemProdutoCommand}"
