@@ -24,9 +24,10 @@ AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
                     <DataTemplate x:DataType="model:ItemProduto">
                         <Frame Style="{x:StaticResource FrameEstoque}" HeightRequest="90">
                             <FlexLayout JustifyContent="SpaceBetween">
-                                <Label Text="{Binding Name}" TextColor="White" Margin="0,0,10,0" FontFamily="InterSemiBold"/>
-                                <VerticalStackLayout>
-                                    <Label Text="{Binding Preco}" TextColor="White" Margin="0,0,10,0"  >
+                                <Image Source="foto01.png" WidthRequest="57" HeightRequest="58"/>
+                                <VerticalStackLayout Margin="0,0,45,0">
+                                    <Label Text="{Binding Name}" TextTransform="Uppercase" TextColor="White" Margin="0,0,10,0" FontFamily="InterSemiBold" FontSize="12"/>
+                                    <Label Text="{Binding Preco}" TextColor="White" FontSize="12" Margin="0,0,10,0"  >
                                         <Label.FormattedText>
                                             <FormattedString>
 
@@ -35,15 +36,16 @@ AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
-                                    <Label TextColor="White"  Text="{Binding DataValidade, StringFormat='{}{0:dd/MM/yyyy}'}" />
+                                    <Label TextColor="White" FontSize="12" Text="{Binding DataValidade, StringFormat='{}{0:dd/MM/yyyy}'}" />
 
                                 </VerticalStackLayout>
                                 
-
-                                <Button 
+                        
+                                <ImageButton
+                                    Scale="0.5"
+                                    Margin="0,0,0,15"
                                     BackgroundColor="#101010"
-                                    TextColor="White"
-                                    Text="X"
+                                    Source="icon.png"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:RelatorioEstoqueViewModel}}, Path=DeleteItemProdutoCommand}"
                                     CommandParameter="{Binding .}"/>
                             </FlexLayout>

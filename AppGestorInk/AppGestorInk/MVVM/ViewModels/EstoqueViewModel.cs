@@ -53,13 +53,13 @@ namespace AppGestorInk.MVVM.ViewModels
         [RelayCommand]
         private async Task AddProduto()
         {
-            var uri = $"{nameof(AddProdutoPop)}?id=0";
+            var uri = $"{nameof(AddProdutoPop)}?id=4";
             await Shell.Current.GoToAsync(uri);
         }
         [RelayCommand]
         private async Task RefreshProduto(Produto produto)
         {
-            var uri = $"{nameof(EditarProduto)}?id=1";
+            var uri = $"{nameof(EditarProduto)}?id=5";
 
             await Shell.Current.GoToAsync(uri, new Dictionary<string, object>
             {

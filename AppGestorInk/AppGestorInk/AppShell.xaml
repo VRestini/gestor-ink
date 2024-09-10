@@ -10,22 +10,22 @@
     HeightRequest="184"
     Shell.BackgroundColor="#101010"
     FlyoutBackgroundColor="#101010"
-  
+    
     FlyoutWidth="350"
     Title="GestorInkApp"
     Shell.TabBarBackgroundColor="White"
     Shell.TabBarForegroundColor="#4c007d"
     Shell.TabBarTitleColor="#4C007D"
     Shell.TabBarUnselectedColor="#101010">
-   
+
    
     <Shell.FlyoutHeader >
         <FlexLayout Padding="30" Direction="Column" AlignItems="Center" HeightRequest="220">
             <Frame Margin="0, 10, 0, 0" CornerRadius="100" HeightRequest="100" WidthRequest="100">
                 <Image Source="dotnet_bot.png"/>
             </Frame>
-            <Label Text="Vitor Restini" FontSize="20" Margin="0, 5, 0, 0"></Label>
-            <Label Text="email1234@gmail.com" FontSize="10" ></Label>
+            <Label Text="Vitor Restini" FontSize="20" Margin="0, 5, 0, 0" TextColor="White"></Label>
+            <Label Text="email1234@gmail.com" FontSize="10" TextColor="White"></Label>
         </FlexLayout>
 
     </Shell.FlyoutHeader>
@@ -34,7 +34,7 @@
         
         <ShellContent Title="Feed" Icon="home.png"
 ContentTemplate="{DataTemplate local:Home}"/>
-        <ShellContent Title="Estoque" Icon="shopping_cart.png"
+        <ShellContent Title="Estoque" Icon="shopping.png"
 ContentTemplate="{DataTemplate local:Estoque}"/>
         <ShellContent Title="Agenda" Icon="Browse.png"
 ContentTemplate="{DataTemplate local:Agenda}"/>

@@ -35,6 +35,7 @@ namespace AppGestorInk.MVVM.ViewModels
                     
                     ItemProduto itemProduto = new()
                     {
+                        ProdutoId = Produto.Id,
                         Name = Produto.Name,
                         Descricao = Produto.Descricao,
                         Quantidade = ItemQuantidade,

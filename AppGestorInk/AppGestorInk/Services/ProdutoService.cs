@@ -25,10 +25,22 @@ namespace AppGestorInk.Services
             return await _dbConnectionA.InsertAsync(produto);
 
         }
+        public async Task DeleteAllItemsByProdutoAsync(int produtoId)
+        {
+            // Obtemos a lista de todos os ItemProduto associados ao Produto
+            var items = await _dbConnectionA.Table<ItemProduto>()
+                                               .Where(i => i.ProdutoId == produtoId)
+                                               .ToListAsync();
 
+            // Deletamos todos os itens associados
+            foreach (var item in items)
+            {
+                await _dbConnectionA.DeleteAsync(item);
+            }
+        }
         public async Task<int> DeleteProdutoAsync(Produto produto)
         {
-          
+            await DeleteAllItemsByProdutoAsync(produto.Id);
             return await _dbConnectionA.DeleteAsync(produto);
         }
         public async Task<int> RefreshProdutoAsync(Produto produto)

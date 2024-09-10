@@ -13,7 +13,7 @@ namespace AppGestorInk.MVVM.ViewModels
     {
         public readonly IServiceItem _serviceItem;
       
-        public ObservableCollection<ItemProduto> ItemProdutoList { get; set; } = new();
+        public ObservableCollection<ItemProduto> ItemProdutoList { get; set; } = new ObservableCollection<ItemProduto>();
         private readonly EstoqueViewModel _estoqueViewModel;
         
         [ObservableProperty]
@@ -22,8 +22,7 @@ namespace AppGestorInk.MVVM.ViewModels
         public RelatorioEstoqueViewModel(IServiceItem serviceItem, EstoqueViewModel estoqueViewModel)
         {
             _serviceItem = serviceItem;
-            _estoqueViewModel = estoqueViewModel;
-            
+            _estoqueViewModel = estoqueViewModel;           
 
 
         }
@@ -36,18 +35,10 @@ namespace AppGestorInk.MVVM.ViewModels
             {
                 await _serviceItem.InitializeAsync();
                 
-                var itemProdutos = await _serviceItem.GetItemProdutoAsync();
-                if (itemProdutos.Any())
+                var itemProdutos = await _serviceItem.GetItemProdutoByProdutoIdAsync(Produto.Id);
+                foreach (var itemProduto in itemProdutos)
                 {
-                    foreach (var itemProduto in itemProdutos)
-                    {                      
-                        if(itemProduto.Name == Produto.Name)
-                        {
-                            ItemProdutoList.Add(itemProduto);
-                        }
-                        
-                    }
-
+                    ItemProdutoList.Add(itemProduto);
                 }
             }
             catch (Exception ex)

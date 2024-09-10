@@ -14,6 +14,8 @@ namespace AppGestorInk.MVVM.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        
+        public int ProdutoId { get; set; }
         [NotNull]
         public double Preco { get; set; }
         [NotNull]

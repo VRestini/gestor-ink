@@ -22,6 +22,12 @@ namespace AppGestorInk.Services
                 await _dbItemConnection.CreateTableAsync<ItemProduto>();
             }
         }
+        public async Task<IEnumerable<ItemProduto>> GetItemProdutoByProdutoIdAsync(int produtoId)
+        {
+            return await _dbItemConnection.Table<ItemProduto>()
+                                          .Where(i => i.ProdutoId == produtoId)
+                                          .ToListAsync();
+        }
         public async Task<IEnumerable<ItemProduto>> GetItemProdutoAsync()
         {
             var itemProduto = await _dbItemConnection.Table<ItemProduto>().ToListAsync();
@@ -34,6 +40,7 @@ namespace AppGestorInk.Services
         }
         public async Task<int> AddItemProdutoAsync(ItemProduto itemProduto)
         {
+            
             return await _dbItemConnection.InsertAsync(itemProduto);
         }
 
