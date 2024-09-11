@@ -51,13 +51,22 @@ HeightRequest="114" WidthRequest="88" />
                                             <Label Text="{Binding Descricao}" FontSize="12" TextColor="White" FontFamily="InterLight"/>
                                             </VerticalStackLayout>
                                             <FlexLayout WidthRequest="30"  Direction="Column" AlignItems="Center">
-                                                <ImageButton
-                                                 Source="editar.png"
-                                                 HeightRequest="20"   
-                                                 WidthRequest="20"
-                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=RefreshProdutoCommand}"
-                                                 CommandParameter="{Binding .}"
-                                                 Margin="0, 2, 0, 0"/>
+                                            <Frame  
+                                                HeightRequest="30"   
+                                                WidthRequest="30"
+                                                BackgroundColor="Transparent">
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=RefreshProdutoCommand}"
+CommandParameter="{Binding .}"/>
+                                                </Frame.GestureRecognizers>
+                                                <Image
+                                                     Source="editar.png"
+                                                     HeightRequest="20"   
+                                                     WidthRequest="20"
+                                                     
+                                                    />
+                                            </Frame>
+                                                
                                                 
 
                                             </FlexLayout>
@@ -65,12 +74,15 @@ HeightRequest="114" WidthRequest="88" />
                                     </FlexLayout>
 
                                 </Frame>
+                                
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                     
                 </FlexLayout>
+            
             </ScrollView>
+        
         <Button Text="+"
                 BackgroundColor="{StaticResource Tertiary}"
                 CornerRadius="40"

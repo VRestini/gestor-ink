@@ -30,13 +30,14 @@ public partial class EditarProduto : ContentPage
     private async void EntryWithoutBorder_Unfocused(object sender, FocusEventArgs e)
     {
         BorderName.Stroke = Colors.LightGray;
-       
+        
+
     }
 
     private async void EntryWithoutBorder_Focused(object sender, FocusEventArgs e)
     {
 
         BorderName.Stroke = Color.FromArgb("#4C007D");
-       
+        
     }
 }
