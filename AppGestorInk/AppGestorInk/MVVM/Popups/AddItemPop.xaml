@@ -5,51 +5,39 @@
              xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
              xmlns:local="clr-namespace:AppGestorInk.MVVM.Models"
 x:DataType="viewmodel:AddItemViewModel"
-             
-             Title="AddItemPop">
+              BackgroundImageSource="tela_editar_produto.png"
+             Title="">
     <ScrollView>
         <FlexLayout 
 Direction="Column" 
 AlignItems="Center"
 JustifyContent="Start">
-            <VerticalStackLayout Margin="0,15,0,15" WidthRequest="280">
-                <Border x:Name="BorderPrice" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" Margin="0,15,0,0" StrokeThickness="2" Stroke="LightGray">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="0,10,10,10"/>
-
-                    </Border.StrokeShape>
-                    <local:EntryWithoutBorder 
-                      Focused="EntryWithoutBorder_Unfocused" 
-                      Unfocused="EntryWithoutBorder_Focused" 
-                      Text="{Binding ItemPreco}" 
-                      Placeholder="Preço" 
-                      PlaceholderColor="#808080" 
-                      TextColor="#101010">
-
-                    </local:EntryWithoutBorder>
-                </Border>
-                <Border x:Name="BorderQtd" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" Margin="0,15,0,0" StrokeThickness="2" Stroke="LightGray">
-
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="0,10,10,10"/>
-
-                    </Border.StrokeShape>
-                    <local:EntryWithoutBorder 
-                     Focused="EditorWithoutBorder_Unfocused"
-                     
+            <VerticalStackLayout Margin="0,105,0,15" WidthRequest="280">
+                
+                <local:EntryWithoutBorder 
+                    Focused="EntryWithoutBorder_Unfocused" 
+                    Unfocused="EntryWithoutBorder_Focused" 
+                    Text="{Binding ItemPreco}" 
+                    Placeholder="Preço" 
+                    PlaceholderColor="#808080" 
+                    TextColor="#101010"
+                    FontFamily="InterSemiBold"/>
+                <Border x:Name="BorderPrice" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="2" Stroke="LightGray"/>
+                <local:EntryWithoutBorder 
+                     Focused="EditorWithoutBorder_Unfocused"                   
                      Unfocused="EditorWithoutBorder_Focused" 
                      Text="{Binding ItemQuantidade}" 
                      Placeholder="Quantidade" 
                      PlaceholderColor="#808080" 
-                     TextColor="#101010">
+                     TextColor="#101010"
+                     FontFamily="InterSemiBold"/>
+                <Border x:Name="BorderQtd" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="2" Stroke="LightGray"/>
 
-                    </local:EntryWithoutBorder>
-                </Border  >
-                <Border BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" Margin="0,15,0,0" StrokeThickness="2" Stroke="LightGray">
-                    <DatePicker x:Name="datePicker" Date="{Binding ItemValidade}"/>
-                </Border>
-                
+
+
+                <DatePicker x:Name="datePicker" Date="{Binding ItemValidade}" TextColor="#101010" FontFamily="InterSemiBold"/>
+                <Border BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}"  StrokeThickness="2" Stroke="LightGray"/>
+
                 <Button 
                     Command="{Binding AddItemCommand}"
                     Text="Salvar Item"

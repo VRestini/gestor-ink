@@ -31,7 +31,7 @@ AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
                 JustifyContent="Start"
                 >
                     <Frame BackgroundColor="#101010" CornerRadius="100" WidthRequest="320" HeightRequest="50" Margin="0, 15, 0, 0">
-                        <SearchBar Placeholder="Search items..." HeightRequest="30"/>
+                        <SearchBar Placeholder="Search items..." HeightRequest="30" TextChanged="SearchBar_TextChanged"/>
                     </Frame>
                     <CollectionView x:Name="ProdutoCV" ItemsSource="{Binding ProdutoList}"
                                 >
@@ -41,39 +41,32 @@ AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=testeCommand}" CommandParameter="{Binding .}" />
                                 </Frame.GestureRecognizers>
-                                <FlexLayout >
-                                        <Image Source="dotnet_bot.png"
-HeightRequest="114" WidthRequest="88" />
-                                        <HorizontalStackLayout>
+                                <Grid ColumnDefinitions="0.30*, 0.70*" VerticalOptions="Fill" HorizontalOptions="Fill">
 
-                                            <VerticalStackLayout WidthRequest="176" >
-                                            <Label Text="{Binding Name}" TextTransform="Uppercase" FontSize="15" TextColor="White" FontFamily="InterSemiBold" MaxLines="1" />
-                                            <Label Text="{Binding Descricao}" FontSize="12" TextColor="White" FontFamily="InterLight"/>
-                                            </VerticalStackLayout>
-                                            <FlexLayout WidthRequest="30"  Direction="Column" AlignItems="Center">
-                                            <Frame  
-                                                HeightRequest="30"   
-                                                WidthRequest="30"
-                                                BackgroundColor="Transparent">
-                                                <Frame.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=RefreshProdutoCommand}"
-CommandParameter="{Binding .}"/>
-                                                </Frame.GestureRecognizers>
-                                                <Image
-                                                     Source="editar.png"
-                                                     HeightRequest="20"   
-                                                     WidthRequest="20"
-                                                     
-                                                    />
-                                            </Frame>
-                                                
-                                                
+                                    <!-- Imagem do Produto (Coluna à esquerda) -->
+                                    <Frame Grid.Column="0" CornerRadius="10" Padding="0" HasShadow="False" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                        <Image Source="foto01.png" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                    </Frame>
 
-                                            </FlexLayout>
-                                        </HorizontalStackLayout>
-                                    </FlexLayout>
+                                    <!-- Informações do Produto (Coluna à direita) -->
+                                    <VerticalStackLayout Grid.Column="1" Padding="5,0,0,0" HorizontalOptions="Start" VerticalOptions="StartAndExpand">
+                                        <Label Text="{Binding Name}" TextTransform="Uppercase" Style="{x:StaticResource TextRelatorioDataTemplate}" />
+                                        <Label Text="{Binding Descricao}" FontFamily="InterLight" Style="{x:StaticResource TextRelatorioDataTemplate}" />
+                                    </VerticalStackLayout>
 
-                                </Frame>
+                                    <!-- Botão de Ação (Editar) no canto superior direito -->
+                                    <AbsoluteLayout Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End">
+                                        <Frame AbsoluteLayout.LayoutBounds="0.9, 0.1, 30, 30" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent">
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=RefreshProdutoCommand}" CommandParameter="{Binding .}" />
+                                            </Frame.GestureRecognizers>
+                                            <Image Source="editar.png" WidthRequest="15" HeightRequest="15" />
+                                        </Frame>
+                                    </AbsoluteLayout>
+                                </Grid>
+                           
+
+                            </Frame>
                                 
                             </DataTemplate>
                         </CollectionView.ItemTemplate>

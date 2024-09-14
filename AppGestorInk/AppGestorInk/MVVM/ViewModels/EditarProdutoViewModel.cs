@@ -33,6 +33,7 @@ namespace AppGestorInk.MVVM.ViewModels
                     await _produtoService.InitializeAsync();
                     await _produtoService.DeleteProdutoAsync(produto);
                     await Shell.Current.DisplayAlert("Sucesso", "Produto excluido", "ok");
+                    await Shell.Current.GoToAsync("..");
                 }
                 catch
                 (Exception ex)

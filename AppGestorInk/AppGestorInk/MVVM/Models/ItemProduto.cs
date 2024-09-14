@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AppGestorInk.MVVM.Models
 {
-    [Table( "Item")]
+    [Table( "ItemProduto")]
     public class ItemProduto :Produto
     {
         [PrimaryKey, AutoIncrement]

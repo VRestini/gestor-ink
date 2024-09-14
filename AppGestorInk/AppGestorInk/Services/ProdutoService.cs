@@ -18,6 +18,7 @@ namespace AppGestorInk.Services
 
                 _dbConnectionA = new SQLiteAsyncConnection(dbPath);
                 await _dbConnectionA.CreateTableAsync<Produto>();
+                await _dbConnectionA.CreateTableAsync<ItemProduto>();
             }
         }
         public async Task<int> AddProdutoAsync(Produto produto)
@@ -25,13 +26,26 @@ namespace AppGestorInk.Services
             return await _dbConnectionA.InsertAsync(produto);
 
         }
+        // não está funcionando
+        public async Task UpdateAllItemsByProdutoAsync(Produto produto)
+        {
+            var items = await _dbConnectionA.Table<ItemProduto>().Where(i => i.ProdutoId.Equals(produto.Id)).ToListAsync();
+            foreach (var item in items)
+            {
+                item.Name = produto.Name;
+                await _dbConnectionA.UpdateAsync(item);
+            }
+        }
         public async Task DeleteAllItemsByProdutoAsync(int produtoId)
         {
             // Obtemos a lista de todos os ItemProduto associados ao Produto
             var items = await _dbConnectionA.Table<ItemProduto>()
                                                .Where(i => i.ProdutoId == produtoId)
                                                .ToListAsync();
-
+            if (items.Count == 0)
+            {   
+                return;
+            }
             // Deletamos todos os itens associados
             foreach (var item in items)
             {
@@ -45,7 +59,9 @@ namespace AppGestorInk.Services
         }
         public async Task<int> RefreshProdutoAsync(Produto produto)
         {
+            await UpdateAllItemsByProdutoAsync(produto);
             return await _dbConnectionA.UpdateAsync(produto);
+
         }
 
         public async Task<IEnumerable<Produto>> GetProdutoAsync()

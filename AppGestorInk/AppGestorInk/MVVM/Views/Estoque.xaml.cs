@@ -21,13 +21,11 @@ public partial class Estoque : ContentPage
         
     }
 
-    private async void Button_Clicked(object sender, EventArgs e)
-    {
-       
-        var a = new MenuPopup();
-        
-        await this.ShowPopupAsync(a);
-    }
-
     
+
+    private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        var produto = await _produtoService.GetProdutoNomeAsync(((SearchBar)sender).Text);
+        ProdutoCV.ItemsSource = produto;
+    }
 }
