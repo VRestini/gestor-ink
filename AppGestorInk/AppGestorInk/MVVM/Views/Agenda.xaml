@@ -2,11 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppGestorInk.MVVM.Views.Agenda"
-             Title="Agenda">
+             Title="Agenda"
+             xmlns:controls="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar"  >
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <controls:Calendar
+        
+        VerticalOptions="Fill"
+        HorizontalOptions="Fill"
+            Events="{Binding Events}" EventsScrollViewVisible="True"/>
     </VerticalStackLayout>
 </ContentPage>
