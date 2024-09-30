@@ -8,11 +8,11 @@ namespace AppGestorInk.MVVM.Views;
 public partial class Agenda : ContentPage
 {
    
-    public Agenda(AgendaViewModel agendaViewModel)
+    public Agenda()
     {
         InitializeComponent();
-        BindingContext = agendaViewModel;
+        //BindingContext = agendaViewModel;
     }
-    
 
+    
 }
