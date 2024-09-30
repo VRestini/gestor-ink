@@ -1,7 +1,9 @@
 
 using AppGestorInk.MVVM.ViewModels;
 using Syncfusion.Maui.Calendar;
-using Syncfusion.Maui.Scheduler;
+
+using System.Globalization;
+using XCalendar.Core.Models;
 
 namespace AppGestorInk.MVVM.Views;
 
@@ -11,8 +13,10 @@ public partial class Agenda : ContentPage
     public Agenda()
     {
         InitializeComponent();
-        //BindingContext = agendaViewModel;
-    }
+      
+    //BindingContext = agendaViewModel;
 
-    
+}
+   
+
 }

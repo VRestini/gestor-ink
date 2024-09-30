@@ -4,36 +4,50 @@
              x:Class="AppGestorInk.MVVM.Views.Agenda"
              xmlns:local="clr-namespace:AppGestorInk.MVVM.Models"
              xmlns:model="clr-namespace:AppGestorInk.MVVM.Models"
-             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"
+             xmlns:controls="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar" 
              xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="viewmodel:AgendaViewModel"
+             xmlns:xc="clr-namespace:XCalendar.Maui.Views;assembly=XCalendar.Maui"
+             BackgroundColor="White"
              >
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior Command="{Binding GetAllSessaoCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
-    <VerticalStackLayout>
-        <Label x:Name="SelectedDateLabel" 
-       Text="Selecione uma data" 
-       FontSize="24" 
-       HorizontalOptions="Center" 
-       VerticalOptions="Center" />
-        <syncfusion:SfCalendar x:Name="Calendar" 
-                               
-                                
-                                VerticalOptions="FillAndExpand" 
-                                HorizontalOptions="FillAndExpand" />
-        <CollectionView ItemsSource="{Binding sessaoList}">
-            <CollectionView.ItemTemplate >
-                <DataTemplate x:DataType="model:Sessao">
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Nome}"/>
-                        <Label Text="{Binding Descricao}"/>
-                        <Label Text="{Binding Data,StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                    </VerticalStackLayout>
-                    
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+    
+    <ScrollView>
+        <FlexLayout
+            Direction="Column"
+            AlignItems="Center"        
+            JustifyContent="Start">
+            <xc:CalendarView/>
+            <Frame WidthRequest="320" Padding="0" CornerRadius="15">
+                
+                <controls:Calendar
+                    HorizontalOptions="FillAndExpand"
+                    ArrowsBackgroundColor="#101010"
+                    ArrowsColor="White"
+                    MonthLabelColor="White"
+                    TodayTextColor="White"
+                    TodayOutlineColor="#4c007d"
+                    SelectedDayBackgroundColor="#4c007d"
+                    BackgroundColor="#101010"
+                    DaysTitleColor="White"
+                    DeselectedDayTextColor="White"/>
+            </Frame>
+            
+
+            <CollectionView ItemsSource="{Binding sessaoList}">
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate x:DataType="model:Sessao">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Nome}"/>
+                            <Label Text="{Binding Descricao}"/>
+                            <Label Text="{Binding Data,StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+        </FlexLayout>
+    </ScrollView>    
 </ContentPage>
