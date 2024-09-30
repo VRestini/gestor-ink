@@ -2,13 +2,35 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppGestorInk.MVVM.Views.Agenda"
-             Title="Agenda"
-             xmlns:controls="clr-namespace:Plugin.Maui.Calendar.Controls;assembly=Plugin.Maui.Calendar"  >
+             xmlns:local="clr-namespace:AppGestorInk.MVVM.Models"
+             xmlns:model="clr-namespace:AppGestorInk.MVVM.Models"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"
+             xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
+             
+             x:DataType="viewmodel:AgendaViewModel"
+             >
     <VerticalStackLayout>
-        <controls:Calendar
-        
-        VerticalOptions="Fill"
-        HorizontalOptions="Fill"
-            Events="{Binding Events}" EventsScrollViewVisible="True"/>
+        <Label x:Name="SelectedDateLabel" 
+       Text="Selecione uma data" 
+       FontSize="24" 
+       HorizontalOptions="Center" 
+       VerticalOptions="Center" />
+        <syncfusion:SfCalendar x:Name="Calendar" 
+                               
+                                PropertyChanged="{Binding }" 
+                                VerticalOptions="FillAndExpand" 
+                                HorizontalOptions="FillAndExpand" />
+        <CollectionView ItemsSource="{Binding sessaoList}">
+            <CollectionView.ItemTemplate >
+                <DataTemplate x:DataType="model:Sessao">
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Nome}"/>
+                        <Label Text="{Binding Descricao}"/>
+                        <Label Text="{Binding Data,StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                    </VerticalStackLayout>
+                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

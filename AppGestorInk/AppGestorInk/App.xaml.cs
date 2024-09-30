@@ -7,6 +7,8 @@ namespace AppGestorInk
         
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCd0x0Q3xbf1x0ZFFMYFtbQXJPIiBoS35RckVqWHZfdnRSQ2ReVkxw");
+
             InitializeComponent();
         
             MainPage = new AppShell();

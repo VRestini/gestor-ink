@@ -4,6 +4,7 @@ using AppGestorInk.MVVM.Views;
 using AppGestorInk.Services;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Syncfusion.Licensing;
 using Syncfusion.Maui.Core.Hosting;
 
 namespace AppGestorInk
@@ -26,15 +27,16 @@ namespace AppGestorInk
                     fonts.AddFont("Inter18pt-Light.ttf", "InterLight");
                     fonts.AddFont("Lobster-Regular.ttf", "Lobster");
                 });
-
+            SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXZcd3VVRGZZWEF0WkE=");
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton<EstoqueViewModel>();
             builder.Services.AddTransient<AddProdutoViewModel>();
             builder.Services.AddTransient<EditarProdutoViewModel>();
             builder.Services.AddTransient<RelatorioEstoqueViewModel>();
             builder.Services.AddTransient<AddItemViewModel>();
+            builder.Services.AddTransient<AgendaViewModel>();
 
 
             builder.Services.AddSingleton<Estoque>();
@@ -42,10 +44,12 @@ namespace AppGestorInk
             builder.Services.AddTransient<AddProdutoPop>();
             builder.Services.AddTransient<EditarProduto>();
             builder.Services.AddTransient<EstoqueRelatorio>();
+            builder.Services.AddTransient<Agenda>();
 
 
             builder.Services.AddSingleton<IProdutoService, ProdutoService>();
             builder.Services.AddSingleton<IServiceItem, ItemService>();
+            builder.Services.AddSingleton<ISessaoService, SessaoService>();
             return builder.Build();
         }
     }

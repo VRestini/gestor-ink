@@ -21,8 +21,6 @@ public partial class Estoque : ContentPage
         
     }
 
-    
-
     private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
         var produto = await _produtoService.GetProdutoNomeAsync(((SearchBar)sender).Text);
