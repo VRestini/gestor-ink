@@ -6,20 +6,21 @@
              xmlns:model="clr-namespace:AppGestorInk.MVVM.Models"
              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Calendar;assembly=Syncfusion.Maui.Calendar"
              xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
-             
              x:DataType="viewmodel:AgendaViewModel"
              >
     <VerticalStackLayout>
-        <Label x:Name="SelectedDateLabel" 
-       Text="Selecione uma data" 
-       FontSize="24" 
-       HorizontalOptions="Center" 
-       VerticalOptions="Center" />
-        <syncfusion:SfCalendar x:Name="Calendar" 
-                               
-                                PropertyChanged="{Binding }" 
-                                VerticalOptions="FillAndExpand" 
-                                HorizontalOptions="FillAndExpand" />
+
+
+        <syncfusion:SfCalendar 
+            Margin="0,25,0,0"
+            SelectionBackground="#4c007d"
+            WidthRequest="320"
+            x:Name="MyCalendar"                           
+            VerticalOptions="FillAndExpand" 
+            HorizontalOptions="FillAndExpand" 
+            BackgroundColor="#101010">
+            
+        </syncfusion:SfCalendar>
         <CollectionView ItemsSource="{Binding sessaoList}">
             <CollectionView.ItemTemplate >
                 <DataTemplate x:DataType="model:Sessao">
@@ -28,7 +29,7 @@
                         <Label Text="{Binding Descricao}"/>
                         <Label Text="{Binding Data,StringFormat='{}{0:dd/MM/yyyy}'}"/>
                     </VerticalStackLayout>
-                    
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
