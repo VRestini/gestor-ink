@@ -27,7 +27,7 @@ namespace AppGestorInk
                     fonts.AddFont("Inter18pt-Light.ttf", "InterLight");
                     fonts.AddFont("Lobster-Regular.ttf", "Lobster");
                 });
-            SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXZcd3VVRGZZWEF0WkE=");
+            SyncfusionLicenseProvider.RegisterLicense("MzUwODIxNEAzMjM3MmUzMDJlMzBubWlpZFY2cnYzUmhFTzk2Sk4ycmtLL3FqZnlZZ1dSeDdNZm9sZ2wyZVlFPQ==");
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

@@ -19,7 +19,7 @@
             VerticalOptions="FillAndExpand" 
             HorizontalOptions="FillAndExpand" 
             BackgroundColor="#101010">
-            
+
         </syncfusion:SfCalendar>
         <CollectionView ItemsSource="{Binding sessaoList}">
             <CollectionView.ItemTemplate >

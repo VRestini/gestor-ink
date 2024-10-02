@@ -19,25 +19,21 @@ namespace AppGestorInk.MVVM.ViewModels
         {
             _sessaoService = sessaoService;
         }
-        public event PropertyChangedEventHandler PropertyChanged;
+        
+        
         [RelayCommand]
-        public async Task OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        [RelayCommand]
-        public async Task GetSessaoByDate(DateTime date)
+        public async Task GetAllSessao()
         {
             sessaoList.Clear();
             try
             {
                 await _sessaoService.InitializeAsync();
-                var produtos = await _sessaoService.GetSessaoByDateAsync(date);
-                if (produtos.Any())
+                var sessoes = await _sessaoService.GetAllSessoesAsync();
+                if (sessoes.Any())
                 {
-                    foreach (var produto in produtos)
+                    foreach (var sessao in sessoes)
                     {
-                        sessaoList.Add(produto);
+                        sessaoList.Add(sessao);
                     }
                 }
             }
