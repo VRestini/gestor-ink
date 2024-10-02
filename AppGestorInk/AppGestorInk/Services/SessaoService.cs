@@ -45,9 +45,10 @@ namespace AppGestorInk.Services
             return sessoes;
         }
 
-        public async Task<IEnumerable< Sessao>> GetSessaoByDateAsync(DateTime dateTime)
+        public async Task<IEnumerable<Sessao>> GetSessaoByDateAsync(DateTime dateTime)
         {
-            var sessoes = await _dbConnectionA.Table<Sessao>().Where(x => x.Data.Equals(dateTime)).ToListAsync();
+            await InitializeAsync();
+            var sessoes = await _dbConnectionA.Table<Sessao>().Where(x => x.Data == dateTime).ToListAsync();
             return sessoes;
         }
 
