@@ -26,19 +26,19 @@ public partial class Agenda : ContentPage
         this.MyCalendar.SelectionChanged += OnCalendarSelectionChanged;
     }
 
-    private async void OnCalendarSelectionChanged(object sender, CalendarSelectionChangedEventArgs e)
+    private async void OnCalendarSelectionChanged(object sender, Syncfusion.Maui.Calendar.CalendarSelectionChangedEventArgs e)
     {
-        // Verifica se há uma data selecionada
         if (e.NewValue != null)
         {
             DateTime selectedDate = (DateTime)e.NewValue;
-            
-            var viewModel = (AgendaViewModel)BindingContext;
-            viewModel.SelectedDate = selectedDate;
-            await viewModel.GetAllSessaoCommand.ExecuteAsync(selectedDate);
 
-            //await DisplayAlert("Data Selecionada", $"Você selecionou: {viewModel.SelectedDate:dd/MM/yyyy}", "OK");
+            var viewModel = (AgendaViewModel)BindingContext;
+            viewModel.SelectedDate = selectedDate; // Atualiza a data selecionada
+
+            // Executa o comando para buscar as sessões pela data
+            await viewModel.GetSessaoByDateCommand.ExecuteAsync(null);
         }
     }
+
 
 }

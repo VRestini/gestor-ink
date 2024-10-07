@@ -19,47 +19,74 @@ namespace AppGestorInk.MVVM.ViewModels
         public AgendaViewModel(ISessaoService sessaoService)
         {
             _sessaoService = sessaoService;
-    
+            selectedDate = new DateTime();
         }
         [RelayCommand]
-        public async Task GetAllSessao()
+        public async Task Initialize()
         {
-            sessaoList.Clear();
-            try
-            {
-                await _sessaoService.InitializeAsync();
-                DateTime data = SelectedDate;
-                sessaoList.Add(new Sessao { Id = 1, Nome = "Sessão 1", Descricao = "Descrição da Sessão 1", Data = DateTime.Now });
-                sessaoList.Add(new Sessao { Id = 2, Nome = "Sessão 2", Descricao = "Descrição da Sessão 2", Data = DateTime.Now.AddDays(1) });
-                sessaoList.Add(new Sessao { Id = 3, Nome = "Sessão 3", Descricao = "Descrição da Sessão 3", Data = DateTime.Now.AddDays(2) });
-                sessaoList.Add(new Sessao { Id = 4, Nome = "Sessão 4", Descricao = "Descrição da Sessão 4", Data = DateTime.Now.AddDays(3) });
-                var sessoes = await _sessaoService.GetSessaoByDateAsync(SelectedDate);         
-                foreach (var sessao in sessoes)
-                {
-                     sessaoList.Add(sessao);
-                }              
-            }
-            catch (Exception ex)
-            {
-                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-            }
+            await _sessaoService.InitializeAsync();
         }
         [RelayCommand]
         public async Task GetSessaoByDate()
-        {         
+        {
+            sessaoList.Clear();  // Limpa a lista de todas as sessões
+            sessaoListByDate.Clear();  // Limpa a lista de sessões filtradas por data
+
             try
             {
-                var sessoess = await _sessaoService.GetSessaoByDateAsync(SelectedDate);
-                foreach (var sessao in sessoess)
+                // Exibe a data selecionada
+                await Shell.Current.DisplayAlert("Data Selecionada", $"A nova data selecionada é: {SelectedDate:dd/MM/yyyy}", "OK");
+
+                // Obtém todas as sessões do banco de dados
+                var sessoes = await _sessaoService.GetAllSessoesAsync();
+
+                // Adiciona todas as sessões à lista geral
+                foreach (var sessao in sessoes)
+                {
+                    sessaoList.Add(sessao);
+                }
+
+                // Filtra as sessões pela data selecionada
+                var sessoesFiltradas = sessoes.Where(x => x.Data.Date == SelectedDate.Date).ToList();
+
+                // Adiciona as sessões filtradas à lista
+                foreach (var sessao in sessoesFiltradas)
                 {
                     sessaoListByDate.Add(sessao);
+                }
+
+                // Verifica se há sessões filtradas
+                if (sessoesFiltradas.Count == 0)
+                {
+                    await Shell.Current.DisplayAlert("Aviso", "Nenhuma sessão encontrada para a data selecionada.", "OK");
                 }
             }
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
-            
         }
+
+        [RelayCommand]
+        public async Task AddSessao()
+        {
+            Sessao novaSessao = new Sessao
+            {
+                Id = 1,
+                Nome = "Sessão Teste",
+                Descricao = "Descrição da Sessão Teste",
+                Data = DateTime.Now // Ajuste a data conforme necessário
+            };
+
+            await _sessaoService.AddSessaoAsync(novaSessao);
+
+            // Exibe uma mensagem de confirmação
+            await Shell.Current.DisplayAlert("Sessão Adicionada", $"A sessão '{novaSessao.Nome}' foi adicionada com sucesso!", "OK");
+
+            // Atualiza a lista de sessões
+            await GetSessaoByDate();
+        }
+
+
     }
 }

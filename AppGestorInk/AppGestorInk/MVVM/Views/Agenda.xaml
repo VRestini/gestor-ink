@@ -11,21 +11,21 @@
              BackgroundColor="White"
              >
     <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior Command="{Binding GetAllSessaoCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding InitializeCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
     <VerticalStackLayout>
         <syncfusion:SfCalendar 
-            Margin="0,25,0,0"
-            SelectionChanged="OnCalendarSelectionChanged"
-            SelectionChangedCommand="{Binding GetSessaoByDateCommand}"
-            SelectedDate="{Binding SelectedDate}"
-            SelectionBackground="#4c007d"
-            WidthRequest="320"
-            x:Name="MyCalendar"                           
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="FillAndExpand" 
-            BackgroundColor="#101010">
+    Margin="0,25,0,0"
+    SelectionChanged="OnCalendarSelectionChanged"
+    SelectedDate="{Binding SelectedDate}"
+    SelectionBackground="#4c007d"
+    WidthRequest="320"
+    x:Name="MyCalendar"                           
+    VerticalOptions="FillAndExpand" 
+    HorizontalOptions="FillAndExpand" 
+    BackgroundColor="#101010">
         </syncfusion:SfCalendar>
+
         <CollectionView ItemsSource="{Binding sessaoListByDate}">
             <CollectionView.ItemTemplate >
                 <DataTemplate x:DataType="model:Sessao">
@@ -38,5 +38,8 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Button
+            BackgroundColor="Aqua"
+            Command="{Binding AddSessaoCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
