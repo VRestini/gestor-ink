@@ -13,33 +13,56 @@
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior Command="{Binding InitializeCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
-    <VerticalStackLayout>
-        <syncfusion:SfCalendar 
-    Margin="0,25,0,0"
-    SelectionChanged="OnCalendarSelectionChanged"
-    SelectedDate="{Binding SelectedDate}"
-    SelectionBackground="#4c007d"
-    WidthRequest="320"
-    x:Name="MyCalendar"                           
-    VerticalOptions="FillAndExpand" 
-    HorizontalOptions="FillAndExpand" 
-    BackgroundColor="#101010">
-        </syncfusion:SfCalendar>
+    <AbsoluteLayout>
+        <ScrollView
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+            <FlexLayout
+                Direction="Column"
+                AlignItems="Center"        
+                JustifyContent="Start">
+                <syncfusion:SfCalendar 
+                    Margin="0,15,0,0"
+                    SelectionChanged="OnCalendarSelectionChanged"
+                    SelectedDate="{Binding SelectedDate}"
+                    SelectionBackground="#4c007d"
+                    WidthRequest="320"
+                    x:Name="MyCalendar"                           
+                    VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand" 
+                    BackgroundColor="#101010">
+                </syncfusion:SfCalendar>
+                
+                <CollectionView ItemsSource="{Binding sessaoListByDate}">
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate x:DataType="model:Sessao">
+                            <Frame WidthRequest="320" HeightRequest="50">
+                                <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Text="{Binding Nome}" TextColor="Black"/>
+                                    <Label Text="{Binding Descricao}"/>
+                                    <Label Text="{Binding Data,StringFormat='{}{0:dd/MM/yyyy}'}"/>
+                                </VerticalStackLayout>
+                            </Frame>
 
-        <CollectionView ItemsSource="{Binding sessaoListByDate}">
-            <CollectionView.ItemTemplate >
-                <DataTemplate x:DataType="model:Sessao">
-                    <VerticalStackLayout BackgroundColor="Red">
-                        <Label Text="{Binding Nome}" TextColor="Black"/>
-                        <Label Text="{Binding Descricao}"/>
-                        <Label Text="{Binding Data,StringFormat='{}{0:dd/MM/yyyy}'}"/>
-                    </VerticalStackLayout>
 
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </FlexLayout>
+        </ScrollView>
         <Button
-            BackgroundColor="Aqua"
+            Text="+"
+            BackgroundColor="{StaticResource Tertiary}"
+            CornerRadius="40"
+            TextColor="White"
+            FontSize="Large"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.95, 0.999, 80, 80"
+            Margin="10"
             Command="{Binding AddSessaoCommand}"/>
-    </VerticalStackLayout>
+    </AbsoluteLayout>
+    
+    
+        
+    
 </ContentPage>

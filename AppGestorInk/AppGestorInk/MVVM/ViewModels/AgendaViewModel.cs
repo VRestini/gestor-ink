@@ -34,8 +34,7 @@ namespace AppGestorInk.MVVM.ViewModels
 
             try
             {
-                // Exibe a data selecionada
-                await Shell.Current.DisplayAlert("Data Selecionada", $"A nova data selecionada é: {SelectedDate:dd/MM/yyyy}", "OK");
+                //await Shell.Current.DisplayAlert("Data Selecionada", $"A nova data selecionada é: {SelectedDate:dd/MM/yyyy}", "OK");
 
                 // Obtém todas as sessões do banco de dados
                 var sessoes = await _sessaoService.GetAllSessoesAsync();
@@ -58,7 +57,7 @@ namespace AppGestorInk.MVVM.ViewModels
                 // Verifica se há sessões filtradas
                 if (sessoesFiltradas.Count == 0)
                 {
-                    await Shell.Current.DisplayAlert("Aviso", "Nenhuma sessão encontrada para a data selecionada.", "OK");
+                    //await Shell.Current.DisplayAlert("Aviso", "Nenhuma sessão encontrada para a data selecionada.", "OK");
                 }
             }
             catch (Exception ex)
