@@ -2,7 +2,6 @@
 using AppGestorInk.MVVM.Popups;
 using AppGestorInk.MVVM.Views;
 using AppGestorInk.Services;
-using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;

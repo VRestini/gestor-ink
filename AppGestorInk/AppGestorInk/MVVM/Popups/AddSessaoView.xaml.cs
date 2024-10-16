@@ -1,30 +1,37 @@
 using AppGestorInk.MVVM.ViewModels;
 
-
 namespace AppGestorInk.MVVM.Popups;
 
-public partial class AddItemPop : ContentPage
+public partial class AddSessaoView : ContentPage
 {
-    public AddItemPop (AddItemViewModel addItemViewModel)
-    {
-        InitializeComponent();
-        BindingContext = addItemViewModel;
-        datePicker.Date = DateTime.Now;
-    }
+	public AddSessaoView(AddSessaoViewModel addSessaoViewModel)
+	{
+		InitializeComponent();
+        BindingContext = addSessaoViewModel;
+	}
     private async void EditorWithoutBorder_Unfocused(object sender, FocusEventArgs e)
     {
-        BorderPrice.Stroke = Colors.LightGray;   
+
+        BorderDescription.Stroke = Colors.LightGray;
+
     }
+
     private async void EditorWithoutBorder_Focused(object sender, FocusEventArgs e)
     {
-        BorderPrice.Stroke = Color.FromArgb("#4C007D");       
+        BorderDescription.Stroke = Color.FromArgb("#4C007D");
+
     }
+
     private async void EntryWithoutBorder_Unfocused(object sender, FocusEventArgs e)
     {
-        BorderQtd.Stroke = Colors.LightGray;      
+        BorderName.Stroke = Colors.LightGray;
+
     }
+
     private async void EntryWithoutBorder_Focused(object sender, FocusEventArgs e)
     {
-        BorderQtd.Stroke = Color.FromArgb("#4C007D");      
+
+        BorderName.Stroke = Color.FromArgb("#4C007D");
+
     }
 }

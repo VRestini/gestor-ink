@@ -37,7 +37,7 @@ namespace AppGestorInk
             builder.Services.AddTransient<RelatorioEstoqueViewModel>();
             builder.Services.AddTransient<AddItemViewModel>();
             builder.Services.AddTransient<AgendaViewModel>();
-
+            builder.Services.AddTransient<AddSessaoViewModel>();
 
             builder.Services.AddSingleton<Estoque>();
             builder.Services.AddTransient<AddItemPop>();
@@ -45,7 +45,7 @@ namespace AppGestorInk
             builder.Services.AddTransient<EditarProduto>();
             builder.Services.AddTransient<EstoqueRelatorio>();
             builder.Services.AddTransient<Agenda>();
-
+            builder.Services.AddTransient<AddSessaoView>();
 
             builder.Services.AddSingleton<IProdutoService, ProdutoService>();
             builder.Services.AddSingleton<IServiceItem, ItemService>();

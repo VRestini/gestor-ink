@@ -3,6 +3,7 @@ using AppGestorInk.MVVM.Models;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using AppGestorInk.Services;
+using AppGestorInk.MVVM.Popups;
 
 namespace AppGestorInk.MVVM.ViewModels
 {
@@ -69,23 +70,8 @@ namespace AppGestorInk.MVVM.ViewModels
         [RelayCommand]
         public async Task AddSessao()
         {
-            Sessao novaSessao = new Sessao
-            {
-                Id = 1,
-                Nome = "Sessão Teste",
-                Descricao = "Descrição da Sessão Teste",
-                Data = DateTime.Now // Ajuste a data conforme necessário
-            };
-
-            await _sessaoService.AddSessaoAsync(novaSessao);
-
-            // Exibe uma mensagem de confirmação
-            await Shell.Current.DisplayAlert("Sessão Adicionada", $"A sessão '{novaSessao.Nome}' foi adicionada com sucesso!", "OK");
-
-            // Atualiza a lista de sessões
-            await GetSessaoByDate();
+            var uri = $"{nameof(AddSessaoView)}?id=0";
+            await Shell.Current.GoToAsync(uri);
         }
-
-
     }
 }
