@@ -20,6 +20,7 @@ public partial class Agenda : ContentPage
         {
             TextColor = Colors.White,
         };
+        
         this.MyCalendar.MonthView.TextStyle = textStyle;
         this.MyCalendar.YearView.TextStyle = textStyle;
         this.MyCalendar.HeaderView.TextStyle = textStyle;

@@ -11,9 +11,9 @@ namespace AppGestorInk.MVVM.ViewModels
     {
         private readonly IServiceItem _serviceItem;
         [ObservableProperty]
-        public int _itemQuantidade;
+        public string _itemQuantidade;
         [ObservableProperty]
-        public double _itemPreco;
+        public string _itemPreco;
         [ObservableProperty]
         public DateTime _itemValidade;
         [ObservableProperty]
@@ -27,36 +27,43 @@ namespace AppGestorInk.MVVM.ViewModels
         [RelayCommand]
         private async Task AddItem()
         {
-           
+
             try
             {
-                if (ItemQuantidade != 0) // verifica se o nome foi informado
+                if (int.TryParse(ItemQuantidade, out int quantidade) && double.TryParse(ItemPreco, out double preco))
                 {
-                    
-                    ItemProduto itemProduto = new()
+                    if (quantidade != 0 && preco != 0.00)
                     {
-                        ProdutoId = Produto.Id,
-                        Name = Produto.Name,
-                        Descricao = Produto.Descricao,
-                        Quantidade = ItemQuantidade,
-                        Preco = ItemPreco,
-                        DataValidade = ItemValidade,
-                    };
-                    await _serviceItem.InitializeAsync();
-                    for (int i = 1; i <= _itemQuantidade - 1; i++)
-                    {
+
+                        ItemProduto itemProduto = new()
+                        {
+                            ProdutoId = Produto.Id,
+                            Name = Produto.Name,
+                            Descricao = Produto.Descricao,
+                            Quantidade = quantidade,
+                            Preco = preco,
+                            DataValidade = ItemValidade,
+                        };
+                        await _serviceItem.InitializeAsync();
+                        for (int i = 1; i <= quantidade - 1; i++)
+                        {
+                            await _serviceItem.AddItemProdutoAsync(itemProduto);
+
+
+                        }
                         await _serviceItem.AddItemProdutoAsync(itemProduto);
-                       
+                        await Shell.Current.DisplayAlert("Sucesso", "Mensagem", "OK");
 
+                        await Shell.Current.GoToAsync(".."); // voltar para a página anterior
                     }
-                    await _serviceItem.AddItemProdutoAsync(itemProduto);
-                    await Shell.Current.DisplayAlert("Sucesso", "Mensagem", "OK");
-
-                    await Shell.Current.GoToAsync(".."); // voltar para a página anterior
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Error", "Mensagem erro", "OK");
+                    }
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", "Mensagem erro", "OK");
+                    await Shell.Current.DisplayAlert("Erro", "Preencha corretamente os campos de Quantidade e Preço", "OK");
                 }
             }
             catch (Exception ex)

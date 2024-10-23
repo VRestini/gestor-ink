@@ -35,14 +35,18 @@ JustifyContent="Start">
 
 
 
-                <DatePicker x:Name="datePicker" Date="{Binding ItemValidade}" TextColor="#101010" FontFamily="InterSemiBold"/>
+                <DatePicker 
+                    x:Name="datePicker" 
+                    Date="{Binding ItemValidade}" 
+                    TextColor="#101010" 
+                    FontFamily="InterSemiBold" />
                 <Border BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}"  StrokeThickness="2" Stroke="LightGray"/>
 
                 <Button 
                     Command="{Binding AddItemCommand}"
                     Text="Salvar Item"
                     TextColor="White"
-                    Margin="0, 15, 0, 0"
+                    Margin="0, 45, 0, 0"
                     HeightRequest="40"
                     WidthRequest="280"
                     BackgroundColor="#4C007D"

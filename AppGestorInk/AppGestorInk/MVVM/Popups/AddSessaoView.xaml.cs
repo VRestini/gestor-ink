@@ -8,6 +8,7 @@ public partial class AddSessaoView : ContentPage
 	{
 		InitializeComponent();
         BindingContext = addSessaoViewModel;
+
 	}
     private async void EditorWithoutBorder_Unfocused(object sender, FocusEventArgs e)
     {
@@ -33,5 +34,21 @@ public partial class AddSessaoView : ContentPage
 
         BorderName.Stroke = Color.FromArgb("#4C007D");
 
+    }
+
+    private void pickerButton_Clicked(object sender, EventArgs e)
+    {
+        this.DatePicker.IsOpen = true;
+    }
+
+    private void DatePicker_SelectionChanged(object sender, Syncfusion.Maui.Picker.DateTimePickerSelectionChangedEventArgs e)
+    {
+        if (e.NewValue != null)
+        {
+            DateTime selectedDate = (DateTime)e.NewValue;
+
+            var viewModel = (AddSessaoViewModel)BindingContext;
+            viewModel.SessaoDate = selectedDate; // Atualiza a data selecionada
+        }
     }
 }

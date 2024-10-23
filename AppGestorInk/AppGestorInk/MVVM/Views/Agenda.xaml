@@ -13,6 +13,11 @@
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior Command="{Binding InitializeCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
+    <Shell.TitleView>
+        <FlexLayout  AlignItems="Center" JustifyContent="Center" >
+            <Label FontSize="Medium" TextColor="White" Text="AGENDA" FontFamily="InterSemiBold" Margin="-30,5,0,0" ></Label>
+        </FlexLayout>
+    </Shell.TitleView>
     <AbsoluteLayout>
         <ScrollView
             AbsoluteLayout.LayoutFlags="All"

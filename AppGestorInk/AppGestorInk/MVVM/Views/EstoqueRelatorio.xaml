@@ -14,7 +14,9 @@
         <toolkit:EventToCommandBehavior Command="{Binding GetItemProdutoCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
     <Shell.TitleView>
-        <Label Text=""></Label>
+        <FlexLayout  AlignItems="Center" JustifyContent="Center">
+            <Label FontSize="Medium" TextColor="White" Text="" FontFamily="InterSemiBold" Margin="-35,5,0,0"></Label>
+        </FlexLayout>
     </Shell.TitleView>
     <AbsoluteLayout>
         
@@ -52,7 +54,7 @@ AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
                                     <Label Text="{Binding Preco}" Style="{x:StaticResource TextRelatorioDataTemplate}">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Preco}" TextColor="White"  FontFamily="InterLight"/>
+                                                <Span Text="{Binding Preco, StringFormat='{0:F2}'}" TextColor="White"  FontFamily="InterLight"/>
                                                 <Span Text="R$" FontFamily="InterLight" TextColor="White" />
                                             </FormattedString>
                                         </Label.FormattedText>

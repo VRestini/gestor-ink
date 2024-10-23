@@ -27,4 +27,5 @@ public partial class AddItemPop : ContentPage
     {
         BorderQtd.Stroke = Color.FromArgb("#4C007D");      
     }
+    
 }

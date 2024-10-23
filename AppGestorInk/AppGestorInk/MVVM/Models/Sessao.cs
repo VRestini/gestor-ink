@@ -17,6 +17,6 @@ namespace AppGestorInk.MVVM.Models
 
         [NotNull] 
         public DateTime Data { get; set; }
-
+        
     }
 }

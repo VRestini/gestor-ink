@@ -19,9 +19,11 @@ namespace AppGestorInk.MVVM.ViewModels
         public string _sessaoDescricao;
         [ObservableProperty]
         public DateTime _sessaoDate;
+        public DateTime Date { get; set; }
         public AddSessaoViewModel(ISessaoService sessaoService)
         {
             _sessaoService = sessaoService;
+            Date = DateTime.Now;
         }
         [RelayCommand]
         private async Task AddSessao()
