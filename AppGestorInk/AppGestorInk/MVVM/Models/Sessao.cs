@@ -11,12 +11,19 @@ namespace AppGestorInk.MVVM.Models
         public int Id { get; set; }
 
         [NotNull, MaxLength(40)]
-        public string Nome { get; set; }
+        public string NomeSessao { get; set; }
+        [NotNull, MaxLength(40)]
+        public string NomeCliente { get; set; }
         [NotNull, MaxLength(100)]
         public string Descricao {  get; set; }
-
+        
         [NotNull] 
         public DateTime Data { get; set; }
-        
+
+        public enum StatusSessao
+        {
+            Finalizada,
+            Processo,
+        };
     }
 }

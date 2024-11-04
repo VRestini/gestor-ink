@@ -17,7 +17,20 @@
     AlignItems="Center"
     JustifyContent="Start">
             <VerticalStackLayout Margin="0,105,0,15" >
-                
+                <Frame 
+                    WidthRequest="200" 
+                    HeightRequest="200" 
+                    CornerRadius="20" 
+                    Padding="0" 
+                    HasShadow="False"
+                    BackgroundColor="LightGray"
+                    BorderColor="LightGray">
+                    <Image x:Name="MyImage" Source="image_search" WidthRequest="100" BackgroundColor="LightGray" HeightRequest="100">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
                 <local:EntryWithoutBorder 
                     Focused="EntryWithoutBorder_Focused" 
                     Unfocused="EntryWithoutBorder_Unfocused" 

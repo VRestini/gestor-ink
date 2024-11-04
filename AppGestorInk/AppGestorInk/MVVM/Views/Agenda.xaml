@@ -34,30 +34,29 @@
                     WidthRequest="320"
                     x:Name="MyCalendar"                           
                     VerticalOptions="FillAndExpand" 
-                    HorizontalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand"   
                     BackgroundColor="#101010">
+                    
                 </syncfusion:SfCalendar>
                 
                 <CollectionView ItemsSource="{Binding sessaoListByDate}">
                     <CollectionView.ItemTemplate >
                         <DataTemplate x:DataType="model:Sessao">
                             <Frame Style="{x:StaticResource FrameEstoque}" BackgroundColor="#101010" HeightRequest="110">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=testeCommand}" CommandParameter="{Binding .}" />
-                                </Frame.GestureRecognizers>
+                                
                                 <Grid ColumnDefinitions="0.30*, 0.70*" VerticalOptions="Fill" HorizontalOptions="Fill">
                                     <Frame Grid.Column="0" CornerRadius="10" Padding="0" HasShadow="False" HorizontalOptions="Fill" VerticalOptions="Fill">
                                         <Image Source="foto01.png" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
                                     </Frame>
                                     <VerticalStackLayout Grid.Column="1" Padding="5,0,0,0" HorizontalOptions="Start" VerticalOptions="StartAndExpand">
                                         <Label Text="{Binding Data, StringFormat='{0:HH:mm}'}" TextTransform="Uppercase" Style="{x:StaticResource TextRelatorioDataTemplate}" />
-                                        <Label Text="{Binding Nome}" FontFamily="InterLight" Style="{x:StaticResource TextRelatorioDataTemplate}" />
+                                        <Label Text="{Binding NomeSessao}" FontFamily="InterLight" Style="{x:StaticResource TextRelatorioDataTemplate}" />
                                         <Label Text="{Binding Descricao}" FontFamily="InterLight" Style="{x:StaticResource TextRelatorioDataTemplate}" />
                                     </VerticalStackLayout>
                                     <AbsoluteLayout Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End">
                                         <Frame AbsoluteLayout.LayoutBounds="0.9, 0.1, 30, 30" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent">
                                             <Frame.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=RefreshProdutoCommand}" CommandParameter="{Binding .}" />
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AgendaViewModel}}, Path=RefreshSessaoCommand}" CommandParameter="{Binding .}" />
                                             </Frame.GestureRecognizers>
                                             <Image Source="editar.png" WidthRequest="15" HeightRequest="15" />
                                         </Frame>

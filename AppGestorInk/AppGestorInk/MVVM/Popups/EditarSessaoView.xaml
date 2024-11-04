@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
+             xmlns:local="clr-namespace:AppGestorInk.MVVM.Models"
+             x:Class="AppGestorInk.MVVM.Popups.EditarSessaoView"
+             x:DataType="viewmodel:EditarSessaoViewModel"
+             xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             Title=""
+             BackgroundColor="White"
+             BackgroundImageSource="tela_editar_produto.png">
+
+    <ScrollView>
+        <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="Start">
+            <VerticalStackLayout Margin="0,105,0,15" WidthRequest="280">
+
+                <!-- Campo Nome da Sessão -->
+                <local:EntryWithoutBorder 
+                    Focused="EntryWithoutBorder_Focused"
+                    Unfocused="EntryWithoutBorder_Unfocused"
+                    Text="{Binding Sessao.NomeSessao}" 
+                    FontFamily="InterSemiBold"
+                    Placeholder="Nome da Sessão" 
+                    PlaceholderColor="#808080" 
+                    HorizontalOptions="FillAndExpand"
+                    WidthRequest="280"
+                    TextColor="#101010"/>
+                <Border x:Name="BorderNome" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,0'}" StrokeThickness="2" Stroke="LightGray" WidthRequest="280"/>
+
+                <!-- Campo Nome do Cliente -->
+                <local:EntryWithoutBorder 
+                    Focused="EntryWithoutBorder_Focused_1"
+                    Unfocused="EntryWithoutBorder_Unfocused_1"
+                    Text="{Binding Sessao.NomeCliente}" 
+                    FontFamily="InterSemiBold"
+                    Placeholder="Nome do Cliente" 
+                    PlaceholderColor="#808080" 
+                    HorizontalOptions="FillAndExpand"
+                    WidthRequest="280"
+                    TextColor="#101010"/>
+                <Border x:Name="BorderNomeCliente" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,0'}" StrokeThickness="2" Stroke="LightGray" WidthRequest="280"/>
+
+                <!-- Campo Descrição -->
+                <local:EditorWithoutBorder 
+                    Focused="EditorWithoutBorder_Focused"
+                    Unfocused="EditorWithoutBorder_Unfocused"
+                    Text="{Binding Sessao.Descricao}" 
+                    Placeholder="Descrição"
+                    FontFamily="InterSemiBold"
+                    PlaceholderColor="#808080" 
+                    TextColor="#101010"           
+                    HorizontalOptions="FillAndExpand"
+                    WidthRequest="280"
+                    AutoSize="TextChanges"/>
+                <Border x:Name="BorderDescricao" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="2" Stroke="LightGray" WidthRequest="280"/>
+
+                <!-- Campo Data da Sessão -->
+                <picker:SfDateTimePicker 
+                    TimeFormat="H_mm" BackgroundColor="White" 
+                    x:Name="DatePicker" 
+                    ColumnDividerColor="Transparent" 
+                    MinimumDate="{Binding DataAtual}" 
+                    SelectionChanged="DatePicker_SelectionChanged"
+                    SelectedDate="{Binding Sessao.Data}"
+                    Mode="Dialog"
+                    DateFormat="dd_MMM_yyyy"
+                    WidthRequest="280">
+                    <picker:SfDateTimePicker.TextStyle>
+                        <picker:PickerTextStyle TextColor="#101010" FontFamily="InterSemiBold"/>
+                    </picker:SfDateTimePicker.TextStyle>
+                    <picker:SfDateTimePicker.SelectionView >
+                        <picker:PickerSelectionView CornerRadius="10" Background="#4C007D" />
+                    </picker:SfDateTimePicker.SelectionView>
+                    <picker:SfDateTimePicker.HeaderView>
+                        <picker:DateTimePickerHeaderView Background="White">
+                            <picker:DateTimePickerHeaderView.SelectionTextStyle>
+                                <picker:PickerTextStyle FontSize="15" TextColor="#4C007D" FontFamily="InterSemiBold" />
+                            </picker:DateTimePickerHeaderView.SelectionTextStyle>
+                            <picker:DateTimePickerHeaderView.TextStyle>
+                                <picker:PickerTextStyle FontSize="15" TextColor="#101010" FontFamily="InterSemiBold" />
+                            </picker:DateTimePickerHeaderView.TextStyle>
+                        </picker:DateTimePickerHeaderView>
+                    </picker:SfDateTimePicker.HeaderView>
+                    <picker:SfDateTimePicker.ColumnHeaderView>
+                        <picker:DateTimePickerColumnHeaderView 
+                            DayHeaderText="Dia" MonthHeaderText="Mês" YearHeaderText="Ano" 
+                            HourHeaderText="Hora" MinuteHeaderText="Minuto" SecondHeaderText="Segundo" 
+                            MeridiemHeaderText="Meridiem Column"  Background="#4C007D" >
+                            <picker:DateTimePickerColumnHeaderView.TextStyle>
+                                <picker:PickerTextStyle FontSize="15" TextColor="White" FontFamily="InterSemiBold"/>
+                            </picker:DateTimePickerColumnHeaderView.TextStyle>
+                        </picker:DateTimePickerColumnHeaderView>
+                    </picker:SfDateTimePicker.ColumnHeaderView>
+                </picker:SfDateTimePicker>
+
+                <!-- Exibição da Data Selecionada -->
+                <Label 
+                    Text="{Binding Sessao.Data, StringFormat='{dd/MM/yyyy HH:mm}'}" 
+                    TextColor="#101010" 
+                    FontFamily="InterSemiBold"
+                    Focused="Label_Focused"
+                    Unfocused="Label_Unfocused"
+                    HeightRequest="44"
+                    WidthRequest="280"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="pickerButton_Clicked"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Border x:Name="BorderDate" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="2" Stroke="LightGray" WidthRequest="280"/>
+
+                <!-- Botão Switch -->
+                <buttons:SfSwitch x:Name="sfSwitch" WidthRequest="280"/>
+
+                <!-- Botões para Atualizar e Excluir Sessão -->
+                <VerticalStackLayout Margin="0,25,0,0" WidthRequest="280">
+                    <Button 
+                        Command="{Binding UpdateSessaoCommand}" 
+                        Text="Atualizar"
+                        BackgroundColor="#4C007D"
+                        CornerRadius="10"
+                        Margin="0,15,0,0"
+                        TextColor="White"
+                        HeightRequest="40"
+                        WidthRequest="280"
+                        FontFamily="InterSemiBold"/>
+
+                    <Button 
+                        BackgroundColor="#101010"
+                        CornerRadius="10"
+                        HeightRequest="40"
+                        Command="{Binding DeleteSessaoCommand}"
+                        CommandParameter="{Binding Sessao}"
+                        Text="Excluir"
+                        Margin="0,15,0,0"
+                        TextColor="White"
+                        WidthRequest="280"
+                        FontFamily="InterSemiBold"/>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </FlexLayout>
+    </ScrollView>
+</ContentPage>

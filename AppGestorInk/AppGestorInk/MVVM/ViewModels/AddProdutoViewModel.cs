@@ -30,7 +30,8 @@ namespace AppGestorInk.MVVM.ViewModels
                     Produto produto = new()
                     {
                         Name = ProdutoName,
-                        Descricao = ProdutoDescricao
+                        Descricao = ProdutoDescricao,
+                        
                     };
                     await _produtoService.InitializeAsync();
                     await _produtoService.AddProdutoAsync(produto);

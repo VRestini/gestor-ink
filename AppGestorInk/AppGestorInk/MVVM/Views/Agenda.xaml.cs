@@ -1,45 +1,57 @@
-
 using AppGestorInk.MVVM.ViewModels;
 using Syncfusion.Maui.Calendar;
+using System;
 
-using System.Runtime.CompilerServices;
-
-namespace AppGestorInk.MVVM.Views;
-
-public partial class Agenda : ContentPage
+namespace AppGestorInk.MVVM.Views
 {
-
-    public CalendarTextStyle TextStyle { get; set; }
-    public Agenda(AgendaViewModel agendaViewModel)
+    public partial class Agenda : ContentPage
     {
+        public CalendarTextStyle TextStyle { get; set; }
 
-        InitializeComponent();
-        BindingContext = agendaViewModel;
-        
-        CalendarTextStyle textStyle = new CalendarTextStyle()
+        public Agenda(AgendaViewModel agendaViewModel)
         {
-            TextColor = Colors.White,
-        };
-        
-        this.MyCalendar.MonthView.TextStyle = textStyle;
-        this.MyCalendar.YearView.TextStyle = textStyle;
-        this.MyCalendar.HeaderView.TextStyle = textStyle;
-        this.MyCalendar.SelectionChanged += OnCalendarSelectionChanged;
-    }
+            InitializeComponent();
 
-    private async void OnCalendarSelectionChanged(object sender, Syncfusion.Maui.Calendar.CalendarSelectionChangedEventArgs e)
-    {
-        if (e.NewValue != null)
+            if (agendaViewModel != null)
+            {
+                BindingContext = agendaViewModel;
+                InitializeCalendarTextStyle();
+            }
+        }
+
+        private void InitializeCalendarTextStyle()
         {
-            DateTime selectedDate = (DateTime)e.NewValue;
+            if (MyCalendar != null)
+            {
+                var textStylePurple = new CalendarTextStyle { TextColor = Color.FromArgb("#4C007D")};
+                var textStyle = new CalendarTextStyle { TextColor = Colors.White };
+                MyCalendar.MonthView.TextStyle = textStyle;
+                MyCalendar.YearView.TextStyle = textStyle;
+                MyCalendar.HeaderView.TextStyle = textStyle;
+                MyCalendar.TodayHighlightBrush = Color.FromArgb("#4C007D");
+                MyCalendar.FooterView.TextStyle = textStyle;
+                MyCalendar.MonthView = new CalendarMonthView()
+                {
+                    WeekendDays = new List<DayOfWeek>
+                {
+                    DayOfWeek.Sunday,
+                    DayOfWeek.Saturday,
+                },
+                    TextStyle = textStyle,
+                    
+                    TodayTextStyle = textStyle,
+                };
+                  MyCalendar.SelectionChanged += OnCalendarSelectionChanged;
+            }
+        }
 
-            var viewModel = (AgendaViewModel)BindingContext;
-            viewModel.SelectedDate = selectedDate; // Atualiza a data selecionada
-
-            // Executa o comando para buscar as sessões pela data
-            await viewModel.GetSessaoByDateCommand.ExecuteAsync(null);
+        private async void OnCalendarSelectionChanged(object sender, CalendarSelectionChangedEventArgs e)
+        {
+            if (e.NewValue != null && BindingContext is AgendaViewModel viewModel)
+            {
+                viewModel.SelectedDate = (DateTime)e.NewValue;
+                await viewModel.GetSessaoByDateCommand.ExecuteAsync(null);
+            }
         }
     }
-
-
 }

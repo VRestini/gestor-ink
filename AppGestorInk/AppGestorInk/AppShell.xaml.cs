@@ -13,6 +13,7 @@ namespace AppGestorInk
             RegisterForRoute<Estoque>();
             RegisterForRoute<EstoqueRelatorio>();
             RegisterForRoute<AddSessaoView>();
+            RegisterForRoute<EditarSessaoView>();
         }
         protected void RegisterForRoute<T>()
         {

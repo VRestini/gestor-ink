@@ -26,40 +26,27 @@ namespace AppGestorInk.MVVM.ViewModels
         public async Task Initialize()
         {
             await _sessaoService.InitializeAsync();
+            await GetSessaoByDate();
         }
         [RelayCommand]
         public async Task GetSessaoByDate()
         {
-            sessaoList.Clear();  // Limpa a lista de todas as sessões
-            sessaoListByDate.Clear();  // Limpa a lista de sessões filtradas por data
+            sessaoList.Clear();
+            sessaoListByDate.Clear(); 
 
             try
             {
-                //await Shell.Current.DisplayAlert("Data Selecionada", $"A nova data selecionada é: {SelectedDate:dd/MM/yyyy}", "OK");
-
-                // Obtém todas as sessões do banco de dados
                 var sessoes = await _sessaoService.GetAllSessoesAsync();
-
-                // Adiciona todas as sessões à lista geral
                 foreach (var sessao in sessoes)
                 {
                     sessaoList.Add(sessao);
                 }
-
-                // Filtra as sessões pela data selecionada
-                var sessoesFiltradas = sessoes.Where(x => x.Data.Date == SelectedDate.Date).ToList();
-
-                // Adiciona as sessões filtradas à lista
+                var sessoesFiltradas = sessoes.Where(x => x.Data.Date == SelectedDate.Date).ToList().OrderBy(x => x.Data);
                 foreach (var sessao in sessoesFiltradas)
                 {
                     sessaoListByDate.Add(sessao);
                 }
-
-                // Verifica se há sessões filtradas
-                if (sessoesFiltradas.Count == 0)
-                {
-                    //await Shell.Current.DisplayAlert("Aviso", "Nenhuma sessão encontrada para a data selecionada.", "OK");
-                }
+ 
             }
             catch (Exception ex)
             {
@@ -72,6 +59,15 @@ namespace AppGestorInk.MVVM.ViewModels
         {
             var uri = $"{nameof(AddSessaoView)}?id=0";
             await Shell.Current.GoToAsync(uri);
+        }
+        [RelayCommand]
+        public async Task RefreshSessao(Sessao sessao)
+        {
+            var uri = $"{nameof(EditarSessaoView)}?id=1322";
+            await Shell.Current.GoToAsync(uri, new Dictionary<string, object>
+            {
+                { "SessaoObject", sessao }
+            });
         }
     }
 }

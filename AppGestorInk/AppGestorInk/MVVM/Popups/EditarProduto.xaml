@@ -5,7 +5,7 @@
              x:Class="AppGestorInk.MVVM.Popups.EditarProduto"
              xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
              Title=""
-              xmlns:local="clr-namespace:AppGestorInk.MVVM.Models"
+             xmlns:local="clr-namespace:AppGestorInk.MVVM.Models"
              x:DataType="viewmodel:EditarProdutoViewModel"
              BackgroundColor="White"
              BackgroundImageSource="tela_editar_produto.png"

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppGestorInk.MVVM.Popups.AddSessaoView"
              xmlns:local="clr-namespace:AppGestorInk.MVVM.Models"
-             Title="AddSessaoView"
+             Title=""
              xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
              xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
              x:DataType="viewmodel:AddSessaoViewModel"
@@ -15,17 +15,33 @@
             JustifyContent="Start">
             <VerticalStackLayout Margin="0,105,0,15" >
 
+                <Image x:Name="MyImage" WidthRequest="280" BackgroundColor="LawnGreen" HeightRequest="40">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
                 <local:EntryWithoutBorder 
                 Focused="EntryWithoutBorder_Focused" 
                 Unfocused="EntryWithoutBorder_Unfocused" 
-                Text="{Binding SessaoName}" 
+                Text="{Binding SessaoNome}" 
                 FontFamily="InterSemiBold"
-                Placeholder="Nome" 
+                Placeholder="Nome da Sessão" 
                 PlaceholderColor="#808080"             
                 TextColor="#101010"
                 HorizontalOptions="FillAndExpand"
                 WidthRequest="280"/>
                 <Border x:Name="BorderName" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="2" Stroke="LightGray"/>
+                <local:EntryWithoutBorder 
+                    Focused="EntryWithoutBorder_Focused_1" 
+                    Unfocused="EntryWithoutBorder_Unfocused_1"   
+                    Text="{Binding ClienteNome}" 
+                    FontFamily="InterSemiBold"
+                    Placeholder="Nome do Cliente" 
+                    PlaceholderColor="#808080"             
+                    TextColor="#101010"
+                    HorizontalOptions="FillAndExpand"
+                    WidthRequest="280"/>
+                <Border x:Name="BorderNameCliente" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="2" Stroke="LightGray"/>
 
                 <local:EditorWithoutBorder
                 Focused="EditorWithoutBorder_Focused" 
@@ -49,15 +65,22 @@
                     SelectionChanged="DatePicker_SelectionChanged"
                     SelectedDate="{Binding SessaoDate}"
                     Mode="Dialog"
+                    DateFormat="dd_MMM_yyyy"
                     
                     >
+                    <picker:SfDateTimePicker.TextStyle>
+                        <picker:PickerTextStyle TextColor="#101010" FontFamily="InterSemiBold"/>
+                    </picker:SfDateTimePicker.TextStyle>
                     <picker:SfDateTimePicker.SelectionView >
                         <picker:PickerSelectionView CornerRadius="10" Background="#4C007D" />
                     </picker:SfDateTimePicker.SelectionView>
                     <picker:SfDateTimePicker.HeaderView>
                         <picker:DateTimePickerHeaderView Background="White">
+                            <picker:DateTimePickerHeaderView.SelectionTextStyle>
+                                <picker:PickerTextStyle FontSize="15" TextColor="#4C007D" FontFamily="InterSemiBold" />
+                            </picker:DateTimePickerHeaderView.SelectionTextStyle>
                             <picker:DateTimePickerHeaderView.TextStyle>
-                                <picker:PickerTextStyle FontSize="15" TextColor="Black" />
+                                <picker:PickerTextStyle FontSize="15" TextColor="#101010" FontFamily="InterSemiBold" />
                             </picker:DateTimePickerHeaderView.TextStyle>
                         </picker:DateTimePickerHeaderView>
                     </picker:SfDateTimePicker.HeaderView>
@@ -65,21 +88,29 @@
                         <picker:DateTimePickerColumnHeaderView 
                             DayHeaderText="Dia" MonthHeaderText="Mês" YearHeaderText="Ano" 
                             HourHeaderText="Hora" MinuteHeaderText="Minuto" SecondHeaderText="Segundo" 
-                            MeridiemHeaderText="Meridiem Column"  Background="#4C007D">
+                            MeridiemHeaderText="Meridiem Column"  Background="#4C007D" >
                             <picker:DateTimePickerColumnHeaderView.TextStyle>
-                                <picker:PickerTextStyle FontSize="15" TextColor="White" />
+                                <picker:PickerTextStyle FontSize="15" TextColor="White" FontFamily="InterSemiBold"/>
                             </picker:DateTimePickerColumnHeaderView.TextStyle>
                         </picker:DateTimePickerColumnHeaderView>
 
                     </picker:SfDateTimePicker.ColumnHeaderView>
                     
                 </picker:SfDateTimePicker>
-                <Label Text="{Binding SessaoDate, StringFormat='{dd/MM/yyyy HH:mm:ss}'}" TextColor="#101010">
+                <Label Text="{Binding SessaoDate, StringFormat='{dd/MM/yyyy HH:mm}'}" 
+                       TextColor="#101010" 
+                       FontFamily="InterSemiBold"
+                       Focused="Label_Focused"
+                       Unfocused="Label_Unfocused"
+                       HeightRequest="44"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalTextAlignment="Center"
+                       >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="pickerButton_Clicked"/>
                     </Label.GestureRecognizers>
                 </Label>
-                
+                <Border x:Name="BorderDate" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="2" Stroke="LightGray"/>
                 <Button  
                  Text="Salvar Item"
                  TextColor="White"

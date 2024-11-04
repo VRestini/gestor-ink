@@ -10,13 +10,10 @@
              
              BackgroundColor="White"
              >
-    <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="foto01.png"
-                  />
-    </ContentPage.ToolbarItems>
+   
     <Shell.TitleView>
         <FlexLayout  AlignItems="Center" JustifyContent="Center">
-            <Label FontSize="Medium" TextColor="White" Text="ESTOQUE" FontFamily="InterSemiBold" Margin="-5,5,0,0"></Label>
+            <Label FontSize="Medium" TextColor="White" Text="ESTOQUE" FontFamily="InterSemiBold" Margin="-35,5,0,0"></Label>
         </FlexLayout>
     </Shell.TitleView>
     <ContentPage.Behaviors>
