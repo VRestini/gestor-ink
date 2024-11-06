@@ -52,8 +52,5 @@ ContentTemplate="{DataTemplate local:Agenda}"/>
         <ShellContent Title="Financeiro" Icon="dollar.png"
 ContentTemplate="{DataTemplate local:Financeiro}"/>
     </FlyoutItem>
-    <FlyoutItem Title="Configaração" Icon="engrenagem.png">
-        <ShellContent 
-ContentTemplate="{DataTemplate local:Configuracao}"/>
-    </FlyoutItem>
+    
 </Shell>

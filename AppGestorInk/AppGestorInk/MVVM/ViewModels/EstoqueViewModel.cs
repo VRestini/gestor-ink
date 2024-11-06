@@ -31,7 +31,13 @@ namespace AppGestorInk.MVVM.ViewModels
                 {
                     foreach (var produto in produtos)
                     {
-                        ProdutoList.Add(produto);
+                        var newProduto = new Produto()
+                        {
+                            Name = produto.Name,
+                            Descricao = produto.Descricao,
+                            Foto = produto.Foto,
+                        };
+                        ProdutoList.Add(newProduto);
                     }
                 }
             }

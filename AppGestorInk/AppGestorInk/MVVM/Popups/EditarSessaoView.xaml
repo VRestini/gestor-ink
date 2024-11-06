@@ -15,7 +15,22 @@
     <ScrollView>
         <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="Start">
             <VerticalStackLayout Margin="0,105,0,15" WidthRequest="280">
-
+                <Frame 
+                    CornerRadius="20"
+                    Padding="0"
+                    BorderColor="Transparent"
+                    BackgroundColor="Transparent"
+                    WidthRequest="200"
+                    HeightRequest="200">
+                    <Image 
+                        
+                        WidthRequest="200" 
+                        HeightRequest="200" BackgroundColor="Gray" Source="{Binding Sessao.Foto}" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelecionarImagemCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
                 <!-- Campo Nome da Sessão -->
                 <local:EntryWithoutBorder 
                     Focused="EntryWithoutBorder_Focused"
@@ -61,7 +76,7 @@
                     TimeFormat="H_mm" BackgroundColor="White" 
                     x:Name="DatePicker" 
                     ColumnDividerColor="Transparent" 
-                    MinimumDate="{Binding DataAtual}" 
+                    MinimumDate="{Binding Sessao.Data}" 
                     SelectionChanged="DatePicker_SelectionChanged"
                     SelectedDate="{Binding Sessao.Data}"
                     Mode="Dialog"
@@ -113,7 +128,22 @@
                 <Border x:Name="BorderDate" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="2" Stroke="LightGray" WidthRequest="280"/>
 
                 <!-- Botão Switch -->
-                <buttons:SfSwitch x:Name="sfSwitch" WidthRequest="280"/>
+                <HorizontalStackLayout WidthRequest="280">
+                    <Label
+                        Text="Sessão finalizada?"
+                        TextColor="#101010" 
+                        FontFamily="InterSemiBold"
+                        Focused="Label_Focused"
+                        Unfocused="Label_Unfocused"
+                        HeightRequest="44"
+                        WidthRequest="225"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center"/>
+                    <buttons:SfSwitch x:Name="MySwitch"  StateChanged="SfSwitch_StateChanged">
+                        
+                    </buttons:SfSwitch>
+                </HorizontalStackLayout>
+                
 
                 <!-- Botões para Atualizar e Excluir Sessão -->
                 <VerticalStackLayout Margin="0,25,0,0" WidthRequest="280">

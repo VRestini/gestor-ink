@@ -46,7 +46,7 @@
                                 
                                 <Grid ColumnDefinitions="0.30*, 0.70*" VerticalOptions="Fill" HorizontalOptions="Fill">
                                     <Frame Grid.Column="0" CornerRadius="10" Padding="0" HasShadow="False" HorizontalOptions="Fill" VerticalOptions="Fill">
-                                        <Image Source="foto01.png" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                        <Image Source="{Binding Foto}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
                                     </Frame>
                                     <VerticalStackLayout Grid.Column="1" Padding="5,0,0,0" HorizontalOptions="Start" VerticalOptions="StartAndExpand">
                                         <Label Text="{Binding Data, StringFormat='{0:HH:mm}'}" TextTransform="Uppercase" Style="{x:StaticResource TextRelatorioDataTemplate}" />

@@ -87,7 +87,7 @@ public partial class AddSessaoView : ContentPage
         if (result == null)
             return;
         var stream = await result.OpenReadAsync();
-        MyImage.Source = ImageSource.FromStream(() => stream); 
-            
+        MyImage.Source = ImageSource.FromStream(() => stream);
+        MyImage.BackgroundColor = Colors.Transparent;
     }
 }

@@ -12,7 +12,13 @@ namespace AppGestorInk.MVVM.ViewModels
         private readonly EstoqueViewModel _estoqueViewModel;
         [ObservableProperty]
         private Produto _produto;
+        [ObservableProperty]
+        private Boolean _escolha;
+        private FileResult ProdutoImage { get; set; }
 
+        // Propriedade para exibir a imagem na interface
+        [ObservableProperty]
+        private ImageSource _imageSource;
         public EditarProdutoViewModel(IProdutoService produtoService, EstoqueViewModel estoqueViewModel)
         {
             _produtoService = produtoService;
@@ -47,6 +53,7 @@ namespace AppGestorInk.MVVM.ViewModels
         {
             if (!string.IsNullOrEmpty(Produto.Name))
             {
+                
                 await _produtoService.InitializeAsync();
                 await _produtoService.RefreshProdutoAsync(Produto);
 
@@ -55,6 +62,23 @@ namespace AppGestorInk.MVVM.ViewModels
             else
             {
                 await Shell.Current.DisplayAlert("Error", "Produto sem nome", "OK");
+            }
+        }
+        [RelayCommand]
+        public async Task SelecionarImagem()
+        {
+            var result = await FilePicker.Default.PickAsync(new PickOptions
+            {
+                PickerTitle = "Selecione uma imagem"
+            });
+
+            if (result != null)
+            {
+                ProdutoImage = result; // Armazena o FileResult para salvar o arquivo depois
+
+                // Exibe a imagem selecionada no controle de imagem
+                var stream = await result.OpenReadAsync();
+                ImageSource = ImageSource.FromStream(() => stream);
             }
         }
     }

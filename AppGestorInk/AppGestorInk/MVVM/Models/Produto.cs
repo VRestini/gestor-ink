@@ -13,7 +13,7 @@ namespace AppGestorInk.MVVM.Models
 
         [NotNull, MaxLength(60)]
         public string Descricao { get; set; }
-        
+        public string Foto { get; set; }
         [Ignore]
         public ObservableCollection<ItemProduto> ItemProdutos { get; set; } = new ObservableCollection<ItemProduto>();
     }

@@ -18,6 +18,21 @@
              AlignItems="Center"
              JustifyContent="Start">
             <VerticalStackLayout Margin="0,105,0,15" >
+                <Frame 
+                    CornerRadius="20"
+                    Padding="0"
+                    BorderColor="Transparent"
+                    BackgroundColor="Transparent"
+                    WidthRequest="200"
+                    HeightRequest="200">
+                    <Image      
+                        WidthRequest="200" 
+                        HeightRequest="200" BackgroundColor="Gray" Source="{Binding Produto.Foto}" Aspect="Fill">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelecionarImagemCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
                 
                 <local:EntryWithoutBorder 
                     Focused="EntryWithoutBorder_Focused"

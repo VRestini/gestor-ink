@@ -3,86 +3,113 @@ using AppGestorInk.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
 
 namespace AppGestorInk.MVVM.ViewModels
 {
-    public partial class AddSessaoViewModel: ObservableObject
+    public partial class AddSessaoViewModel : ObservableObject
     {
-        public readonly ISessaoService _sessaoService;
+        private readonly ISessaoService _sessaoService;
+
         [ObservableProperty]
-        public string _sessaoNome;
+        private string _sessaoNome;
+
         [ObservableProperty]
-        public string _clienteNome;
+        private string _clienteNome;
+
         [ObservableProperty]
-        public string _sessaoDescricao;
+        private string _sessaoDescricao;
+
         [ObservableProperty]
-        public DateTime _sessaoDate;
+        private DateTime _sessaoDate;
+
+        private FileResult SessaoImage { get; set; }
+
+        // Propriedade para exibir a imagem na interface
+        [ObservableProperty]
+        private ImageSource _imageSource;
 
         public DateTime Date { get; set; }
+
         public AddSessaoViewModel(ISessaoService sessaoService)
         {
             _sessaoService = sessaoService;
             Date = DateTime.Now;
         }
+
         [RelayCommand]
         private async Task AddSessao()
         {
             try
             {
-                if (!string.IsNullOrEmpty(SessaoNome)) // verifica se o nome foi informado
+                if (!string.IsNullOrEmpty(SessaoNome))
                 {
+                    string imagePath;
+
+                    if (SessaoImage != null)
+                    {
+                        var targetFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ImagensSessoes");
+                        Directory.CreateDirectory(targetFolder);
+
+                        var imageName = $"sessao_{DateTime.Now:yyyyMMddHHmmss}.png";
+                        imagePath = Path.Combine(targetFolder, imageName);
+
+                        using (var stream = await SessaoImage.OpenReadAsync())
+                        using (var fileStream = File.Create(imagePath))
+                        {
+                            await stream.CopyToAsync(fileStream);
+                        }
+                    }
+                    else
+                    {
+                        imagePath = "foto01.png";
+                    }
+
                     Sessao sessao = new()
                     {
                         NomeSessao = SessaoNome,
                         NomeCliente = ClienteNome,
                         Descricao = SessaoDescricao,
-                        Data = SessaoDate
+                        Data = SessaoDate,
+                        statusSessao = StatusSessao.Agendado,
+                        Foto = imagePath
                     };
+
                     await _sessaoService.InitializeAsync();
                     await _sessaoService.AddSessaoAsync(sessao);
 
-                    await Shell.Current.GoToAsync(".."); // voltar para a página anterior
+                    await Shell.Current.GoToAsync("..");
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Error", "Livro sem Título", "OK");
+                    await Shell.Current.DisplayAlert("Error", "Informe o nome da sessão", "OK");
                 }
             }
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
-
-
         }
-        
-        public async Task<FileResult> PickAndShow(PickOptions options)
+
+        [RelayCommand]
+        public async Task SelecionarImagem()
         {
-            try
+            var result = await FilePicker.Default.PickAsync(new PickOptions
             {
-                var result = await FilePicker.Default.PickAsync(options);
-                if (result != null)
-                {
-                    if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
-                        result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
-                    {
-                        using var stream = await result.OpenReadAsync();
-                        var image = ImageSource.FromStream(() => stream);
-                    }
-                }
+                PickerTitle = "Selecione uma imagem"
+            });
 
-                return result;
-            }
-            catch (Exception ex)
+            if (result != null)
             {
-                // The user canceled or something went wrong
-            }
+                SessaoImage = result; // Armazena o FileResult para salvar o arquivo depois
 
-            return null;
+                // Exibe a imagem selecionada no controle de imagem
+                var stream = await result.OpenReadAsync();
+                ImageSource = ImageSource.FromStream(() => stream);
+            }
         }
     }
 }

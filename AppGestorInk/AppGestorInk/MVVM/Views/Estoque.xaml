@@ -41,7 +41,7 @@ AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
 
                                     <!-- Imagem do Produto (Coluna à esquerda) -->
                                     <Frame Grid.Column="0" CornerRadius="10" Padding="0" HasShadow="False" HorizontalOptions="Fill" VerticalOptions="Fill">
-                                        <Image Source="foto01.png" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                        <Image Source="{Binding Foto}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
                                     </Frame>
 
                                     <!-- Informações do Produto (Coluna à direita) -->

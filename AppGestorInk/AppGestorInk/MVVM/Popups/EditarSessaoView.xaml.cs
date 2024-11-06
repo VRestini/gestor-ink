@@ -1,4 +1,6 @@
+using AppGestorInk.MVVM.Models;
 using AppGestorInk.MVVM.ViewModels;
+using Syncfusion.Maui.Buttons;
 
 namespace AppGestorInk.MVVM.Popups;
 
@@ -8,7 +10,20 @@ public partial class EditarSessaoView : ContentPage
 	{
 		InitializeComponent();
         BindingContext = editarSessaoView;
-	}
+        
+    }
+    private async void SfSwitch_StateChanged(object sender, SwitchStateChangedEventArgs e)
+    {
+        if (BindingContext is EditarSessaoViewModel viewModel)
+        {
+            bool? newValue = e.NewValue;
+            if (newValue is true)
+            {
+                viewModel.Sessao.statusSessao = StatusSessao.Finalizada;
+            }
+        }
+
+    }
     private void DatePicker_SelectionChanged(object sender, Syncfusion.Maui.Picker.DateTimePickerSelectionChangedEventArgs e)
     {
         if (e.NewValue != null)
@@ -70,4 +85,6 @@ public partial class EditarSessaoView : ContentPage
         BorderNomeCliente.Stroke = Colors.LightGray;
         BorderNomeCliente.BackgroundColor = Colors.LightGray;
     }
+
+    
 }

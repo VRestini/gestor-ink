@@ -18,16 +18,18 @@
     JustifyContent="Start">
             <VerticalStackLayout Margin="0,105,0,15" >
                 <Frame 
-                    WidthRequest="200" 
-                    HeightRequest="200" 
-                    CornerRadius="20" 
-                    Padding="0" 
-                    HasShadow="False"
-                    BackgroundColor="LightGray"
-                    BorderColor="LightGray">
-                    <Image x:Name="MyImage" Source="image_search" WidthRequest="100" BackgroundColor="LightGray" HeightRequest="100">
+                    CornerRadius="20"
+                    Padding="0"
+                    BorderColor="Transparent"
+                    BackgroundColor="Transparent"
+                    WidthRequest="200"
+                    HeightRequest="200">
+                    <Image 
+                        x:Name="MyImage" 
+                        WidthRequest="200" 
+                        HeightRequest="200" BackgroundColor="Gray" Source="{Binding ImageSource}" Aspect="Fill">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            <TapGestureRecognizer Command="{Binding SelecionarImagemCommand}"/>
                         </Image.GestureRecognizers>
                     </Image>
                 </Frame>

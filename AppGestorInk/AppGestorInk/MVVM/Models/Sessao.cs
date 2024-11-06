@@ -19,11 +19,8 @@ namespace AppGestorInk.MVVM.Models
         
         [NotNull] 
         public DateTime Data { get; set; }
-
-        public enum StatusSessao
-        {
-            Finalizada,
-            Processo,
-        };
+        public string Foto { get; set; }
+        [NotNull]
+        public StatusSessao statusSessao { get; set; }
     }
 }

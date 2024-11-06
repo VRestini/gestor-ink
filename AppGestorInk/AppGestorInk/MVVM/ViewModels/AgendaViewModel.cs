@@ -12,26 +12,35 @@ namespace AppGestorInk.MVVM.ViewModels
 
         [ObservableProperty]
         public DateTime selectedDate;
-
+        private DateTime _lastLoadedDate;
         public readonly ISessaoService _sessaoService;
         public ObservableCollection<Sessao> sessaoList { get; set; } = new();
         public ObservableCollection<Sessao> sessaoListByDate { get; set; } = new();
-
+        private bool _isInitialized = false;
         public AgendaViewModel(ISessaoService sessaoService)
         {
             _sessaoService = sessaoService;
             selectedDate = new DateTime();
+            _lastLoadedDate = DateTime.MinValue;
         }
         [RelayCommand]
         public async Task Initialize()
         {
             await _sessaoService.InitializeAsync();
-            await GetSessaoByDate();
+            sessaoList.Clear();
+            sessaoListByDate.Clear();
+            if (_isInitialized) return;
+            SelectedDate = DateTime.Now;
+            await _sessaoService.InitializeAsync();
+            
+            _isInitialized = true;
         }
+        
         [RelayCommand]
         public async Task GetSessaoByDate()
         {
-            sessaoList.Clear();
+            if (SelectedDate.Date == _lastLoadedDate.Date) return;
+           
             sessaoListByDate.Clear(); 
 
             try
@@ -44,9 +53,18 @@ namespace AppGestorInk.MVVM.ViewModels
                 var sessoesFiltradas = sessoes.Where(x => x.Data.Date == SelectedDate.Date).ToList().OrderBy(x => x.Data);
                 foreach (var sessao in sessoesFiltradas)
                 {
-                    sessaoListByDate.Add(sessao);
+                    var novaSessao = new Sessao
+                    {
+                        NomeCliente = sessao.NomeCliente,
+                        NomeSessao = sessao.NomeSessao,
+                        Descricao = sessao.Descricao,
+                        Id = sessao.Id,
+                        Data = sessao.Data,
+                        Foto = sessao.Foto,
+                    };
+                    sessaoListByDate.Add(novaSessao);
                 }
- 
+                _lastLoadedDate = SelectedDate;
             }
             catch (Exception ex)
             {
