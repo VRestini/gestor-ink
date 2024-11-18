@@ -49,7 +49,7 @@
                                         <Image Source="{Binding Foto}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
                                     </Frame>
                                     <VerticalStackLayout Grid.Column="1" Padding="5,0,0,0" HorizontalOptions="Start" VerticalOptions="StartAndExpand">
-                                        <Label Text="{Binding Data, StringFormat='{0:HH:mm}'}" TextTransform="Uppercase" Style="{x:StaticResource TextRelatorioDataTemplate}" />
+                                        <Label Text="{Binding Data , StringFormat='{0:HH:mm}'}" TextTransform="Uppercase" Style="{x:StaticResource TextRelatorioDataTemplate}" />
                                         <Label Text="{Binding NomeSessao}" FontFamily="InterLight" Style="{x:StaticResource TextRelatorioDataTemplate}" />
                                         <Label Text="{Binding Descricao}" FontFamily="InterLight" Style="{x:StaticResource TextRelatorioDataTemplate}" />
                                     </VerticalStackLayout>

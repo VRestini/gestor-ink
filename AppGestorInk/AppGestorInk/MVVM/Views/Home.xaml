@@ -4,7 +4,9 @@
              x:Class="AppGestorInk.MVVM.Views.Home"
              >
     <Shell.TitleView>
-        <Label Text=""></Label>
+        <FlexLayout  AlignItems="Center" JustifyContent="Center">
+            <Label FontSize="Medium" TextColor="White" Text="HOME" FontFamily="InterSemiBold" Margin="-35,5,0,0"></Label>
+        </FlexLayout>
     </Shell.TitleView>
     <Grid BackgroundColor="White">
         <Grid.RowDefinitions>

@@ -40,29 +40,19 @@ namespace AppGestorInk.MVVM.ViewModels
         public async Task GetSessaoByDate()
         {
             if (SelectedDate.Date == _lastLoadedDate.Date) return;
-           
-            sessaoListByDate.Clear(); 
-
             try
             {
+               
                 var sessoes = await _sessaoService.GetAllSessoesAsync();
                 foreach (var sessao in sessoes)
                 {
                     sessaoList.Add(sessao);
                 }
                 var sessoesFiltradas = sessoes.Where(x => x.Data.Date == SelectedDate.Date).ToList().OrderBy(x => x.Data);
+                sessaoListByDate.Clear();
                 foreach (var sessao in sessoesFiltradas)
                 {
-                    var novaSessao = new Sessao
-                    {
-                        NomeCliente = sessao.NomeCliente,
-                        NomeSessao = sessao.NomeSessao,
-                        Descricao = sessao.Descricao,
-                        Id = sessao.Id,
-                        Data = sessao.Data,
-                        Foto = sessao.Foto,
-                    };
-                    sessaoListByDate.Add(novaSessao);
+                    sessaoListByDate.Add(sessao);
                 }
                 _lastLoadedDate = SelectedDate;
             }

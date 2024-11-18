@@ -53,11 +53,38 @@ namespace AppGestorInk.MVVM.ViewModels
         {
             if (!string.IsNullOrEmpty(Produto.Name))
             {
-                
-                await _produtoService.InitializeAsync();
-                await _produtoService.RefreshProdutoAsync(Produto);
 
-                await Shell.Current.GoToAsync("..");
+                try
+                {
+                    string imagePath = Produto.Foto; // Preserva o caminho atual da imagem
+
+                    if (ProdutoImage != null)
+                    {
+                        // Atualiza a imagem se o usuário selecionar uma nova
+                        var targetFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ImagensProdutos");
+                        Directory.CreateDirectory(targetFolder);
+
+                        var imageName = $"produto_{DateTime.Now:yyyyMMddHHmmss}.png";
+                        imagePath = Path.Combine(targetFolder, imageName);
+
+                        using (var stream = await ProdutoImage.OpenReadAsync())
+                        using (var fileStream = File.Create(imagePath))
+                        {
+                            await stream.CopyToAsync(fileStream);
+                        }
+                    }
+
+                    Produto.Foto = imagePath; // Atualiza o caminho da foto na sessão
+
+                    await _produtoService.InitializeAsync();
+                    await _produtoService.RefreshProdutoAsync(Produto); // Atualiza a sessão no banco de dados
+
+                    await Shell.Current.GoToAsync(".."); // Volta para a página anterior após a edição
+                }
+                catch (Exception ex)
+                {
+                    await Shell.Current.DisplayAlert("Erro", ex.Message, "OK");
+                }
             }
             else
             {

@@ -4,6 +4,11 @@
              x:Class="AppGestorInk.MVVM.Views.Financeiro"
              Title="Financeiro"
              BackgroundColor="White">
+    <Shell.TitleView>
+        <FlexLayout  AlignItems="Center" JustifyContent="Center">
+            <Label FontSize="Medium" TextColor="White" Text="FINANCEIRO" FontFamily="InterSemiBold" Margin="-35,5,0,0"></Label>
+        </FlexLayout>
+    </Shell.TitleView>
     <VerticalStackLayout>
         <Frame Padding="10" WidthRequest="320" HeightRequest="90" BackgroundColor="#101010">
             <Grid ColumnDefinitions="0.25*,0.50*,0.25*" RowDefinitions="Auto" VerticalOptions="Fill" HorizontalOptions="Fill">
