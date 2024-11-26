@@ -9,18 +9,14 @@ using System.Threading.Tasks;
 
 namespace AppGestorInk.MVVM.ViewModels
 {
-    public class AcessarLogin
+    public partial class AcessarLogin
     {
         public readonly UserService _userService;
 
         [RelayCommand]
-        private async Task Login(string username, string password)
+        private async Task Login(User user)
         {
-            User user = new User
-            {
-                Name = username,
-                Password = password
-            };
+            
             await _userService.Login(user);
         }
     }
