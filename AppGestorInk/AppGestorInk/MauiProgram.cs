@@ -45,13 +45,14 @@ namespace AppGestorInk
             builder.Services.AddTransient<AddProdutoPop>();
             builder.Services.AddTransient<EditarProduto>();
             builder.Services.AddTransient<EstoqueRelatorio>();
-            builder.Services.AddTransient<Agenda>();
+            builder.Services.AddSingleton<Agenda>();
             builder.Services.AddTransient<AddSessaoView>();
             builder.Services.AddTransient<EditarSessaoView>();
 
             builder.Services.AddSingleton<IProdutoService, ProdutoService>();
             builder.Services.AddSingleton<IServiceItem, ItemService>();
             builder.Services.AddSingleton<ISessaoService, SessaoService>();
+            builder.Services.AddSingleton<UserService>();
             return builder.Build();
         }
     }
