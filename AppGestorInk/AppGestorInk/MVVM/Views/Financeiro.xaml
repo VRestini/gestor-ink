@@ -10,35 +10,6 @@
         </FlexLayout>
     </Shell.TitleView>
     <VerticalStackLayout>
-        <Frame Padding="10" WidthRequest="320" HeightRequest="90" BackgroundColor="#101010">
-            <Grid ColumnDefinitions="0.25*,0.50*,0.25*" RowDefinitions="Auto" VerticalOptions="Fill" HorizontalOptions="Fill">
-               
-                <Image Source="foto01.png"
-                       HorizontalOptions="Fill" 
-                           VerticalOptions="Fill" 
-                           Grid.Column="0" 
-                       Aspect="AspectFill"
-                       />
-
-               
-                <VerticalStackLayout Grid.Column="1" Spacing="2" HorizontalOptions="Fill"
-                                         VerticalOptions="Fill" Margin="05,0,0,0">
-                    <Label Text="AAAA" FontSize="12" FontFamily="InterSemiBold" TextColor="Black" HorizontalOptions="Fill" 
-                               VerticalOptions="CenterAndExpand"/>
-                    <Label Text="AAA" FontSize="12" FontFamily="InterLight" TextColor="Black" HorizontalOptions="Fill" 
-                               VerticalOptions="CenterAndExpand"/>
-                    <Label Text="AAA" FontSize="12" TextColor="Black" HorizontalOptions="Fill" 
-                               VerticalOptions="CenterAndExpand"/>
-                </VerticalStackLayout>
-
-                
-                <Button Text="Deletar"
-                            BackgroundColor="Red"
-                            TextColor="White"
-                            HorizontalOptions="Fill"
-                            VerticalOptions="Fill"
-                            Grid.Column="2"/>
-            </Grid>
-        </Frame>
+        
     </VerticalStackLayout>
 </ContentPage>
