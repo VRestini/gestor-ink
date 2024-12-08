@@ -17,6 +17,8 @@ namespace AppGestorInk.MVVM.ViewModels
         [ObservableProperty]
         public DateTime _itemValidade;
         [ObservableProperty]
+        public string _itemFoto;
+        [ObservableProperty]
         private Produto _produto;
 
         public AddItemViewModel(IServiceItem serviceItem)
@@ -42,6 +44,7 @@ namespace AppGestorInk.MVVM.ViewModels
                             Descricao = Produto.Descricao,
                             Quantidade = quantidade,
                             Preco = preco,
+                            Foto = Produto.Foto,
                             DataValidade = ItemValidade,
                         };
                         await _serviceItem.InitializeAsync();

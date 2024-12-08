@@ -19,6 +19,7 @@
             <Label FontSize="Medium" TextColor="White" Text="HOME" FontFamily="InterSemiBold" Margin="-35,5,0,0"></Label>
         </FlexLayout>
     </Shell.TitleView>
+
     
     <AbsoluteLayout>
         <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="White">
@@ -79,6 +80,9 @@
                 </CollectionView>
             </VerticalStackLayout>
             
+
+               
+
         </ScrollView>
         <VerticalStackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.15, 0.24">
             <Label Text="{Binding DateTime, StringFormat='{0:dddd, HH:mm}'}"  FontFamily="InterLight" TextColor="White" FontSize="Body"/>

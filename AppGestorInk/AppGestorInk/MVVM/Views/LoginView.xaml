@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppGestorInk.MVVM.Views.LoginView"
+             Title="LoginView">
+    <VerticalStackLayout>
+        <Label />
+        <Label/>
+        <Button Text="+"
+                BackgroundColor="{StaticResource Tertiary}"
+                CornerRadius="40"
+                TextColor="White"
+                FontSize="Large"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="0.95, 0.999, 80, 80"
+                Margin="10"
+                />
+    </VerticalStackLayout>
+</ContentPage>

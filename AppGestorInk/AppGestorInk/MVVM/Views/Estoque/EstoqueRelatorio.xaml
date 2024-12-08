@@ -26,62 +26,46 @@ AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
             <CollectionView ItemsSource="{Binding ItemProdutoList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:ItemProduto">
-                        <Frame Padding="10" WidthRequest="320" HeightRequest="90" BackgroundColor="#101010" CornerRadius="15" Margin="0,15,0,0" HasShadow="True">
-                            
-                            
-                            <Grid ColumnDefinitions="0.25*,0.50*,0.25*" RowDefinitions="Auto" VerticalOptions="Fill" HorizontalOptions="Fill">
+                        <Frame Style="{x:StaticResource FrameItem}" BackgroundColor="#101010" >
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EstoqueViewModel}}, Path=testeCommand}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                            <Grid ColumnDefinitions="0.30*, 0.70*" VerticalOptions="Fill" HorizontalOptions="Fill">
 
-                                <Frame CornerRadius="10" 
-                                       Padding="0"
-                                       HasShadow="False"
-                                       HorizontalOptions="Fill"
-                                       VerticalOptions="Fill"
-                                       Grid.Column="0"
-                                    >
-                                    <Image 
-                                        Source="foto01.png" 
-                                        Aspect="AspectFit"
-                                        HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="FillAndExpand"/>
-                                </Frame>    
-                                <VerticalStackLayout 
-                                    Grid.Column="1" Spacing="2" 
-                                    HorizontalOptions="Fill"
-                                    VerticalOptions="Fill" 
-                                    Margin="05,0,0,0">
+                                <!-- Imagem do Produto (Coluna à esquerda) -->
+                                <Frame Grid.Column="0" CornerRadius="10" Padding="0" HasShadow="False" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                    <Image Source="{Binding Foto}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                </Frame>
+
+                                <!-- Informações do Produto (Coluna à direita) -->
+                                <VerticalStackLayout Grid.Column="1" Padding="5,0,0,0" HorizontalOptions="Start" VerticalOptions="StartAndExpand">
                                     <Label Text="{Binding Name}" TextTransform="Uppercase" Style="{x:StaticResource TextRelatorioDataTemplate}"
                                             />
                                     <Label Text="{Binding Preco}" Style="{x:StaticResource TextRelatorioDataTemplate}">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Preco, StringFormat='{0:F2}'}" TextColor="White"  FontFamily="InterLight"/>
                                                 <Span Text="R$" FontFamily="InterLight" TextColor="White" />
+                                                <Span Text="{Binding Preco, StringFormat='{0:F2}'}" TextColor="White"  FontFamily="InterLight"/>
+                                                
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
                                     <Label Text="{Binding DataValidade, StringFormat='{}{0:dd/MM/yyyy}'}" FontFamily="InterLight" Style="{x:StaticResource TextRelatorioDataTemplate}"/>
                                 </VerticalStackLayout>
-                                <AbsoluteLayout Grid.ColumnSpan="3" Grid.RowSpan="1">
-                                    <Frame 
-                                        AbsoluteLayout.LayoutBounds="0.976, 0.08, AutoSize, AutoSize"
-                                        AbsoluteLayout.LayoutFlags="PositionProportional"
-                                        WidthRequest="20"
-                                        HeightRequest="20"
-                                        BackgroundColor="#101010"
-                                        >
+
+                                <!-- Botão de Ação (Editar) no canto superior direito -->
+                                <AbsoluteLayout Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End">
+                                    <Frame AbsoluteLayout.LayoutBounds="0.9, 0.1, 30, 30" AbsoluteLayout.LayoutFlags="PositionProportional" BackgroundColor="Transparent">
                                         <Frame.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:RelatorioEstoqueViewModel}}, Path=DeleteItemProdutoCommand}"
 CommandParameter="{Binding .}"/>
                                         </Frame.GestureRecognizers>
-                                        <Image
-                                             Source="icon.png"  
-                                             WidthRequest="15"
-                                             HeightRequest="15"  
-                                        />
+                                        <Image Source="icon.png" WidthRequest="15" HeightRequest="15" />
                                     </Frame>
-                                    
                                 </AbsoluteLayout>
                             </Grid>
+
+
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
