@@ -2,42 +2,90 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppGestorInk.MVVM.Views.Home"
+             xmlns:model="clr-namespace:AppGestorInk.MVVM.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Carousel;assembly=Syncfusion.Maui.Carousel"
+             xmlns:viewmodel="clr-namespace:AppGestorInk.MVVM.ViewModels"
+             x:DataType="viewmodel:HomeViewModel"
+             xmlns:sfPopup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
+             xmlns:local="clr-namespace:AppGestorInk.MVVM.Views"
              >
+    
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding GetSessoesHomeCommand}" EventName="Appearing"/>
+    </ContentPage.Behaviors>
     <Shell.TitleView>
         <FlexLayout  AlignItems="Center" JustifyContent="Center">
             <Label FontSize="Medium" TextColor="White" Text="HOME" FontFamily="InterSemiBold" Margin="-35,5,0,0"></Label>
         </FlexLayout>
     </Shell.TitleView>
-    <Grid BackgroundColor="White">
-        <Grid.RowDefinitions>
-
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <ScrollView Grid.Row="0">
-            <FlexLayout  Direction="Column"
-                AlignItems="Center"        
-                JustifyContent="Start"
-                >
-
-                <Frame Style="{x:StaticResource FrameHome}">
-                    <StackLayout  >
-                        <FlexLayout JustifyContent="SpaceBetween" >
-
-                            <VerticalStackLayout WidthRequest="284"  Padding="5">
-                                <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center" HeightRequest="30">
-                                    <Label Text="Pouco Material!" FontSize="18" TextColor="White"/>
-                                    <ImageButton Source="x.png"
-HeightRequest="10"  WidthRequest="15"/>
-                                </FlexLayout>
-                                <StackLayout HeightRequest="20"></StackLayout>
-                                <Label Text="A agulha 12RS contém poucas unidades." FontSize="12" TextColor="White"/>
-                            </VerticalStackLayout>
-                        </FlexLayout>
+    
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="White">
+            <VerticalStackLayout>
+                <Border 
+                    BackgroundColor="Transparent"
+                    Stroke="Transparent" 
+                    StrokeThickness="0"
+                    HeightRequest="220"
+                    HorizontalOptions="Fill">
+                    <Border.Shadow>
+                        <Shadow Brush="Gray" Opacity="0.4" Offset="0,5" Radius="10" />
+                    </Border.Shadow>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="0,0,20,20" />
+                    </Border.StrokeShape>
+                    <Image Source="foto01.png" Aspect="AspectFill"/>
+                </Border>
+                <syncfusion:SfCarousel ItemsSource="{Binding ImagePaths}" BackgroundColor="Transparent" WidthRequest="340" HeightRequest="180"
+     ViewMode="Linear" ItemSpacing="10" ItemWidth="170" ItemHeight="160" Margin="0,30,0,0">
+                    <syncfusion:SfCarousel.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                BackgroundColor="Transparent"
+                                StrokeThickness="0"
+                                WidthRequest="170"
+                                HeightRequest="160">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20"/>
+                                </Border.StrokeShape>
+                                <Image 
+                                    Source="{Binding .}" 
+                                    Aspect="AspectFill" 
+                                    VerticalOptions="FillAndExpand" 
+                                    HorizontalOptions="FillAndExpand">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+    CommandParameter="{Binding .}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Border>
+                        </DataTemplate>
+                    </syncfusion:SfCarousel.ItemTemplate>
+                </syncfusion:SfCarousel>
+                <sfPopup:SfPopup x:Name="sessionPopup" WidthRequest="300" HeightRequest="300" IsOpen="{Binding IsPopupOpen}">
+                    <StackLayout>
+                        <Label Text="{Binding SelectedSessao.NomeSessao}" FontSize="18" FontAttributes="Bold"/>
+                        <Label Text="{Binding SelectedSessao.Descricao}" FontSize="14"/>
+                        <Button Text="Close" Command="{Binding ClosePopupCommand}" />
                     </StackLayout>
-                </Frame>
-            </FlexLayout>
+                </sfPopup:SfPopup>
+                <CollectionView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+            
         </ScrollView>
+        <VerticalStackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.15, 0.24">
+            <Label Text="{Binding DateTime, StringFormat='{0:dddd, HH:mm}'}"  FontFamily="InterLight" TextColor="White" FontSize="Body"/>
+            <Label Text="Bem vindo, Vitor"  FontFamily="InterSemiBold" TextColor="White" FontSize="Body"  />
+        </VerticalStackLayout>
         
-    </Grid>
+
+    </AbsoluteLayout>
+    
 </ContentPage>
