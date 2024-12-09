@@ -18,7 +18,7 @@ namespace AppGestorInk.MVVM.Views
                 if (sender is Image image && BindingContext is HomeViewModel viewModel)
                 {
                     string imageSource = image.Source.ToString();
-                    viewModel.OpenPopup(imageSource); // Chama o método no ViewModel com o caminho da imagem
+                    viewModel.OpenPopup(); // Chama o método no ViewModel com o caminho da imagem
                 }
             }
             catch (Exception ex)

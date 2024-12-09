@@ -10,9 +10,10 @@
              xmlns:sfPopup="clr-namespace:Syncfusion.Maui.Popup;assembly=Syncfusion.Maui.Popup"
              xmlns:local="clr-namespace:AppGestorInk.MVVM.Views"
              >
-    
+
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior Command="{Binding GetSessoesHomeCommand}" EventName="Appearing"/>
+        <toolkit:EventToCommandBehavior Command="{Binding GetAvisosCommand}" EventName="Appearing"/>
     </ContentPage.Behaviors>
     <Shell.TitleView>
         <FlexLayout  AlignItems="Center" JustifyContent="Center">
@@ -20,7 +21,7 @@
         </FlexLayout>
     </Shell.TitleView>
 
-    
+
     <AbsoluteLayout>
         <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="White">
             <VerticalStackLayout>
@@ -38,10 +39,11 @@
                     </Border.StrokeShape>
                     <Image Source="foto01.png" Aspect="AspectFill"/>
                 </Border>
+                <Label Text="Sessões de hoje"  FontFamily="InterSemiBold" TextColor="#101010" FontSize="Default" Margin="40,30,0,0" />
                 <syncfusion:SfCarousel ItemsSource="{Binding ImagePaths}" BackgroundColor="Transparent" WidthRequest="340" HeightRequest="180"
-     ViewMode="Linear" ItemSpacing="10" ItemWidth="170" ItemHeight="160" Margin="0,30,0,0">
+     ViewMode="Linear" ItemSpacing="10" ItemWidth="170" ItemHeight="160" Margin="0,0,0,0">
                     <syncfusion:SfCarousel.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="model:Sessao">
                             <Border
                                 BackgroundColor="Transparent"
                                 StrokeThickness="0"
@@ -64,32 +66,53 @@
                         </DataTemplate>
                     </syncfusion:SfCarousel.ItemTemplate>
                 </syncfusion:SfCarousel>
-                <sfPopup:SfPopup x:Name="sessionPopup" WidthRequest="300" HeightRequest="300" IsOpen="{Binding IsPopupOpen}">
-                    <StackLayout>
-                        <Label Text="{Binding SelectedSessao.NomeSessao}" FontSize="18" FontAttributes="Bold"/>
-                        <Label Text="{Binding SelectedSessao.Descricao}" FontSize="14"/>
-                        <Button Text="Close" Command="{Binding ClosePopupCommand}" />
-                    </StackLayout>
-                </sfPopup:SfPopup>
-                <CollectionView>
+
+                <CollectionView ItemsSource="{Binding Avisos}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="model:Aviso">
+                            <Frame Style="{StaticResource FrameEstoque}">
+                                <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="FillAndExpand">
+                                    <!-- Imagem do Item -->
+                                    <Image Source="aviso_icon.png" 
+               WidthRequest="50" 
+               HeightRequest="50" 
+               Aspect="AspectFill" 
+               VerticalOptions="Center" />
+
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <!-- Texto informando que a validade está próxima de vencer -->
+                                        <Label Text="{Binding Name, StringFormat='A validade do item {0} está próxima de vencer'}"
+                   TextColor="White" 
+                   FontSize="14" 
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="FillAndExpand" />
+
+                                        <!-- Quantidade de itens próximos de vencer -->
+                                        <Label Text="{Binding Qtd, StringFormat='Quantidade de itens próximos de vencer: {0}'}" 
+                   TextColor="White" 
+                   FontSize="12" 
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="FillAndExpand" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
 
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </VerticalStackLayout>
-            
 
-               
+            </VerticalStackLayout>
+
+
+
 
         </ScrollView>
         <VerticalStackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.15, 0.24">
             <Label Text="{Binding DateTime, StringFormat='{0:dddd, HH:mm}'}"  FontFamily="InterLight" TextColor="White" FontSize="Body"/>
             <Label Text="Bem vindo, Vitor"  FontFamily="InterSemiBold" TextColor="White" FontSize="Body"  />
         </VerticalStackLayout>
-        
+
 
     </AbsoluteLayout>
-    
+
 </ContentPage>

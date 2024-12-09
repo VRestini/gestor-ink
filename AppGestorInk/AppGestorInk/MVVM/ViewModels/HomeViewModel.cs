@@ -18,11 +18,15 @@ namespace AppGestorInk.MVVM.ViewModels
         [ObservableProperty]
         private Sessao _selectedSessao;
         [ObservableProperty]
-        private bool isPopupOpen;
+        private bool isPopupOpen = false;
         public readonly IServiceItem _serviceItem;
         public readonly ISessaoService _sessaoService;
+
+        public ObservableCollection<ItemProduto> vencimentoTotalList { get; set; } = new();
         public ObservableCollection<Sessao> sessaoList { get; set; } = new();
         public ObservableCollection<Sessao> sessaoListByDate { get; set; } = new();
+        [ObservableProperty]
+        private ObservableCollection<Aviso> _avisos = new();
         [ObservableProperty]
         private ObservableCollection<string> _imagePaths = new();
         [ObservableProperty]
@@ -35,21 +39,44 @@ namespace AppGestorInk.MVVM.ViewModels
             _sessaoService = sessaoService;
             AtualizarData();
             GetSessoesHome();
+            GetAvisos();
 
-            
         }
         [RelayCommand]
         public async Task AtualizarData()
         {
             dateTime = DateTime.Now;
         }
+        [RelayCommand]
 
         public async Task GetAvisos()
         {
             await _serviceItem.InitializeAsync();
             var itens = await _serviceItem.GetItemProdutoAsync();
-           
+            vencimentoTotalList.Clear();
+            foreach (var item in itens)
+            {
+                if (item.DataValidade.Date <= DateTime.Now.AddDays(10) && item.DataValidade.Date >= DateTime.Now.Date)
+                {
+                    vencimentoTotalList.Add(item);
+                }
+            }
+            var itensValidados = vencimentoTotalList
+                .GroupBy(item => item.Name)
+                .Select(group => new Aviso
+                {
+                    Id = group.First().Id,
+                    Name = group.Key,
+                    Qtd = group.Count()
+                })
+                .ToList();
+            _avisos.Clear();
+            foreach (var aviso in itensValidados)
+            {
+                _avisos.Add(aviso);
+            }
         }
+
         [RelayCommand]
         public async Task GetSessoesHome()
         {
@@ -69,17 +96,11 @@ namespace AppGestorInk.MVVM.ViewModels
                 ImagePaths.Add(sessao.Foto);
             }
         }
-       
-        [RelayCommand]
-        public void OpenPopup(string imageSource)
-        {
-            // Encontrar a sessão correspondente à imagem clicada
-            SelectedSessao = sessaoList.FirstOrDefault(sessao => sessao.Foto == imageSource);
 
-            if (SelectedSessao != null)
-            {
-                IsPopupOpen = true;
-            }
+        [RelayCommand]
+        public void OpenPopup()
+        {
+            popup.Show();
         }
 
         [RelayCommand]

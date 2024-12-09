@@ -68,7 +68,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Remove="MVVM\Views\HomePopup.xaml" />
 	  <MauiXaml Remove="MVVM\Views\Relatório.xaml" />
 	</ItemGroup>
 
