@@ -4,6 +4,7 @@ using AppGestorInk.MVVM.Views;
 using AppGestorInk.Services;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 using Syncfusion.Licensing;
 using Syncfusion.Maui.Core.Hosting;
 
@@ -56,6 +57,16 @@ namespace AppGestorInk
             builder.Services.AddSingleton<IServiceItem, ItemService>();
             builder.Services.AddSingleton<ISessaoService, SessaoService>();
             builder.Services.AddSingleton<UserService>();
+            builder.ConfigureLifecycleEvents(events =>
+            {
+#if ANDROID
+    events.AddAndroid(android => android.OnCreate((activity, bundle) =>
+    {
+        
+        activity.Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#101010")); // Cor desejada
+    }));
+#endif
+            });
             return builder.Build();
         }
     }

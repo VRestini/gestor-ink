@@ -25,20 +25,26 @@
     <AbsoluteLayout>
         <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="White">
             <VerticalStackLayout>
-                <Border 
-                    BackgroundColor="Transparent"
-                    Stroke="Transparent" 
-                    StrokeThickness="0"
-                    HeightRequest="220"
-                    HorizontalOptions="Fill">
-                    <Border.Shadow>
-                        <Shadow Brush="Gray" Opacity="0.4" Offset="0,5" Radius="10" />
-                    </Border.Shadow>
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="0,0,20,20" />
-                    </Border.StrokeShape>
-                    <Image Source="foto01.png" Aspect="AspectFill"/>
-                </Border>
+                <AbsoluteLayout HeightRequest="220">
+                    <!-- A imagem de fundo -->
+                    <Image Source="foto01.png" Aspect="AspectFill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+
+                    <!-- Textos sobre a imagem -->
+                    <VerticalStackLayout Padding="0" AbsoluteLayout.LayoutBounds="0.12,0.88,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <!-- Texto 1 (Data) -->
+                        <Label Text="{Binding DateTime, StringFormat='{0:dddd, HH:mm}'}" 
+                               FontFamily="InterLight" 
+                               TextColor="White" 
+                               FontSize="Body" 
+                               HorizontalOptions="Start"/>
+                        <!-- Texto 2 (Saudação) -->
+                        <Label Text="Bem vindo, Vitor" 
+                               FontFamily="InterSemiBold" 
+                               TextColor="White" 
+                               FontSize="Body" 
+                               HorizontalOptions="Start"/>
+                    </VerticalStackLayout>
+                </AbsoluteLayout>
                 <Label Text="Sessões de hoje"  FontFamily="InterSemiBold" TextColor="#101010" FontSize="Default" Margin="40,30,0,0" />
                 <syncfusion:SfCarousel ItemsSource="{Binding ImagePaths}" BackgroundColor="Transparent" WidthRequest="340" HeightRequest="180"
      ViewMode="Linear" ItemSpacing="10" ItemWidth="170" ItemHeight="160" Margin="0,0,0,0">
@@ -81,18 +87,18 @@
 
                                     <StackLayout HorizontalOptions="FillAndExpand">
                                         <!-- Texto informando que a validade está próxima de vencer -->
-                                        <Label Text="{Binding Name, StringFormat='A validade do item {0} está próxima de vencer'}"
+                                        <Label Text="{Binding Name, StringFormat='A validade do(a) {0} esta perto de vencer'}"
                    TextColor="White" 
                    FontSize="14" 
                    VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="FillAndExpand" />
+                   HorizontalOptions="FillAndExpand"  />
 
                                         <!-- Quantidade de itens próximos de vencer -->
                                         <Label Text="{Binding Qtd, StringFormat='Quantidade de itens próximos de vencer: {0}'}" 
                    TextColor="White" 
                    FontSize="12" 
                    VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="FillAndExpand" />
+                   HorizontalOptions="FillAndExpand" FontFamily="InterLight" />
                                     </StackLayout>
                                 </StackLayout>
                             </Frame>
@@ -107,10 +113,7 @@
 
 
         </ScrollView>
-        <VerticalStackLayout AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.15, 0.24">
-            <Label Text="{Binding DateTime, StringFormat='{0:dddd, HH:mm}'}"  FontFamily="InterLight" TextColor="White" FontSize="Body"/>
-            <Label Text="Bem vindo, Vitor"  FontFamily="InterSemiBold" TextColor="White" FontSize="Body"  />
-        </VerticalStackLayout>
+       
 
 
     </AbsoluteLayout>

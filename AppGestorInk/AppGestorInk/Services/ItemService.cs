@@ -20,6 +20,8 @@ namespace AppGestorInk.Services
 
                 _dbItemConnection = new SQLiteAsyncConnection(dbPath);
                 await _dbItemConnection.CreateTableAsync<ItemProduto>();
+                await _dbItemConnection.CreateTableAsync<ItemProdutoUsado>();
+
             }
         }
         public async Task<IEnumerable<ItemProduto>> GetItemProdutoByProdutoIdAsync(int produtoId)
@@ -52,5 +54,15 @@ namespace AppGestorInk.Services
         {
             return await _dbItemConnection.UpdateAsync(itemProduto);
         }
+        public async Task<int> AddItemProdutoUsadoAsync(ItemProdutoUsado itemProdutoUsado)
+        {
+            return await _dbItemConnection.InsertAsync(itemProdutoUsado);
+        }
+        public async Task<IEnumerable<ItemProdutoUsado>> GetItemProdutosUsadosAsync()
+        {
+            return await _dbItemConnection.Table<ItemProdutoUsado>().ToListAsync();
+        }
+
+        
     }
 }

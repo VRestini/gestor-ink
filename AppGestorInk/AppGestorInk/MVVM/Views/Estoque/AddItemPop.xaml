@@ -45,6 +45,7 @@ JustifyContent="Start">
                 <Button 
                     Command="{Binding AddItemCommand}"
                     Text="Salvar Item"
+                    FontFamily="InterSemiBold"
                     TextColor="White"
                     Margin="0, 45, 0, 0"
                     HeightRequest="40"
