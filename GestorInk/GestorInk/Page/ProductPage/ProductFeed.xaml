@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestorInk.Page.ProductPage.ProductFeed"
+             xmlns:viewmodel="clr-namespace:GestorInk.ViewModel.ViewModelProduct"             
+             x:DataType="viewmodel:ProductFeedVM"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             BackgroundColor="WhiteSmoke"
+             xmlns:model="clr-namespace:GestorInk.Models"
+             Title="">
+    <Shell.TitleView>
+        <FlexLayout  AlignItems="Center" JustifyContent="Center">
+            <Label FontSize="Title" FontAttributes="Bold" TextColor="White" Text="ESTOQUE" ></Label>
+        </FlexLayout>
+    </Shell.TitleView>
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding GetAllProductCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
+    <AbsoluteLayout>
+        <ScrollView 
+        AbsoluteLayout.LayoutFlags="All"
+        AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+            <FlexLayout  
+                Direction="Column"
+                AlignItems="Center"        
+                JustifyContent="Start">
+                <Border BackgroundColor="#101010" StrokeShape="RoundRectangle, 10, 10, 10, 10" WidthRequest="350" HeightRequest="50" Margin="0, 15, 0, 0">
+                    <SearchBar SearchCommand="{Binding GetProductByNameCommand}" SearchCommandParameter="{Binding Text, x:DataType='SearchBar', Source={x:Reference searchBar}}" Placeholder="Search items..." HeightRequest="25" TextColor="White" CancelButtonColor="White" PlaceholderColor="White"/>
+                </Border>
+                <CollectionView x:Name="ProdutoCV" ItemsSource="{Binding ProductList}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Product">
+                            <Border 
+                                Margin="0,30,0,0" 
+                                Padding="10" 
+                                WidthRequest="350"
+                                HeightRequest="140"
+                                BackgroundColor="#101010"                                
+                                StrokeShape="RoundRectangle 10,10,10,10" 
+                                HorizontalOptions="Fill" 
+                                VerticalOptions="Start">
+                                
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Image
+                                        Grid.Column="0"
+                                        Grid.RowSpan="2"
+                                        Source="{Binding ProductPhotoPath}"
+                                        Aspect="AspectFill"
+                                        WidthRequest="100" 
+                                        HeightRequest="100" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        Text="{Binding ProductName}"
+                                        TextColor="White"
+                                        MaxLines="1"
+                                        FontSize="{OnIdiom Phone=Medium, Tablet=Large}"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="Start"
+                                        LineBreakMode="WordWrap"
+                                        HorizontalOptions="FillAndExpand" />
+                                    <Border
+                                        Grid.Column="1"
+                                        Grid.Row="0"                                        
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Start" 
+                                        StrokeThickness="0"                                        
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                       >
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer  Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProductFeedVM}}, Path=UpdateProductCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                        </Border.GestureRecognizers>
+                                        <Image Source="pencil.png" Aspect="Center"></Image>
+                                    </Border>
+                                    <Label
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        Text="{Binding ProductDescription}"
+                                        TextColor="White"
+                                        FontSize="{OnIdiom Phone=Small, Tablet=Medium}"
+                                        VerticalOptions="Start"
+                                        LineBreakMode="WordWrap"
+                                        HorizontalOptions="FillAndExpand" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </FlexLayout>
+        </ScrollView>
+        <Button 
+            Command="{Binding CreateProductCommand}" 
+            StyleClass="ButtonCreator" 
+            Text="+" TextColor="White"
+            FontSize="Large"
+            FontAttributes="Bold"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0.91, 0.95, 70, 70"/>
+    </AbsoluteLayout>
+</ContentPage>
