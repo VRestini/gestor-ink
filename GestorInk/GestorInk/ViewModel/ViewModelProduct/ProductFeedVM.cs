@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using GestorInk.Models;
 using GestorInk.Page.ProductPage;
+using GestorInk.Page.StockProductPage;
 using GestorInk.Services;
 using System.Collections.ObjectModel;
 
@@ -33,9 +34,9 @@ namespace GestorInk.ViewModel.ViewModelProduct
                 var list = await _productService.GetAllProducts();
                 if (list.Any())
                 {
-                    foreach (var produto in list)
+                    foreach (var product in list)
                     {
-                        ProductList.Add(produto);
+                        ProductList.Add(product);
                     }
                 }
             }
@@ -67,7 +68,7 @@ namespace GestorInk.ViewModel.ViewModelProduct
         [RelayCommand]
         public async Task CreateProduct()
         {
-            var uri = $"{nameof(ProductCreate)}?id=4";
+            var uri = $"{nameof(ProductCreate)}";
             await Shell.Current.GoToAsync(uri);
                   
         }   
@@ -79,6 +80,15 @@ namespace GestorInk.ViewModel.ViewModelProduct
             {
                 { "ProductObject", product }  
             });
-        }       
+        }
+        [RelayCommand]
+        public async Task ListStockProduct(Product product)
+        {
+            var uri = $"{nameof(StockProductFeed)}";
+            await Shell.Current.GoToAsync(uri, new Dictionary<string, object>
+            {
+                { "ProductObject", product }
+            });
+        }
     }
 }

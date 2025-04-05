@@ -24,7 +24,7 @@ namespace GestorInk.Repositorys
         }
         public async Task CreateSession(Session session)
         {
-            throw new NotImplementedException();
+            
         }
 
         public async Task DeleteSession(Session session)

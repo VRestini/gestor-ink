@@ -1,4 +1,5 @@
 ﻿using GestorInk.Page.ProductPage;
+using GestorInk.Page.StockProductPage;
 
 namespace GestorInk
 {
@@ -10,6 +11,8 @@ namespace GestorInk
             Routing.RegisterRoute(nameof(ProductCreate), typeof(ProductCreate));
             Routing.RegisterRoute(nameof(ProductEditor), typeof(ProductEditor));
             Routing.RegisterRoute(nameof(ProductFeed), typeof(ProductFeed));
+            Routing.RegisterRoute(nameof(StockProductFeed), typeof(StockProductFeed));
+            Routing.RegisterRoute(nameof(StockProductCreate), typeof(StockProductCreate));
         }
         protected void RegisterForRoute<T>()
         {

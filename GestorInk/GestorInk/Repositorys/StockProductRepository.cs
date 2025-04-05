@@ -19,19 +19,31 @@ namespace GestorInk.Repositorys
                 return;
             _dbconnection = new SQLiteAsyncConnection(ConstantsDB.DatabasePath, ConstantsDB.Flags);
             await _dbconnection.CreateTableAsync<ProductStock>();
+            await _dbconnection.CreateTableAsync<ProductStockUsed>();
         }
-        public async Task<IEnumerable<ProductStock>> GetAllStockProducts()
+        public async Task<IEnumerable<ProductStock>> GetAllStockProducts(int id)
         {
             await Init();
-            return await _dbconnection.Table<ProductStock>().ToListAsync();
+            return await _dbconnection.Table<ProductStock>().Where(i => i.FKProductId == id).ToListAsync();
         }
-        public async Task CreateStockroduct(ProductStock productStock)
+        public async Task<IEnumerable<ProductStockUsed>> GetAllStockProductsUsed(int id)
+        {
+            await Init();
+            return await _dbconnection.Table<ProductStockUsed>().Where(i => i.FKProductStockId == id).ToListAsync();
+        }
+        public async Task CreateStockProduct(ProductStock productStock)
         {
             await _dbconnection.InsertAsync(productStock);
-        }                              
-        public async Task UpdateStockProduct(ProductStock productStock)
+        }
+
+        Task IStockProductService.CreateStockProductUsed(ProductStockUsed productStockUsed)
         {
-            await _dbconnection.UpdateAsync(productStock);
-        }        
+            throw new NotImplementedException();
+        }
+
+        Task IStockProductService.DeleteStockProduct(ProductStock productStock)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

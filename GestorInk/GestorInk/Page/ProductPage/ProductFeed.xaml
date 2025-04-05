@@ -39,7 +39,9 @@
                                 StrokeShape="RoundRectangle 10,10,10,10" 
                                 HorizontalOptions="Fill" 
                                 VerticalOptions="Start">
-                                
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ProductFeedVM}}, Path=ListStockProductCommand}" CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />

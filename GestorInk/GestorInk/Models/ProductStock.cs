@@ -18,5 +18,9 @@ namespace GestorInk.Models
         private DateTime ProductStockDateValidity { get; set; }
         [NotNull]
         private double ProductStockPrice { get; set; }
+        
+        [NotNull]
+        public int FKProductId { get; set; }
+
     }
 }

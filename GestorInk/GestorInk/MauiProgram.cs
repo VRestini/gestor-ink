@@ -43,7 +43,7 @@ namespace GestorInk
             builder.Services.AddTransient<ProductFeedVM>();
             builder.Services.AddTransient<ProductCreateVM>();
             builder.Services.AddTransient<ProductEditorVM>();
-            builder.Services.AddTransient<StockProductEditorVM>();
+            
             builder.Services.AddTransient<StockProductCreateVM>();
             builder.Services.AddTransient<StockProductFeedVM>();
             builder.Services.AddTransient<SchedulerCreatorVM>();
