@@ -14,4 +14,9 @@ public partial class ProductFeed : ContentPage
         _productService = productService;
         NavigationPage.SetHasBackButton(this, false);
     }
+
+    private void SearchBar_Focused(object sender, FocusEventArgs e)
+    {
+        
+    }
 }

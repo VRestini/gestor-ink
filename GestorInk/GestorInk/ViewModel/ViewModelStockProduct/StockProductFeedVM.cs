@@ -8,23 +8,23 @@ using System.Collections.ObjectModel;
 
 namespace GestorInk.ViewModel.ViewModelStockProduct
 {
-    [QueryProperty(nameof(Product), "ProductObject")]
+    [QueryProperty(nameof(Product.ProductId), "id")]
     public partial class StockProductFeedVM: ObservableObject
     {
         IStockProductService _stockProductService;
         public ObservableCollection<ProductStockUsed> ProductStockListUsed { get; set; } = new();
         public ObservableCollection<ProductStock> ProductStockList { get; set; } = new();
         [ObservableProperty]
-        private string _tituloBotao = "USADOS";
+        private string _nameButton = "USADOS";
         [ObservableProperty]
         private bool _listAvailable;
         [ObservableProperty]
         private bool _listUsed;
         [ObservableProperty]
-        public Product _productProperty;
+        private int _productId;
         [ObservableProperty]
         public String _switchTextButton;
-        public int id;
+      
 
         public StockProductFeedVM(IStockProductService stockProductService)
         {
@@ -49,7 +49,7 @@ namespace GestorInk.ViewModel.ViewModelStockProduct
             else
             {
                 SwitchTextButton = "DISPONÍVEIS";
-                await GetProductUsedCommand.ExecuteAsync(id);
+                await GetProductUsedCommand.ExecuteAsync(null);
             }
         }
         [RelayCommand]
@@ -59,7 +59,7 @@ namespace GestorInk.ViewModel.ViewModelStockProduct
             ProductStockListUsed.Clear();
             try
             {
-                var list = await _stockProductService.GetAllStockProducts(ProductProperty.ProductId);
+                var list = await _stockProductService.GetAllStockProducts(ProductId);
                 if (list.Any())
                 {
                     foreach (var product in list)
@@ -81,7 +81,7 @@ namespace GestorInk.ViewModel.ViewModelStockProduct
             ProductStockListUsed.Clear();
             try
             {
-                var list = await _stockProductService.GetAllStockProductsUsed(ProductProperty.ProductId);
+                var list = await _stockProductService.GetAllStockProductsUsed(ProductId);
                 if (list.Any())
                 {
                     foreach (var product in list)
@@ -106,7 +106,7 @@ namespace GestorInk.ViewModel.ViewModelStockProduct
                     var i = new ProductStockUsed
                     {
                         DtExclude = DateTime.Now,
-                        FKProductStockId = ProductProperty.ProductId
+                        FKProductStockId = ProductId
                     };
                     ProductStockListUsed.Add(i);
                     ProductStockList.Remove(productStock);
@@ -122,8 +122,7 @@ namespace GestorInk.ViewModel.ViewModelStockProduct
         [RelayCommand]
         public async Task CreateProductStock()
         {
-            var uri = $"{nameof(StockProductCreate)}";
-            await Shell.Current.GoToAsync(uri);
+            await Shell.Current.GoToAsync($"{nameof(StockProductCreate)}?id={ProductId}");
         }
 
     }

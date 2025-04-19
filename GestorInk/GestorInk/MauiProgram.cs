@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using GestorInk.Models;
 using GestorInk.Page.FinancialPage;
 using GestorInk.Page.ProductPage;
 using GestorInk.Page.SchedulerPage;
@@ -30,6 +31,9 @@ namespace GestorInk
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Inter28pt-SemiBold.ttf", "InterSemiBold");
+                    fonts.AddFont("Inter18pt-Light.ttf", "InterLight");
+                    fonts.AddFont("Lobster-Regular.ttf", "Lobster");
                 });
             SyncfusionLicenseProvider.RegisterLicense("CHAVE SYNCFUSION");
 #if DEBUG
@@ -57,9 +61,27 @@ namespace GestorInk
             builder.Services.AddTransient<SchedulerEditor>();
             builder.Services.AddTransient<SchedulerCreate>();
             builder.Services.AddTransient<StockProductFeed>();
-            builder.Services.AddTransient<StockProductEditor>();
+
             builder.Services.AddTransient<StockProductCreate>();
             builder.Services.AddTransient<FinancialFeed>();
+            builder.ConfigureMauiHandlers(handlers =>
+            {
+                handlers.AddHandler<SearchBarWithout, Microsoft.Maui.Handlers.SearchBarHandler>();
+
+                Microsoft.Maui.Handlers.SearchBarHandler.Mapper.AppendToMapping(nameof(SearchBarWithout), (handler, view) =>
+                {
+#if __ANDROID__
+                    handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+                    handler.PlatformView.Background = null; // remove a borda por completo
+#elif __IOS__
+        handler.PlatformView.BackgroundColor = UIKit.UIColor.Clear;
+        handler.PlatformView.SearchBarStyle = UIKit.UISearchBarStyle.Minimal; // remove a moldura padrão
+        handler.PlatformView.BarTintColor = UIKit.UIColor.Clear;
+#endif
+                });
+            });
+
+
             builder.ConfigureLifecycleEvents(events =>
             {
 #if ANDROID

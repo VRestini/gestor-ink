@@ -11,11 +11,11 @@
     Shell.TabBarIsVisible="True"
     FlyoutBackgroundColor="White"
     Shell.FlyoutBehavior="Disabled"
-    Shell.TabBarBackgroundColor="#4C007D"
+    Shell.TabBarBackgroundColor="#2a1c38"
     Shell.TabBarForegroundColor="White"
     Shell.TabBarTitleColor="White"
     Shell.TabBarUnselectedColor="Gray"
-    Shell.BackgroundColor="#000000"
+    Shell.BackgroundColor="#1A1028"
     Title="GestorInk">
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" >

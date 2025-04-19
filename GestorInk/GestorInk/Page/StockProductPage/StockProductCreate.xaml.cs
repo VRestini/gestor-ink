@@ -1,9 +1,12 @@
+using GestorInk.ViewModel.ViewModelStockProduct;
+
 namespace GestorInk.Page.StockProductPage;
 
 public partial class StockProductCreate : ContentPage
 {
-	public StockProductCreate()
+	public StockProductCreate(StockProductCreateVM stockProductCreateVM)
 	{
 		InitializeComponent();
+		BindingContext = stockProductCreateVM;
 	}
 }

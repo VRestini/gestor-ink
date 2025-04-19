@@ -3,52 +3,61 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GestorInk.Page.StockProductPage.StockProductFeed"
              Title="StockProductFeed"
-             BackgroundColor="WhiteSmoke"
+             
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:model="clr-namespace:GestorInk.Models"
              xmlns:viewmodel="clr-namespace:GestorInk.ViewModel.ViewModelStockProduct"             
              x:DataType="viewmodel:StockProductFeedVM"
              >
-    <AbsoluteLayout>
-        <ScrollView 
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding GetProductCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush  EndPoint="0,1">
+                <GradientStop Color="#1A1028" Offset="0.0" />
+                <GradientStop Color="#2a1c38" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <AbsoluteLayout>
+            <ScrollView 
             AbsoluteLayout.LayoutFlags="All"
             AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
-            <VerticalStackLayout>
-                <Button WidthRequest="320" HeightRequest="40" CornerRadius="9" Margin="0,25,0,0" BackgroundColor="#4C007D" Text="RELATÓRIO" TextColor="White" FontFamily="InterSemiBold"/>
-                <Button WidthRequest="320" HeightRequest="40" CornerRadius="9" Margin="0,15,0,0" BackgroundColor="#101010" Text="{Binding SwitchTextButton}" TextColor="White" FontFamily="InterSemiBold" Command="{Binding SwitchListCommand}"/>
-                <CollectionView ItemsSource="{Binding ProductStockList}" IsVisible="{Binding ListAvailable}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:ProductStock">
-                            <Border Style="{x:StaticResource FrameItem}" BackgroundColor="#101010" >
-                     
-       
+                <VerticalStackLayout>
+                    <Button WidthRequest="320" HeightRequest="40" CornerRadius="9" Margin="0,25,0,0" BackgroundColor="#4C007D" Text="RELATÓRIO" TextColor="White" FontFamily="InterSemiBold"/>
+                    <Button WidthRequest="320" HeightRequest="40" CornerRadius="9" Margin="0,15,0,0" BackgroundColor="#101010" Text="{Binding SwitchTextButton}" TextColor="White" FontFamily="InterSemiBold" Command="{Binding SwitchListCommand}"/>
+                    <CollectionView ItemsSource="{Binding ProductStockList}" IsVisible="{Binding ListAvailable}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:ProductStock">
+                                <Border Style="{x:StaticResource FrameItem}" BackgroundColor="#101010" >
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <CollectionView ItemsSource="{Binding ProductStockListUsed}" IsVisible="{Binding ListUsed}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:ProductStockUsed">
 
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
 
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-                <CollectionView ItemsSource="{Binding ProductStockListUsed}" IsVisible="{Binding ListUsed}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:ProductStockUsed">
-                            
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </VerticalStackLayout>
-
-        </ScrollView>
-        <Button
+            </ScrollView>
+            <Button
                 BackgroundColor="{StaticResource Tertiary}"
                 CornerRadius="40"
                 TextColor="White"
                 FontSize="Large" 
-                Command="{Binding AddItemCommand}" 
-                CommandParameter="{Binding Produto}"
+                Command="{Binding CreateProductStockCommand}" 
+                CommandParameter="{Binding ProductId}"
                 Text="+"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
 AbsoluteLayout.LayoutBounds="0.95, 0.999, 80, 80"
             Margin="10"/>
 
-    </AbsoluteLayout>
+        </AbsoluteLayout>
+    </Grid>
+    
+   
 </ContentPage>

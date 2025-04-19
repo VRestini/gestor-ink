@@ -13,13 +13,12 @@ namespace GestorInk.Models
         [PrimaryKey, AutoIncrement]
         private int ProductStockId { get; set; }
         [NotNull]
-        private DateTime ProductStockDateCreate { get; set; }
+        public DateTime ProductStockDateCreate { get; set; }
         [NotNull]
-        private DateTime ProductStockDateValidity { get; set; }
+        public DateTime ProductStockDateValidity { get; set; }
         [NotNull]
-        private double ProductStockPrice { get; set; }
-        
-        [NotNull]
+        public double ProductStockPrice { get; set; }
+
         public int FKProductId { get; set; }
 
     }

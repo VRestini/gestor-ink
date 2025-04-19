@@ -9,6 +9,7 @@ namespace GestorInk
         public App()
         {
             InitializeComponent();
+
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(EntryWithoutBorder), (handler, view) =>
             {
 #if __ANDROID__

@@ -60,6 +60,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Models\SearchBar.cs" />
 	  <Compile Remove="ViewModel\ViewModelStockProduct\StockProductEditorVM.cs" />
 	</ItemGroup>
 
@@ -99,9 +100,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Page\StockProductPage\StockProductCreate.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Page\StockProductPage\StockProductEditor.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Page\StockProductPage\StockProductFeed.xaml">

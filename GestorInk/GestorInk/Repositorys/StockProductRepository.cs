@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GestorInk.Repositorys
 {
-    internal class StockProductRepository : IStockProductService
+    public class StockProductRepository : IStockProductService
     {
         private SQLiteAsyncConnection _dbconnection;
         public async Task Init()
