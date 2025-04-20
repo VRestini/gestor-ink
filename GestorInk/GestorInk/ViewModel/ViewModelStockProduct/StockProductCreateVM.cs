@@ -6,7 +6,7 @@ using GestorInk.Services;
 
 namespace GestorInk.ViewModel.ViewModelStockProduct
 {
-    [QueryProperty(nameof(Product.ProductId), "id")]
+    [QueryProperty(nameof(FProduct), "fProduct")]
     public partial class StockProductCreateVM : ObservableObject
     {
         IStockProductService _stockProductService { get; set; }
@@ -19,7 +19,7 @@ namespace GestorInk.ViewModel.ViewModelStockProduct
         [ObservableProperty]
         public double _amount;
         [ObservableProperty]
-        private int _productId;
+        private Product _fProduct;
 
         public StockProductCreateVM(IStockProductService stockProductService)
         {
@@ -34,18 +34,18 @@ namespace GestorInk.ViewModel.ViewModelStockProduct
                 if (Amount >= 0 && StockPrice >= 0.00) {
                     ProductStock i = new()
                     {
-                        FKProductId = ProductId,
+                        FKProductId = FProduct.ProductId,
+                        ProductName = FProduct.ProductName,
                         ProductStockDateCreate = DateTime.Now,
                         ProductStockDateValidity = StockDateValidity,
                         ProductStockPrice = StockPrice,
                     };
                     for (int j = 1; j <= Amount; j++)
                     {
-                        await _stockProductService.CreateStockProduct(i);
-                        await Shell.Current.DisplayAlert("Sucesso", "Mensagem", "OK");
-
-                        await Shell.Current.GoToAsync("//stockproductfeed");
+                        await _stockProductService.CreateStockProduct(i);                        
                     }
+                    await Shell.Current.DisplayAlert("Sucesso", "Mensagem", "OK");
+                    //await Shell.Current.GoToAsync("//stockproductfeed");
                 }
                 else
                 {

@@ -107,6 +107,8 @@
                                                 Grid.Column="0"
                                                 Text="{Binding ProductName}"
                                                 TextColor="White"
+                                                FontFamily="InterSemiBold"
+                                                
                                                 FontSize="16"
                                                 FontAttributes="Bold"
                                                 TextTransform="Uppercase"

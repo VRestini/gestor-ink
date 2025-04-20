@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GestorInk.Models
 {
-    [Table ("PRODUCT_STOCK_USED")]
+    [Table ("PRODUCT_USED")]
     public class ProductStockUsed :Product
     {
         [PrimaryKey, AutoIncrement]

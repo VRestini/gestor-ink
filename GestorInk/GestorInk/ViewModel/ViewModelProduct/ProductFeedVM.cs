@@ -84,7 +84,10 @@ namespace GestorInk.ViewModel.ViewModelProduct
         [RelayCommand]
         public async Task ListStockProduct(Product product)
         {
-            await Shell.Current.GoToAsync($"{nameof(StockProductFeed)}?id={product.ProductId}");
+            await Shell.Current.GoToAsync($"{nameof(StockProductFeed)}", new Dictionary<string, object>
+                {
+                    { "fProduct", product } 
+                });
         }
     }
 }

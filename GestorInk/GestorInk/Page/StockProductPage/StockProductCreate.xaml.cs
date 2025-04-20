@@ -8,5 +8,6 @@ public partial class StockProductCreate : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = stockProductCreateVM;
-	}
+        datePicker.Date = DateTime.Now;
+    }
 }

@@ -33,17 +33,20 @@ namespace GestorInk.Repositorys
         }
         public async Task CreateStockProduct(ProductStock productStock)
         {
+            await Init();
             await _dbconnection.InsertAsync(productStock);
         }
 
-        Task IStockProductService.CreateStockProductUsed(ProductStockUsed productStockUsed)
+        public async Task CreateStockProductUsed(ProductStockUsed productStockUsed)
         {
-            throw new NotImplementedException();
+            await Init();
+            await _dbconnection.InsertAsync(productStockUsed);
         }
 
-        Task IStockProductService.DeleteStockProduct(ProductStock productStock)
+        public async Task DeleteStockProduct(ProductStock productStock)
         {
-            throw new NotImplementedException();
+            await Init();
+            await _dbconnection.DeleteAsync(productStock);
         }
     }
 }

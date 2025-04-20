@@ -3,15 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GestorInk.Page.StockProductPage.StockProductFeed"
              Title="StockProductFeed"
-             
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:model="clr-namespace:GestorInk.Models"
              xmlns:viewmodel="clr-namespace:GestorInk.ViewModel.ViewModelStockProduct"             
              x:DataType="viewmodel:StockProductFeedVM"
              >
+    
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior Command="{Binding GetProductCommand}" EventName="Appearing" />
     </ContentPage.Behaviors>
+    <Shell.TitleView>
+        <Grid 
+        ColumnDefinitions="*,Auto,*"
+        VerticalOptions="Center"
+        HorizontalOptions="Fill"
+        HeightRequest="44">
+            <Label Grid.Column="1"
+            FontSize="Title"
+            FontAttributes="Bold"
+            TextColor="White"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="{Binding FProduct.ProductName}" 
+            Margin="0,0,60,0"
+            FontFamily="InterSemiBold"/>
+        </Grid>
+    </Shell.TitleView>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush  EndPoint="0,1">
@@ -24,20 +41,101 @@
             AbsoluteLayout.LayoutFlags="All"
             AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
                 <VerticalStackLayout>
-                    <Button WidthRequest="320" HeightRequest="40" CornerRadius="9" Margin="0,25,0,0" BackgroundColor="#4C007D" Text="RELATÓRIO" TextColor="White" FontFamily="InterSemiBold"/>
-                    <Button WidthRequest="320" HeightRequest="40" CornerRadius="9" Margin="0,15,0,0" BackgroundColor="#101010" Text="{Binding SwitchTextButton}" TextColor="White" FontFamily="InterSemiBold" Command="{Binding SwitchListCommand}"/>
+                    <Button WidthRequest="320" HeightRequest="40" CornerRadius="9" Margin="0,25,0,0" BackgroundColor="#2a1c38" Text="RELATÓRIO" TextColor="White" FontFamily="InterSemiBold"/>
+                    <Button WidthRequest="320" HeightRequest="40" CornerRadius="9" Margin="0,15,0,0" BackgroundColor="WhiteSmoke" Text="{Binding SwitchTextButton}" TextColor="#1A1028" FontFamily="InterSemiBold" Command="{Binding SwitchListCommand}"/>
                     <CollectionView ItemsSource="{Binding ProductStockList}" IsVisible="{Binding ListAvailable}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:ProductStock">
-                                <Border Style="{x:StaticResource FrameItem}" BackgroundColor="#101010" >
-                                </Border>
+                                <Border 
+                                        Margin="0,10,0,0"
+                                        Padding="8"
+                                        WidthRequest="360"
+                                        HeightRequest="100"
+                                        BackgroundColor="#2A1D39"
+                                        StrokeShape="RoundRectangle 12,12,12,12"
+                                        HorizontalOptions="Fill"
+                                        VerticalOptions="Start"
+                                        Stroke="Transparent">
+                                        <Grid ColumnSpacing="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border
+                                                Grid.Column="0"
+                                                StrokeShape="RoundRectangle 8,8,8,8"
+                                                Stroke="White"
+                                                Padding="0"
+                                                WidthRequest="80"
+                                                HeightRequest="80"
+                                                BackgroundColor="Transparent">
+                                                <Image 
+                                                    Source="{Binding ProductPhotoPath}"
+                                                    Aspect="AspectFill"
+                                                    WidthRequest="80"
+                                                    HeightRequest="80"/>
+                                            </Border>
+                                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+
+                                                <Grid ColumnSpacing="5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label
+                                                        Grid.Column="0"
+                                                        Text="{Binding ProductName}"
+                                                        TextColor="White"
+                                                        FontFamily="InterSemiBold"
+                                                        FontSize="14"
+                                                        FontAttributes="Bold"
+                                                        TextTransform="Uppercase"
+                                                        LineBreakMode="TailTruncation"
+                                                        MaxLines="1"/>
+                                                    <Border
+                                                        Grid.Column="1"
+                                                        HorizontalOptions="Center"
+                                                        VerticalOptions="Start"
+                                                        WidthRequest="25"
+                                                        HeightRequest="25"
+                                                        StrokeThickness="0">
+                                                        <Border.GestureRecognizers>
+                                                            <TapGestureRecognizer  
+                                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:StockProductFeedVM}}, Path=DeleteProductStockCommand}" 
+                                                                CommandParameter="{Binding .}" />
+                                                        </Border.GestureRecognizers>
+                                                        <Image 
+                                                            Source="cancel.png" 
+                                                            WidthRequest="15" 
+                                                            HeightRequest="15"
+                                                            VerticalOptions="Center"
+                                                            HorizontalOptions="Center"
+                                                            Aspect="AspectFit" />
+                                                </Border>
+                                            </Grid>
+                                                <Label                                            
+                                                    Text="{Binding ProductStockPrice  , StringFormat='R$ {0:N2}'}"
+                                                    TextColor="WhiteSmoke"
+                                                    FontSize="12"
+                                                    LineBreakMode="TailTruncation"
+                                                    MaxLines="1"/>
+                                                <Label
+                                                    Text="{Binding ProductStockDateValidity, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                                    TextColor="WhiteSmoke"
+                                                    FontSize="13"
+                                                    FontAttributes="Bold"
+                                                    VerticalOptions="End"/>
+                                            </VerticalStackLayout>
+                                        </Grid>
+                                    </Border>
+                                
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                     <CollectionView ItemsSource="{Binding ProductStockListUsed}" IsVisible="{Binding ListUsed}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:ProductStockUsed">
-
+                                
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
@@ -45,16 +143,15 @@
 
             </ScrollView>
             <Button
-                BackgroundColor="{StaticResource Tertiary}"
-                CornerRadius="40"
-                TextColor="White"
-                FontSize="Large" 
+                BackgroundColor="#1A1028"                           
                 Command="{Binding CreateProductStockCommand}" 
                 CommandParameter="{Binding ProductId}"
-                Text="+"
+                StyleClass="ButtonCreator" 
+                Text="+" TextColor="White"
+                FontSize="Large"
+                FontAttributes="Bold"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-AbsoluteLayout.LayoutBounds="0.95, 0.999, 80, 80"
-            Margin="10"/>
+                AbsoluteLayout.LayoutBounds="0.91, 0.95, 70, 70"/>
 
         </AbsoluteLayout>
     </Grid>

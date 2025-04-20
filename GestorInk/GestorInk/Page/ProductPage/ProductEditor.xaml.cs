@@ -12,19 +12,19 @@ public partial class ProductEditor : ContentPage
     private async void EditorWithoutBorder_Unfocused(object sender, FocusEventArgs e)
     {
 
-        BorderDescription.Stroke = Colors.LightGray;
+        //BorderDescription.Stroke = Colors.LightGray;
 
     }
 
     private async void EditorWithoutBorder_Focused(object sender, FocusEventArgs e)
     {
-        BorderDescription.Stroke = Color.FromArgb("#4C007D");
+        //BorderDescription.Stroke = Color.FromArgb("#4C007D");
 
     }
 
     private async void EntryWithoutBorder_Unfocused(object sender, FocusEventArgs e)
     {
-        BorderName.Stroke = Colors.LightGray;
+        //BorderName.Stroke = Colors.LightGray;
 
 
     }
@@ -32,7 +32,7 @@ public partial class ProductEditor : ContentPage
     private async void EntryWithoutBorder_Focused(object sender, FocusEventArgs e)
     {
 
-        BorderName.Stroke = Color.FromArgb("#4C007D");
+        //BorderName.Stroke = Color.FromArgb("#4C007D");
 
     }
 }

@@ -7,69 +7,94 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              BackgroundColor="WhiteSmoke"
              xmlns:model="clr-namespace:GestorInk.Models"
-       
-             Title="ProductCreate">
-    <ScrollView>
-        <FlexLayout 
-    Direction="Column" 
-    AlignItems="Center"
-    JustifyContent="Start">
-            <VerticalStackLayout Margin="0,105,0,15" >
-                <!-- <Frame 
-                    CornerRadius="20"
-                    Padding="0"
-                    BorderColor="Transparent"
-                    BackgroundColor="Transparent"
-                    WidthRequest="200"
-                    HeightRequest="200">
-                    <Image 
-                        x:Name="MyImage" 
-                        WidthRequest="200" 
-                        HeightRequest="200" BackgroundColor="Gray" Source="{Binding ImageSource}" Aspect="Fill">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SelecionarImagemCommand}"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </Frame> -->
-                <model:EntryWithoutBorder 
-                     
-                    Text="{Binding ProductNameProperty}" 
-                    FontFamily="InterSemiBold"
-                    Placeholder="Nome" 
-                    PlaceholderColor="#808080"
-                    
-                    TextColor="#101010"
-                    HorizontalOptions="FillAndExpand"
-                    WidthRequest="280"/>
-                <Border x:Name="BorderName" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="2" Stroke="LightGray"/>
+             NavigationPage.BackButtonTitle=""
+             NavigationPage.IconColor="White">
+    <Shell.TitleView>
+        <Grid 
+        ColumnDefinitions="*,Auto,*"
+        VerticalOptions="Center"
+        HorizontalOptions="Fill"
+        HeightRequest="44">
+            <Label Grid.Column="1"
+            FontSize="Title"
+            FontAttributes="Bold"
+            TextColor="White"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="CRIAR PRODUTO" 
+            Margin="0,0,60,0"
+            FontFamily="InterSemiBold"/>
+        </Grid>
+    </Shell.TitleView>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush  EndPoint="0,1">
+                <GradientStop Color="#1A1028" Offset="0.0" />
+                <GradientStop Color="#2a1c38" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <ScrollView>
+            <FlexLayout 
+Direction="Column" 
+AlignItems="Center"
+JustifyContent="Start">
+                <VerticalStackLayout Margin="0,105,0,15" >
+                    <!-- <Frame 
+                CornerRadius="20"
+                Padding="0"
+                BorderColor="Transparent"
+                BackgroundColor="Transparent"
+                WidthRequest="200"
+                HeightRequest="200">
+                <Image 
+                    x:Name="MyImage" 
+                    WidthRequest="200" 
+                    HeightRequest="200" BackgroundColor="Gray" Source="{Binding ImageSource}" Aspect="Fill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelecionarImagemCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame> -->
+                    <model:EntryWithoutBorder                  
+                        Text="{Binding ProductNameProperty}" 
+                        FontFamily="InterSemiBold"
+                        Placeholder="Nome" 
+                        PlaceholderColor="Gray"
+                        TextColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        WidthRequest="280"/>
+                    <Border x:Name="BorderName" BackgroundColor="WhiteSmoke" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="1" Stroke="LightGray"/>
 
-                <model:EditorWithoutBorder
+                    <model:EditorWithoutBorder
+                        Text="{Binding ProductDescriptionProperty}" 
+                        FontFamily="InterSemiBold"
+                        Placeholder="Descrição" 
+                        PlaceholderColor="Gray" 
+                        TextColor="White"    
+                        AutoSize="TextChanges"
+                        HorizontalOptions="FillAndExpand"
+                        WidthRequest="280"/>
+                    <Border x:Name="BorderDescription" BackgroundColor="WhiteSmoke" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="1" Stroke="LightGray"/>
+                    <Button  
+                         Text="Salvar Item"
+                         TextColor="WhiteSmoke"
+                         Command="{Binding CreateProductCommand}"
+                         Margin="0, 45, 0, 0"
+                         HeightRequest="40"
+                         WidthRequest="280"
+                         FontFamily="InterSemiBold"
+                         BackgroundColor="#2A1D39"
+                         BorderColor="WhiteSmoke"
+                         BorderWidth="1"
+                         CornerRadius="10"/>
+                </VerticalStackLayout>
 
-                    Text="{Binding ProductDescriptionProperty}" 
-                    FontFamily="InterSemiBold"
-                    Placeholder="Descrição" 
-                    PlaceholderColor="#808080" 
-                    TextColor="#101010"    
-                    AutoSize="TextChanges"
-                    HorizontalOptions="FillAndExpand"
-                    WidthRequest="280"/>
-                <Border x:Name="BorderDescription" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="2" Stroke="LightGray"/>
-                <Button  
-                     Text="Salvar Item"
-                     TextColor="White"
-                     Command="{Binding CreateProductCommand}"
-                     Margin="0, 45, 0, 0"
-                     HeightRequest="40"
-                     WidthRequest="280"
-                     FontFamily="InterSemiBold"
-                     BackgroundColor="#4C007D"
-                     CornerRadius="10"/>
-            </VerticalStackLayout>
 
 
+            </FlexLayout>
 
-        </FlexLayout>
-
-    </ScrollView>
+        </ScrollView>
+    </Grid>
+    
 
 </ContentPage>

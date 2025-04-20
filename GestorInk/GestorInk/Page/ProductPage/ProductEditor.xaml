@@ -5,86 +5,105 @@
              xmlns:viewmodel="clr-namespace:GestorInk.ViewModel.ViewModelProduct"             
              x:DataType="viewmodel:ProductEditorVM"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             BackgroundColor="WhiteSmoke"
              xmlns:local="clr-namespace:GestorInk.Models"
-             BackgroundImageSource="login_page.png"
-             >
+             NavigationPage.BackButtonTitle=""
+             NavigationPage.IconColor="White">
     <Shell.TitleView>
-        <FlexLayout  AlignItems="Center" JustifyContent="Start" >
-            <Label FontSize="Title" FontAttributes="Bold" TextColor="White" Text="EDITAR PRODUTO" ></Label>
-        </FlexLayout>
+        <Grid 
+        ColumnDefinitions="*,Auto,*"
+        VerticalOptions="Center"
+        HorizontalOptions="Fill"
+        HeightRequest="44">
+            <Label Grid.Column="1"
+            FontSize="Title"
+            FontAttributes="Bold"
+            TextColor="White"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="EDITAR PRODUTO" 
+            Margin="0,0,60,0"
+            FontFamily="InterSemiBold"/>
+        </Grid>
     </Shell.TitleView>
-    <ScrollView>
-        <FlexLayout 
-             Direction="Column" 
-             AlignItems="Center"
-             JustifyContent="Start">
-            <VerticalStackLayout Margin="0,105,0,15" >
-                <Frame 
-                    CornerRadius="20"
-                    Padding="0"
-                    BorderColor="Transparent"
-                    BackgroundColor="Transparent"
-                    WidthRequest="200"
-                    HeightRequest="200">
-                   <!--<Image      
-                        WidthRequest="200" 
-                        HeightRequest="200" BackgroundColor="Gray" Source="{Binding Produto.Foto}" Aspect="Fill">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SelecionarImagemCommand}"/>
-                        </Image.GestureRecognizers>
-                    </Image>-->
-                </Frame>
-                <local:EntryWithoutBorder
-                    Focused="EntryWithoutBorder_Focused"
-                    Unfocused="EntryWithoutBorder_Unfocused"
-                    Text="{Binding ProductProperty.ProductName}" 
-                    Placeholder="Descrição"
-                    FontFamily="InterSemiBold"
-                    PlaceholderColor="#808080" 
-                    TextColor="#101010"           
-                    HorizontalOptions="FillAndExpand"
-                    WidthRequest="280"
-                    />
-                <Border x:Name="BorderName" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,0'}" StrokeThickness="2" Stroke="LightGray"/>
-                <local:EditorWithoutBorder      
-                    Focused="EditorWithoutBorder_Focused"
-                    Unfocused="EditorWithoutBorder_Unfocused"
-                    Text="{Binding ProductProperty.ProductDescription}" 
-                    FontFamily="InterSemiBold"
-                    Placeholder="Nome" 
-                    PlaceholderColor="#808080" 
-                    HorizontalOptions="FillAndExpand"
-                    WidthRequest="280"
-                    TextColor="#101010"/>
-                <Border x:Name="BorderDescription" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,0'}" StrokeThickness="2" Stroke="LightGray"/>
-                
-                
-
-                <VerticalStackLayout Margin="0,25,0,0" >
-                    <Button 
-                        Command="{Binding RefreshProductEditorCommand}" 
-                        Text="Atualizar"
-                        BackgroundColor="#4C007D"
-                        CornerRadius="10"
-                        Margin="0,15,0,0"
-                        TextColor="White"
-                        HeightRequest="40"
-                        FontFamily="InterSemiBold"/>
-                    <Button 
-                        BackgroundColor="#101010"
-                        CornerRadius="10"
-                        HeightRequest="40"
-                        Command="{Binding DeleteProductCommand}"
-                        CommandParameter="{Binding ProductProperty}"
-                        Text="Excluir"
-                        Margin="0,15,0,0"
-                        TextColor="White"
-                        FontFamily="InterSemiBold"/>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush  EndPoint="0,1">
+                <GradientStop Color="#1A1028" Offset="0.0" />
+                <GradientStop Color="#2a1c38" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <ScrollView>
+            <FlexLayout 
+                 Direction="Column" 
+                 AlignItems="Center"
+                 JustifyContent="Start">
+                <VerticalStackLayout Margin="0,105,0,15" >
+                    <!--<Frame 
+                        CornerRadius="20"
+                        Padding="0"
+                        BorderColor="Transparent"
+                        BackgroundColor="Transparent"
+                        WidthRequest="200"
+                        HeightRequest="200">
+                        <Image      
+                    WidthRequest="200" 
+                    HeightRequest="200" BackgroundColor="Gray" Source="{Binding Produto.Foto}" Aspect="Fill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelecionarImagemCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                    </Frame>-->
+                    <local:EntryWithoutBorder
+                        Focused="EntryWithoutBorder_Focused"
+                        Unfocused="EntryWithoutBorder_Unfocused"
+                        Text="{Binding ProductProperty.ProductName}" 
+                        Placeholder="Descrição"
+                        FontFamily="InterSemiBold"
+                        PlaceholderColor="Gray" 
+                        TextColor="White"           
+                        HorizontalOptions="FillAndExpand"
+                        WidthRequest="280"/>
+                    <Border x:Name="BorderName" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,0'}" StrokeThickness="1" Stroke="LightGray"/>
+                    <local:EditorWithoutBorder      
+                        Focused="EditorWithoutBorder_Focused"
+                        Unfocused="EditorWithoutBorder_Unfocused"
+                        Text="{Binding ProductProperty.ProductDescription}" 
+                        FontFamily="InterSemiBold"
+                        Placeholder="Nome" 
+                        PlaceholderColor="Gray" 
+                        HorizontalOptions="FillAndExpand"
+                        WidthRequest="280"
+                        TextColor="White"/>
+                    <Border x:Name="BorderDescription" BackgroundColor="#f0f0f0" Padding="{OnPlatform Android='10,0', iOS='10,0'}" StrokeThickness="1" Stroke="LightGray"/>
+                    <VerticalStackLayout Margin="0,25,0,0" >
+                        <Button 
+                            Command="{Binding RefreshProductEditorCommand}" 
+                            Text="Atualizar"                     
+                            CornerRadius="10"
+                            Margin="0,15,0,0"
+                            TextColor="White"
+                            BackgroundColor="#2A1D39"
+                            BorderColor="WhiteSmoke"
+                            BorderWidth="1"
+                            HeightRequest="40"
+                            FontFamily="InterSemiBold"/>
+                        <Button                          
+                             CornerRadius="10"
+                             HeightRequest="40"
+                             Command="{Binding DeleteProductCommand}"
+                             CommandParameter="{Binding ProductProperty}"
+                             Text="Excluir"
+                             Margin="0,15,0,0"
+                             TextColor="#2A1D39"
+                             BackgroundColor="WhiteSmoke"
+                             BorderColor="WhiteSmoke"
+                             BorderWidth="1"
+                             FontFamily="InterSemiBold"/>
+                    </VerticalStackLayout>
                 </VerticalStackLayout>
+            </FlexLayout>
+        </ScrollView>
 
-            </VerticalStackLayout>
-        </FlexLayout>
-    </ScrollView>
+    </Grid>
     
 </ContentPage>

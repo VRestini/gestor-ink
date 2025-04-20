@@ -6,10 +6,99 @@
              x:DataType="viewmodel:StockProductCreateVM"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"            
              xmlns:model="clr-namespace:GestorInk.Models">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Shell.TitleView>
+        <Grid 
+        ColumnDefinitions="*,Auto,*"
+        VerticalOptions="Center"
+        HorizontalOptions="Fill"
+        HeightRequest="44">
+            <Label Grid.Column="1"
+            FontSize="Title"
+            FontAttributes="Bold"
+            TextColor="White"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="CRIAR" 
+            Margin="0,0,60,0"
+            FontFamily="InterSemiBold"/>
+        </Grid>
+    </Shell.TitleView>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush  EndPoint="0,1">
+                <GradientStop Color="#1A1028" Offset="0.0" />
+                <GradientStop Color="#2a1c38" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <ScrollView>
+            <FlexLayout 
+Direction="Column" 
+AlignItems="Center"
+JustifyContent="Start">
+                <VerticalStackLayout Margin="0,105,0,15" >
+                    <!-- <Frame 
+                CornerRadius="20"
+                Padding="0"
+                BorderColor="Transparent"
+                BackgroundColor="Transparent"
+                WidthRequest="200"
+                HeightRequest="200">
+                <Image 
+                    x:Name="MyImage" 
+                    WidthRequest="200" 
+                    HeightRequest="200" BackgroundColor="Gray" Source="{Binding ImageSource}" Aspect="Fill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelecionarImagemCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame> -->
+                    <DatePicker                  
+                        Date="{Binding StockDateValidity}" 
+                        x:Name="datePicker" 
+                        FontFamily="InterSemiBold"                        
+                        TextColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        WidthRequest="280"/>
+                    <Border BackgroundColor="WhiteSmoke" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="1" Stroke="LightGray"/>
+
+                    <model:EntryWithoutBorder                         
+                        Text="{Binding StockPrice}" 
+                        FontFamily="InterSemiBold"
+                        Placeholder="Preço" 
+                        PlaceholderColor="Gray" 
+                        TextColor="White"    
+                        HorizontalOptions="FillAndExpand"
+                        WidthRequest="280">
+                    </model:EntryWithoutBorder>
+                    <Border  BackgroundColor="WhiteSmoke" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="1" Stroke="LightGray"/>
+                    <model:EditorWithoutBorder
+                        Text="{Binding Amount}" 
+                        FontFamily="InterSemiBold"
+                        Placeholder="Preço" 
+                        PlaceholderColor="Gray" 
+                        TextColor="White"    
+                        AutoSize="TextChanges"
+                        HorizontalOptions="FillAndExpand"
+                        WidthRequest="280"/>
+                    <Border BackgroundColor="WhiteSmoke" Padding="{OnPlatform Android='10,0', iOS='10,10'}" StrokeThickness="1" Stroke="LightGray"/>
+                    <Button  
+                         Text="Criar estoque"
+                         TextColor="WhiteSmoke"
+                         Command="{Binding CreateStockProductCommand}"
+                         Margin="0, 45, 0, 0"
+                         HeightRequest="40"
+                         WidthRequest="280"
+                         FontFamily="InterSemiBold"
+                         BackgroundColor="#2A1D39"
+                         BorderColor="WhiteSmoke"
+                         BorderWidth="1"
+                         CornerRadius="10"/>
+                </VerticalStackLayout>
+
+
+
+            </FlexLayout>
+
+        </ScrollView>
+    </Grid>
 </ContentPage>
